@@ -109,19 +109,46 @@
 
         <div id="main" >
             <div class ="post_page_title_img" style="height: 25rem;background-image: url();background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
-                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >Hello World</h2></a>
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >Windows下Hexo部署站点总结</h2></a>
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+                <p>终于下决心弄弄blog了，以后尽量常更新吧</p>
+<ol>
+<li>安装nodejs <a href="https://nodejs.org/en/download/" target="_blank" rel="external">windows下64位nodejs</a></li>
+<li>安装hexo <code>npm install hexo -g</code></li>
+<li>进入博客文件夹 <code>cd blog</code></li>
+<li>初始化博客 <code>hexo init</code></li>
+<li><p>设置一些模块 如</p>
+<ol>
+<li>hexo-generator-feed 生成<a href="http://baike.baidu.com/link?url=QEQJFFHP8uBkXAsnGTwzHD4ZGTCuZ1-yYnUDWmx69pMslD6ZqsAZptLUVEEuVkTCAUHd6RcgCmn0iMYT2tJqzq" target="_blank" rel="external">atom</a></li>
+<li><p>hexo-generator-sitemap 生成sitemap文件</p>
+<p>具体查询相关文档</p>
+</li>
+</ol>
+</li>
+<li><p>新增文章<br> <code>hexo new &quot;文章名&quot;</code></p>
+</li>
+<li>多个tags设置方式[tag1,tag2]</li>
+<li><p>文章分类 md文件中 </p>
+<p> <code>categories: 分类名</code></p>
+</li>
+<li>发布 _config.yml 中设置<br> <pre><br> deploy:  <pre><code>type: git  
+repo: git@github.com:自己的git地址.git  
+   branch: master  
+</code></pre> </pre><br> 注意格式</li>
+<li>生成及发布<br> <code>hexo generate --deploy</code></li>
+<li>相关命令<ol>
+<li>hexo clean 清除缓存</li>
+<li>hexo g  或 hexo generate 生成静态文件</li>
+<li>hexo server 或hexo s 启动本地服务器预览（localhost:4000）</li>
+<li>hexo server -p 5000 更改本地服务器端口</li>
+<li>hexo deploy 发布到github (需在_config.yml中配置好相关信息)</li>
+<li>快捷方式 生成后部署 hexo generate –deploy 或 hexo deploy –generate </li>
+</ol>
+</li>
+</ol>
+<p>一定注头部格式的空格，好多次生成不出来就发现是一个空格导致</p>
 
             </div>
 
@@ -184,8 +211,8 @@ $('.btn_click_load').click(function() {
 -->
 <script type="text/javascript">
     var disqus_config = function () {
-        this.page.url = 'http://yoursite.com/2017/09/22/hello-world/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'http://yoursite.com/2017/09/22/hello-world/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://yoursite.com/2016/08/12/2016-08-12-hexolession/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://yoursite.com/2016/08/12/2016-08-12-hexolession/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 </script>
 

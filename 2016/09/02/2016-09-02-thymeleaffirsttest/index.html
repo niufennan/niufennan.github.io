@@ -109,19 +109,27 @@
 
         <div id="main" >
             <div class ="post_page_title_img" style="height: 25rem;background-image: url();background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
-                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >Hello World</h2></a>
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >thymeleaf3.0.1首次开发总结</h2></a>
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+                <p>通过学习Thymeleaf的文档（针对的版本是2.x），并且通过查看github中3.0.1版本的示例代码。总算能跑通一个最基础的Demo版本。<br>首先没有使用maven 导致各种ClassNotFoundException和NoClassDefFoundError现罗列所需java库如下：</p>
+<ul>
+<li>attoparser：解析XML和HTML标记</li>
+<li>javassist：分析,编辑，创建字节码，用于动态编程使用</li>
+<li>ognl：一个表达式语言</li>
+<li>slf4j：日志系统的facade</li>
+<li>unbescape：编解码库</li>
+</ul>
+<p>可以一目了然，这些都和html或xml解析息息相关。<br>（同时可以看出自动化架构多么的省时省力）</p>
+<p>github中的代码中，自己实现了一个微型的mvc（其实称不上mvc，仅仅是一个url的映射）<br>通过一个Map做一个url和Controller的映射，返回一个controller都必须实现的接口。并执行接口方法。在接口方法中执行Thymeleaf引擎并输入所需信息（主要是模板名）</p>
+<p>整个项目主要类 ：</p>
+<ul>
+<li>Application：主应用类，主要配置TemplateResolver， 提供templateEngine创建，url至controller转换。</li>
+<li>filter：拦截所有url信息</li>
+<li>I..Controller 所有Controller的接口，必须实现他的process方法。</li>
+</ul>
+<p>至此，整体架构完成，其余的就是填坑及测试Thymeleaf的各种功能项了</p>
 
             </div>
 
@@ -184,8 +192,8 @@ $('.btn_click_load').click(function() {
 -->
 <script type="text/javascript">
     var disqus_config = function () {
-        this.page.url = 'http://yoursite.com/2017/09/22/hello-world/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'http://yoursite.com/2017/09/22/hello-world/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://yoursite.com/2016/09/02/2016-09-02-thymeleaffirsttest/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://yoursite.com/2016/09/02/2016-09-02-thymeleaffirsttest/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 </script>
 

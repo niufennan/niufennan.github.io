@@ -109,20 +109,105 @@
 
         <div id="main" >
             <div class ="post_page_title_img" style="height: 25rem;background-image: url();background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
-                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >Hello World</h2></a>
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >2016-10-09-Springsecurity</h2></a>
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
+                <h1 id="Thymeleaf与Spring-Security框架的集成"><a href="#Thymeleaf与Spring-Security框架的集成" class="headerlink" title="Thymeleaf与Spring Security框架的集成"></a>Thymeleaf与Spring Security框架的集成</h1><p>当已经切换到Thymeleaf框架后，登录和错误页仍然使用JSP？这篇文章中我们将看到如何配置Spring应用程序中使用Thymeleaf的登录和错误页。</p>
+<p>所有代码均可以从<a href="https://github.com/thymeleaf/thymeleafexamples-springsecurity" target="_blank" rel="external">GitHub</a>中下载</p>
+<h2 id="先决条件"><a href="#先决条件" class="headerlink" title="先决条件"></a>先决条件</h2><p>首先会认为你已经熟悉了Thymeleaf和Spring Security框架，当然，也要有一个应用在使用这两个框架。如果你不了解Spring Security框架，可以查看<a href="http://projects.spring.io/spring-security/" target="_blank" rel="external">Spring Security文档</a></p>
+<h2 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h2><p>Spring security可以指定任何一个URL作为一个登录页，所以我们只需要设置登录页面和登录错误页的Url在Spring-Security配置文件的form-login节点的属性中(一般命名为applicationContext-security.xml) </p>
+<pre><code>&lt;http auto-config=&quot;true&quot;&gt;
+    &lt;form-login login-page=&quot;/login.html&quot; authentication-failure-url=&quot;/login-error.html&quot; /&gt;
+    &lt;logout /&gt;
+    ...
+&lt;/http&gt;
+</code></pre><p>现在需要为这些页面设置一个控制器:</p>
+<pre><code>@Controller
+public class MainController {
+    ...
+    // 登录页
+    @RequestMapping(&quot;/login.html&quot;)
+    public String login() {
+        return &quot;login.html&quot;;
+    }
+    // 登录错误页
+    @RequestMapping(&quot;/login-error.html&quot;)
+    public String loginError(Model model) {
+        model.addAttribute(&quot;loginError&quot;, true);
+        return &quot;login.html&quot;;
+    }
+}
+</code></pre><p>注意:我们使用的相同的模板页:login.html,当如果有错误的时候，通过一个boolean属性来区分.</p>
+<p>下面是错误模板：</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;登录&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;登录页面&lt;/h1&gt;
+        &lt;p th:if=&quot;${loginError}&quot;&gt;您的用户名或密码错误&lt;/p&gt;
+        &lt;form th:action=&quot;@{/j_spring_security_check}&quot; method=&quot;post&quot;&gt;
+            &lt;label for=&quot;j_username&quot;&gt;用户名&lt;/label&gt;:
+            &lt;input type=&quot;text&quot; id=&quot;j_username&quot; name=&quot;j_username&quot; /&gt; &lt;br /&gt;
+            &lt;label for=&quot;j_password&quot;&gt;密码&lt;/label&gt;:
+            &lt;input type=&quot;password&quot; id=&quot;j_password&quot; name=&quot;j_password&quot; /&gt; &lt;br /&gt;
+            &lt;input type=&quot;submit&quot; value=&quot;登录&quot; /&gt;
+        &lt;/form&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h2 id="错误页"><a href="#错误页" class="headerlink" title="错误页"></a>错误页</h2><p>我们还可以配置一个Thymeleaf的错误页，在这种情况下，Spring Security不参与，我们只需修改web.xml(或在Spring4.x中修改配置类)添加error-page节点：</p>
+<pre><code>&lt;error-page&gt;
+  &lt;exception-type&gt;java.lang.Throwable&lt;/exception-type&gt;
+  &lt;location&gt;/error.html&lt;/location&gt;
+&lt;/error-page&gt;
+&lt;error-page&gt;
+  &lt;error-code&gt;500&lt;/error-code&gt;
+  &lt;location&gt;/error.html&lt;/location&gt;
+&lt;/error-page&gt;
+</code></pre><p>然后在Spring控制器中设置错误页：</p>
+<pre><code>@Controller
+public class HomeController {
+  ...
+  // 错误页
+  @RequestMapping(&quot;/error.html&quot;)
+  public String error(HttpServletRequest request, Model model) {
+    model.addAttribute(&quot;errorCode&quot;, request.getAttribute(&quot;javax.servlet.error.status_code&quot;));
+    Throwable throwable = (Throwable) request.getAttribute(&quot;javax.servlet.error.exception&quot;);
+    String errorMessage = null;
+    if (throwable != null) {
+      errorMessage = throwable.getMessage();
+    }
+    model.addAttribute(&quot;errorMessage&quot;, errorMessage);
+    return &quot;error.html&quot;;
+  }
+}
+</code></pre><p>请注意，我们将错误代码和错误信息都以及输入到模型中，用于静态中默认显示页面中的信息：</p>
+<p>error.html模板如下：</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;错误页&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1 th:text=&quot;${errorCode}&quot;&gt;500&lt;/h1&gt;
+    &lt;p th:text=&quot;${errorMessage}&quot;&gt;java.lang.NullPointerException&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h2 id="Spring-security方言"><a href="#Spring-security方言" class="headerlink" title="Spring security方言"></a>Spring security方言</h2><p>Spring Security4的集成模块可以使用Thymeleaf方言相当于Spring security框架的默认标签。</p>
+<p>在下面这个例子中使用这个方言，并打印出用户登录的凭证，并根据不同的角色显示不同的内容。</p>
+<p>当属性表达式的执行结果为true的时候，属性sec:authorize渲染出内容:</p>
+<pre><code>&lt;div sec:authorize=&quot;hasRole(&apos;ROLE_ADMIN&apos;)&quot;&gt;
+  角色为admin的时候展示
+&lt;/div&gt;
+&lt;div sec:authorize=&quot;hasRole(&apos;ROLE_USER&apos;)&quot;&gt;
+  角色为user的时候展示
+&lt;/div&gt;
+</code></pre><p>属性 sec:authentication 可以用于打印用户名和角色：</p>
+<pre><code>登录: &lt;span sec:authentication=&quot;name&quot;&gt;张三&lt;/span&gt;
+角色: &lt;span sec:authentication=&quot;principal.authorities&quot;&gt;[ROLE_USER, ROLE_ADMIN]&lt;/span
+</code></pre>
             </div>
 
             <!-- Post Comments -->
@@ -184,8 +269,8 @@ $('.btn_click_load').click(function() {
 -->
 <script type="text/javascript">
     var disqus_config = function () {
-        this.page.url = 'http://yoursite.com/2017/09/22/hello-world/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'http://yoursite.com/2017/09/22/hello-world/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://yoursite.com/2016/10/09/2016-10-09-Springsecurity/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://yoursite.com/2016/10/09/2016-10-09-Springsecurity/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 </script>
 
