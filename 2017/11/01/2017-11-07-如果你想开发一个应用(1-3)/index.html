@@ -1,0 +1,332 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<link rel="bookmark"  type="image/x-icon"  href="/img/niu.png"/>
+	 <link rel="shortcut icon" href="/img/niu.png">
+	
+			
+    <title>
+    双鱼座的牛
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/mic_main.css" />
+    <link rel="stylesheet" href="/css/dropdownMenu.css" />
+    
+    	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
+
+			    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+	
+</head>
+    
+		
+<!-- Layouts -->
+
+
+
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_coy.css" />
+<link rel="stylesheet" href="/css/typo.css" />
+<!-- 文章页 -->
+<body class="is-loading">
+    <!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in">
+        <!-- Intro 头部显示 s -->
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="/" class="logo">双鱼座的牛</a>
+</header>
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special" >
+            <ul class="menu links" >
+			<!-- Homepage  主页  --> 
+			<li >
+	            <a href="/" rel="nofollow">主页</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <li class="active">
+	            <a href="#s1">分类</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        <a class="category-link" href="/categories/前端技术/">前端技术</a></li><li><a class="category-link" href="/categories/后端技术/">后端技术</a></li><li><a class="category-link" href="/categories/闲言碎语/">闲言碎语</a>
+	                    </ul>
+	        </li>
+	        
+	        <!-- archives  归档   --> 
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="/about/" title="简历">
+		                简历
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/group/" title="团队">
+		                团队
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/gallery/" title="图库">
+		                图库
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/tag/" title="标签">
+		                标签
+		            </a>
+		        </li>
+		        
+
+
+            </ul>
+            <!-- icons 图标   -->
+			<ul class="icons">
+		            
+		                <li><a href="https://github.com/miccall" class="icon fa-github"><span class="label">GitHub</span></a></li>
+		            
+		            
+		            
+		            
+			</ul>
+</nav>
+
+        <div id="main" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(http://upload-images.jianshu.io/upload_images/6290181-5e08f6478e2fef0c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >如果你想开发一个应用(1-3)</h2></a>
+            </div>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <p>前一张的结尾，我想你已经发现了现在这个应用就是个骗子，根本就不是一个todos的应用，连个列表都没有，这一章就着重解决这个问题，在解决之前，先要明白几个概念：</p>
+<h2 id="Jsp的四种作用域"><a href="#Jsp的四种作用域" class="headerlink" title="Jsp的四种作用域"></a>Jsp的四种作用域</h2><p>作用域顾名思义，就是一个变量能够起作用的区域，具体到jsp中，扣除自定义变量之外，共存在四种作用域，分别为：</p>
+<ol>
+<li>pageContext 即页面级，只存在本页面中，刷新后就消失。</li>
+<li>request 请求级，存在一样请求/响应周期</li>
+<li>session 会话级，存在一个用户完整的会话周期，可以暂时简单的理解为从用户访问站点开始，到关闭浏览器为止。</li>
+<li>application 应用级，即从应用启动到应用停止，比如tomcat重启，服务器重启都在这个范围。</li>
+</ol>
+<blockquote>
+<p>page和request的区别在于，有些请求是跨页面的，比如通过forward的转发的页面，关于forward转发的内容，后面的章节会详细介绍。</p>
+</blockquote>
+<p>看了四种作用域的介绍，因为列表是随时打开随时看的，那么很容易就可以想到，将所有的todo项存在于application中是最适合的（此时不考虑持久化技术），那么问题来了，jsp的application内置对象该如何使用呢？  </p>
+<blockquote>
+<p>这点，其实这四个内置变量的使用方式都是一致的，通过<strong>getAttribute(name:String)</strong>来获取在职，通过<strong>setAttribute(name:String,val:Object)</strong>来设置值。</p>
+</blockquote>
+<h2 id="存储todos"><a href="#存储todos" class="headerlink" title="存储todos"></a>存储todos</h2><p>继续上一章的程序，暂时还是采取最简单的方法，仅仅是一个字符串的列表，将它通过一个List存入application中，代码如下：</p>
+<pre><code>&lt;%
+    request.setCharacterEncoding(&quot;utf-8&quot;);
+    List&lt;String&gt; todos=(List&lt;String&gt;) application.getAttribute(&quot;todos&quot;);
+    if(todos==null){
+        todos=new ArrayList&lt;&gt;();
+        application.setAttribute(&quot;todos&quot;,todos);
+    }
+    if(request.getParameter(&quot;todo&quot;)!=null){
+        todos.add(request.getParameter(&quot;todo&quot;));
+    }
+%&gt;
+</code></pre><p>这里首先从application中获取一个List<string>，然后判断他是否存在，如果不存在则创建一个新的ArrayList，并将其放入application中，由于list为引用类型，所以即使没用重新setAttribute，在list没有重新初始化的情况下，对list的操作也会如实的反映到application中.</string></p>
+<blockquote>
+<p>这里有一个java很重要的基础知识点，即值类型与引用类型，对于这点一定要非常清晰，否则会在编码中产生非常可怕的影响。</p>
+</blockquote>
+<h2 id="显示todos"><a href="#显示todos" class="headerlink" title="显示todos"></a>显示todos</h2><p>现在todo项已经存在了一个list中，下面要做的就是输出它（整个代码块）：</p>
+<pre><code>&lt;%
+    request.setCharacterEncoding(&quot;utf-8&quot;);
+    List&lt;String&gt; todos=(List&lt;String&gt;) application.getAttribute(&quot;todos&quot;);
+    if(todos==null){
+        todos=new ArrayList&lt;&gt;();
+        application.setAttribute(&quot;todos&quot;,todos);
+    }
+    if(request.getParameter(&quot;todo&quot;)!=null){
+        todos.add(request.getParameter(&quot;todo&quot;));
+    }
+
+    out.print(&quot;&lt;ul&gt;&quot;);
+    for (String item :todos) {
+        out.print(&quot;&lt;li&gt;&quot;+item+&quot;&lt;/li&gt;&quot;);
+    }
+    out.print(&quot;&lt;/ul&gt;&quot;);
+%&gt;
+</code></pre><p>查看一下效果：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/6290181-9648053f60e1c236.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p>不考虑美观的话，功能算是实现了，但是，这样好么？<br>当然不好，尤其是输出html标签这一点，想一下，如果把ul改成table怎么办？并且标签的开闭，很容易出错，在想想如果在todo的项目中增加一些超链接之类的，那么对于这种在代码中嵌入html的方法，几乎是一场噩梦，所以一个方法是把在代码中嵌入html改为在html中嵌入代码，修改后的代码如下：</p>
+<pre><code>&lt;%
+    request.setCharacterEncoding(&quot;utf-8&quot;);
+    List&lt;String&gt; todos=(List&lt;String&gt;) application.getAttribute(&quot;todos&quot;);
+    if(todos==null){
+        todos=new ArrayList&lt;&gt;();
+        application.setAttribute(&quot;todos&quot;,todos);
+    }
+    if(request.getParameter(&quot;todo&quot;)!=null){
+        todos.add(request.getParameter(&quot;todo&quot;));
+    }
+%&gt;
+    &lt;ul&gt;
+    &lt;%
+    for (String item :todos) {
+        %&gt;
+       &lt;li&gt;&lt;%=item%&gt;&lt;/li&gt;
+&lt;%
+    }
+    %&gt;
+    &lt;/ul&gt;
+</code></pre><p>这个:(貌似也没清晰多少，但是这是一个简单的例子，如果html稍微复杂点就能看出优势来，退一步说，即使只考虑使用html的高亮功能，都值得用这种代码中嵌入html的方法，但这种方法的缺点也是相当明显的，那就是他即破坏了html的结构，又破坏了代码的结构，那么有没有其他一种更加优秀的方法呢，这时候就轮到jstl出厂了.</p>
+<h2 id="jstl"><a href="#jstl" class="headerlink" title="jstl"></a>jstl</h2><p>jstl实际上是一套封装好的taglib组件，使用jstl首先需要加载jstl的依赖项，我们可以再<a href="http://mvnrepository.com/tags/maven" target="_blank" rel="external">maven公共库</a>中搜索jstl,将搜索结果假如<strong>pom.xml</strong>文件的<strong>dependencies</strong>节点内中：</p>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;javax.servlet&lt;/groupId&gt;
+    &lt;artifactId&gt;jstl&lt;/artifactId&gt;
+    &lt;version&gt;1.2&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre><p>加载后点击Import Changes 带进度条走完即表示加载完成。</p>
+<p>然后，我使用默认模板创建的应用为2.3版本，其实现在默认即为3.*版本，即删除&lt;!DOCTYPE声明节点即可，若需要强制声明版本，可修改web-app属性为：</p>
+<pre><code>&lt;web-app  xmlns=&quot;http://xmlns.jcp.org/xml/ns/javaee&quot;
+      xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+      xsi:schemaLocation=&quot;http://xmlns.jcp.org/xml/ns/javaee
+    http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd&quot;&gt;
+</code></pre><p>我的web.xml:</p>
+<pre><code>&lt;web-app&gt;
+  &lt;display-name&gt;jTodos&lt;/display-name&gt;
+&lt;/web-app&gt;
+</code></pre><p>呃 好简单</p>
+<p>然后在页面声明taglib前缀：<br>    &lt;%@ taglib prefix=”c” uri=”<a href="http://java.sun.com/jsp/jstl/core&quot;%&gt;" target="_blank" rel="external">http://java.sun.com/jsp/jstl/core&quot;%&gt;</a></p>
+<p>然后修改输出代码为：</p>
+<pre><code>&lt;%
+    request.setCharacterEncoding(&quot;utf-8&quot;);
+    List&lt;String&gt; todos=(List&lt;String&gt;) application.getAttribute(&quot;todos&quot;);
+    if(todos==null){
+        todos=new ArrayList&lt;&gt;();
+        application.setAttribute(&quot;todos&quot;,todos);
+    }
+    if(request.getParameter(&quot;todo&quot;)!=null){
+        todos.add(request.getParameter(&quot;todo&quot;));
+    }
+%&gt;
+    &lt;ul&gt;
+        &lt;c:forEach var=&quot;item&quot; items=&quot;${todos}&quot;&gt;
+         &lt;li&gt;${item}&lt;/li&gt;
+        &lt;/c:forEach&gt;
+    &lt;/ul&gt;
+</code></pre><p>是不是清爽多了?运行看一下页面，和之前的一样，现在看页面的逻辑基本比较清晰了，代码和html互不干扰，暂时这块先告一段落，当然，jstl还有好多用法，以后再慢慢探索。  </p>
+<p>感谢您的阅读</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/6290181-9c9c4ae191ca23b3.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+
+            </div>
+
+            <!-- Post Comments -->
+            
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #7EC0EE;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load" id="disqus_bt"> 
+    <button class="disqus_click_btn">点击查看评论</button>
+</div>
+
+<!--
+<script type="text/javascript">
+$('.btn_click_load').click(function() {
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'http-miccall-tech'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    document.getElementById('disqus_bt').style.display = "none";
+});
+</script>
+-->
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2017/11/01/2017-11-07-如果你想开发一个应用(1-3)/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://yoursite.com/2017/11/01/2017-11-07-如果你想开发一个应用(1-3)/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/javascript">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//http-miccall-tech.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+
+        </div>
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By <a href="https://hexo.io/zh-cn/" style="border-bottom: none;">hexo</a></li>
+                <li>Design: <a href="http://miccall.tech " style="border-bottom: none;">miccall</a></li>
+            </ul>
+            
+            	<span id="busuanzi_container_site_pv">2017总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+			
+        </div>
+    </div>
+</body>
+
+
+
+ 	
+</html>
