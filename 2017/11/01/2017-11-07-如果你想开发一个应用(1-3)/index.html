@@ -221,7 +221,13 @@
          &lt;li&gt;${item}&lt;/li&gt;
         &lt;/c:forEach&gt;
     &lt;/ul&gt;
-</code></pre><p>是不是清爽多了?运行看一下页面，和之前的一样，现在看页面的逻辑基本比较清晰了，代码和html互不干扰，暂时这块先告一段落，当然，jstl还有好多用法，以后再慢慢探索。  </p>
+</code></pre><p>是不是清爽多了?运行看一下页面，和之前的一样，现在看页面的逻辑基本比较清晰了，代码和html互不干扰，同时，我们还可以为这个list假设一个编号：</p>
+<pre><code> &lt;ul&gt;
+    &lt;c:forEach var=&quot;item&quot; varStatus=&quot;status&quot; items=&quot;${todos}&quot;&gt;
+     &lt;li&gt;${status.index+1}.${item}&lt;/li&gt;
+    &lt;/c:forEach&gt;
+&lt;/ul&gt;
+</code></pre><p>Ok很完美，这块暂时先告一段落，当然，jstl还有好多用法，以后再慢慢探索。  </p>
 <p>感谢您的阅读</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/6290181-9c9c4ae191ca23b3.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
 
