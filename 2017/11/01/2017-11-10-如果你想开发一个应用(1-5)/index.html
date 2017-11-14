@@ -1,0 +1,376 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<link rel="bookmark"  type="image/x-icon"  href="/img/niu.png"/>
+	 <link rel="shortcut icon" href="/img/niu.png">
+	
+			
+    <title>
+    双鱼座的牛
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/mic_main.css" />
+    <link rel="stylesheet" href="/css/dropdownMenu.css" />
+    
+    	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
+
+			    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+	
+</head>
+    
+		
+<!-- Layouts -->
+
+
+
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_coy.css" />
+<link rel="stylesheet" href="/css/typo.css" />
+<!-- 文章页 -->
+<body class="is-loading">
+    <!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in">
+        <!-- Intro 头部显示 s -->
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="/" class="logo">双鱼座的牛</a>
+</header>
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special" >
+            <ul class="menu links" >
+			<!-- Homepage  主页  --> 
+			<li >
+	            <a href="/" rel="nofollow">主页</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <li class="active">
+	            <a href="#s1">分类</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        <a class="category-link" href="/categories/前端技术/">前端技术</a></li><li><a class="category-link" href="/categories/后端技术/">后端技术</a></li><li><a class="category-link" href="/categories/闲言碎语/">闲言碎语</a>
+	                    </ul>
+	        </li>
+	        
+	        <!-- archives  归档   --> 
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="/about/" title="简历">
+		                简历
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/group/" title="团队">
+		                团队
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/gallery/" title="图库">
+		                图库
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/tag/" title="标签">
+		                标签
+		            </a>
+		        </li>
+		        
+
+
+            </ul>
+            <!-- icons 图标   -->
+			<ul class="icons">
+		            
+		                <li><a href="https://github.com/miccall" class="icon fa-github"><span class="label">GitHub</span></a></li>
+		            
+		            
+		            
+		            
+			</ul>
+</nav>
+
+        <div id="main" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(http://upload-images.jianshu.io/upload_images/6290181-1a2c171193e2c208.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >如果你想开发一个应用(1-4)</h2></a>
+            </div>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <p>你是否会觉得奇怪？每次通过IDE运行的tomcat，让应用进行启动调试，发现他的页面都比我的钱包还干净，为什么呢，我之前添加了的好多项呢，说好的三点钟看书呢？</p>
+<h2 id="持久化基础"><a href="#持久化基础" class="headerlink" title="持久化基础"></a>持久化基础</h2><p>这时候，终于轮到持久化技术出场了，所谓持久化就是把数据转换为持久状态，如存储在文件或数据库中，以便能够持久的保存,这里介绍一下使用jdbc来进行数据库操作的方法,顺便在这时介绍一下jsp的bean。</p>
+<p>jdbc是一个专用的数据库链接桥接的方法。提供里一套数据库操作的接口，然后由各个厂商对此进行实现，同时，各种的orm操作，实际上也可以说就是对jdbc的各种封装，也就是说，熟悉了一jdbc这种数据库操作的方法，也就几乎可以了解任意一种数据库操作的方式。</p>
+<p>一般来说，对于基础数据库操作，统一成为crud才做，即Create(创建)、Read(读取)、Update(更新)和Delete(删除)的操作，现在大部分的业务应用，基本都是不同逻辑下的crud操作，对于这个项目来说，我们主要使用的操作为C和R，也就是：</p>
+<ul>
+<li>插入一条todo项</li>
+<li>读取todo列表</li>
+</ul>
+<p>这样，即使服务重启，也可以从db中获取已经存在的信息，首先用mysql来实现这样一个功能.</p>
+<p>mysql当然可以使用纯命令行的方式，但我们毕竟不是dba，我还是建议你使用一个ide，我使用的是<a href="https://sqlyog.en.softonic.com/" target="_blank" rel="external">SQLyog</a>,具体的操作步骤以下几步：</p>
+<h3 id="创建数据库jtodos"><a href="#创建数据库jtodos" class="headerlink" title="创建数据库jtodos"></a>创建数据库jtodos</h3><pre><code>CREATE DATABASE `jtodos` ;
+</code></pre><p>###创建数据库todos</p>
+<pre><code>CREATE TABLE `todos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `item` varchar(100) DEFAULT NULL,
+  `createtime` datetime DEFAULT NULL,
+  `userid` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+</code></pre><p>都非常简单，需要注意的是表内有userid字段，这个字段暂时不要了解，以后会使用。</p>
+<p>最后，还要在maven库中找到jdbc的相关库，并添加到pom.xml中：</p>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;mysql&lt;/groupId&gt;
+    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+    &lt;version&gt;6.0.6&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre><h2 id="dao操作"><a href="#dao操作" class="headerlink" title="dao操作"></a>dao操作</h2><p>dao(Data Access Object)是数据访问对象的简称，我们使用此对象来封装db操作的api，在进行数据库操作之前，先封装一个数据库操作的工具类，以便在之后的代码里可以专注于逻辑实现，这个工具类放在<code>com.niufennan.jtodos.utils</code>包内，类名为DatabaseHelper，是一个静态类，代码如下：</p>
+<pre><code>  public static Connection getConnection(){
+    Connection connection=null;
+    try {
+        Class.forName(com.mysql.jdbc.Driver.class.getName());
+        connection= DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/sstest?serverTimezone=GMT%2b8&quot;,&quot;root&quot;,&quot;1234&quot;);
+    }  catch (ClassNotFoundException e) {
+        e.printStackTrace();
+    }catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return connection;
+}
+public static void close(ResultSet rs, Statement statement, Connection connection){
+    if(rs!=null)
+    {
+        try {
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    if(statement!=null)
+    {
+        try {
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+    if(connection!=null) {
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre><p>这个类以后会复杂的多，但目前为止，只有获取链接和关闭链接两个方法即可。</p>
+<p>需要说明的有三点：  </p>
+<ol>
+<li><p>Class.forName(com.mysql.jdbc.Driver.class.getName());</p>
+</li>
+</ol>
+<p>加载jdbc驱动。  </p>
+<ol>
+<li>connection= DriverManager.getConnection(“jdbc:mysql://localhost:3306/jtodos?serverTimezone=GMT%2b8”,”root”,”1234”);</li>
+</ol>
+<p>建立链接，三个参数分别为链接数据库使用的url，数据库的用户名，数据库密码，注意url中的serverTimezone参数，这个是配置程序所使用的时区，这里显示使用的为东八区。即北京所在时区。</p>
+<ol>
+<li>关闭链接需按顺序分别关闭。</li>
+</ol>
+<p>然后是正常的数据库查询的业务类<code>TodoDao</code>,这个类在<code>com.niufennan.jtodos.dao</code>包内，此类只有两个方法，分别对应我们所需的操作，即C和R源代码如下：</p>
+<pre><code>public class TodoDao {
+    public List&lt;Todo&gt; getAll(){
+        Connection connection= null;
+        Statement statement=null;
+        ResultSet resultSet=null;
+        List&lt;Todo&gt; list=new ArrayList&lt;Todo&gt;();
+        try{
+            connection =DatabaseHelper.getConnection();
+            statement= connection.createStatement();
+            resultSet=statement.executeQuery(&quot;select * from todos&quot;);
+            while (resultSet.next()){
+                Todo todo=new Todo();
+                todo.setId(resultSet.getInt(&quot;id&quot;));
+                todo.setItem(resultSet.getString(&quot;item&quot;));
+                todo.setCreateTime(resultSet.getDate(&quot;createtime&quot;));
+                todo.setUserId(resultSet.getInt(&quot;userid&quot;));
+                list.add(todo);
+            }
+        }catch (SQLException ex){
+            new RuntimeException(ex);
+        }
+        finally {
+            DatabaseHelper.close(resultSet,statement,connection);
+        }
+        return list;
+    }
+
+    public void save(Todo todo){
+        Connection connection=null;
+        PreparedStatement statement=null;
+        try {
+            connection = DatabaseHelper.getConnection();
+            statement=connection.prepareStatement(&quot;INSERT INTO todos (item,createtime,userid)VALUES(?,?,?);&quot;);
+            statement.setString(1,todo.getItem());
+            statement.setDate(2,new Date(todo.getCreateTime().getTime()));
+            statement.setInt(3,todo.getUserId());
+            statement.executeUpdate();
+        }catch (SQLException ex){
+            throw  new RuntimeException(ex);
+        }finally {
+            DatabaseHelper.close(null,statement,connection);
+        }
+    }
+}
+</code></pre><blockquote>
+<p>此类需要作为jsp内的javabean使用，所以必须具有javabean所需的特征：<br>1 必须是公开的和具体的<br>2 必须具有无参的构造函数<br>3 所有独立字段(如有)必须通过公开的get和set方法暴露<br>此类完全符合javabean的条件，所以他可以作为javabean使用</p>
+</blockquote>
+<p>需注意两点：<br>1 todos表内id为自增长id，在insert的时候不需要也不允许设置<br>2 注意在插入时候的createtime字段，db中时间输入必须使用setTimestamp，否则会损失时分秒的部分，这时需要以时刻为参数，重新创建一个<code>java.sql.Timestamp</code>输入。</p>
+<h2 id="jsb-Bean"><a href="#jsb-Bean" class="headerlink" title="jsb Bean"></a>jsb Bean</h2><p>好，数据库操作类也完成，下面所要做的就是在jsp页面中使用它了,jsp页面中使用javabean的方法为jsp:useBean标签，继续修改index.jsp内的代码(貌似已经修改的千疮百孔了)</p>
+<pre><code>&lt;jsp:useBean id=&quot;todoDao&quot; class=&quot;com.niufennan.jtodos.dao.TodoDao&quot;&gt;&lt;/jsp:useBean&gt;
+</code></pre><p>这样，jsp页面中就引入了TodoDao方法，id指的是在jsp中使用的句柄，class指向这个bean的全路径。</p>
+<p>继续修改jsp中的代码块为：</p>
+<pre><code>&lt;jsp:useBean id=&quot;todoDao&quot; class=&quot;com.niufennan.jtodos.dao.TodoDao&quot;&gt;&lt;/jsp:useBean&gt;
+&lt;%
+    request.setCharacterEncoding(&quot;utf-8&quot;);
+    if(request.getParameter(&quot;todo&quot;)!=null){
+        Todo todo=new Todo();
+        todo.setCreateTime(new Date());
+        todo.setItem(request.getParameter(&quot;todo&quot;));
+        todo.setUserId(0);
+        todoDao.save(todo);
+    }
+
+    List&lt;Todo&gt; todos=todoDao.getAll();
+    pageContext.setAttribute(&quot;todos&quot;,todos);
+%&gt;
+</code></pre><p>可以看到，不在对application进行访问，而是直接使用todoDao，对数据库进行操作，并且，感觉代码都清爽了好多，运行一下：</p>
+<p><img src="http://oyol58zk0.bkt.clouddn.com/jtodos/5/1.PNG" alt=""></p>
+<p>ok 运行效果和之前一模一样，停止服务器再次运行，效果还是这样，故不再贴图。</p>
+<h2 id="最后再说几句"><a href="#最后再说几句" class="headerlink" title="最后再说几句"></a>最后再说几句</h2><p>首先，我们使用了useBean的标签，他的作用域其实是application级别的，也就是说，他和之前我们使用的ArrayList<todo>一样，是存储在application中。</todo></p>
+<p>还有，现在这个应用是每次数据库操作都创建一个数据库链接，实际上数据库链接的开销非常大，一般来说都是使用数据库连接池，而现在很多的orm都是使用的数据库连接池操作。</p>
+<p>从代码中可以看到了，数据库操作的代码都是又臭又长，非常容易出错和难以维护，哪怕执行一条select语句都要写一大度代码，还必须各种try catch，并且很多问题都不会引起编译错误，只有运行时的偶然因素才会引起错误，所以这块一般都是使用orm和各种数据库工具库，比如Apache common里就有dbutils的工具类，但现在我们暂时先这样，以后会慢慢的进行修改维护。</p>
+<p>现在我所有的计划列表都已经存储到了db中，即使重启服务器，重启pc等任何操作也不会改变计划，但是，我做的应用仅仅是为了自己使用么？如果其他人也同样使用这个应用会怎么样呢？下一章将解答这个问题.</p>
+<p>感谢您的观看！</p>
+<p><img src="http://oyol58zk0.bkt.clouddn.com/%E6%8D%95%E8%8E%B70.PNG" style="width:300px;margin:0px auto"></p>
+
+            </div>
+
+            <!-- Post Comments -->
+            
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #7EC0EE;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load" id="disqus_bt"> 
+    <button class="disqus_click_btn">点击查看评论</button>
+</div>
+
+<!--
+<script type="text/javascript">
+$('.btn_click_load').click(function() {
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'http-miccall-tech'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    document.getElementById('disqus_bt').style.display = "none";
+});
+</script>
+-->
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2017/11/01/2017-11-10-如果你想开发一个应用(1-5)/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://yoursite.com/2017/11/01/2017-11-10-如果你想开发一个应用(1-5)/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/javascript">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//http-miccall-tech.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+
+        </div>
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By <a href="https://hexo.io/zh-cn/" style="border-bottom: none;">hexo</a></li>
+                <li>Design: <a href="http://miccall.tech " style="border-bottom: none;">miccall</a></li>
+            </ul>
+            
+            	<span id="busuanzi_container_site_pv">2017总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+			
+        </div>
+    </div>
+</body>
+
+
+
+ 	
+</html>
