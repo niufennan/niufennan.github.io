@@ -1,0 +1,527 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<link rel="bookmark"  type="image/x-icon"  href="/img/niu.png"/>
+	 <link rel="shortcut icon" href="/img/niu.png">
+	
+			
+    <title>
+    双鱼座的牛
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/mic_main.css" />
+    <link rel="stylesheet" href="/css/dropdownMenu.css" />
+    
+    	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
+
+			    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+	
+</head>
+    
+		
+<!-- Layouts -->
+
+
+
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_coy.css" />
+<link rel="stylesheet" href="/css/typo.css" />
+<!-- 文章页 -->
+<body class="is-loading">
+    <!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in">
+        <!-- Intro 头部显示 s -->
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="/" class="logo">双鱼座的牛</a>
+</header>
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special" >
+            <ul class="menu links" >
+			<!-- Homepage  主页  --> 
+			<li >
+	            <a href="/" rel="nofollow">主页</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <li class="active">
+	            <a href="#s1">分类</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        <a class="category-link" href="/categories/前端技术/">前端技术</a></li><li><a class="category-link" href="/categories/后端技术/">后端技术</a></li><li><a class="category-link" href="/categories/闲言碎语/">闲言碎语</a>
+	                    </ul>
+	        </li>
+	        
+	        <!-- archives  归档   --> 
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="/about/" title="简历">
+		                简历
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/group/" title="团队">
+		                团队
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/gallery/" title="图库">
+		                图库
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/tag/" title="标签">
+		                标签
+		            </a>
+		        </li>
+		        
+
+
+            </ul>
+            <!-- icons 图标   -->
+			<ul class="icons">
+		            
+		                <li><a href="https://github.com/miccall" class="icon fa-github"><span class="label">GitHub</span></a></li>
+		            
+		            
+		            
+		            
+			</ul>
+</nav>
+
+        <div id="main" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(http://upload-images.jianshu.io/upload_images/6290181-b523dde79348d90d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >如果你想开发一个应用(1-6)</h2></a>
+            </div>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <p>人如果没有梦想，那么和一只咸鱼有什么分别。作为一个程序员，哪怕我们不能改变世界，也会有让更多的，更多的人使用我们应用的梦想。那么现在回到我们的jTodos应用，我们当然会想要更多的人使用我们的应用。假设现在，如果有多个人使用我们的应用会是什么情况呢？</p>
+<h2 id="确保用户之间的隔离"><a href="#确保用户之间的隔离" class="headerlink" title="确保用户之间的隔离"></a>确保用户之间的隔离</h2><p>首先我们使用两个浏览器来模拟多用户测试，首先在一个浏览器内输入张三–下午三点钟看书。  </p>
+<blockquote>
+<p>这里我们要首先清理数据库，不能让历史上的垃圾数据干扰现在的操作<br>这样做既不方便又容易出错，更好的方法是使用单元测试技术并创立一个测试库，每次进行测试的时候都进行一次初始化，现在暂时采用手动方式清理数据。</p>
+</blockquote>
+<p>然后假设另一个使用另一个浏览器(在jsp中一个会话即为一个浏览器的打开到关闭，即可以用不同的浏览器来模拟不同的用户)进入这个页面 “哇偶 张三是谁，他在下我三点看书管我啥事” </p>
+<p>这时候，想想我们想要实现的功能，最后在pc操作系统的左上角弄个便签记录一下：</p>
+<ol>
+<li>每个用户都有自己的todo列表</li>
+<li>各个用户的todo列表不能互相干扰</li>
+<li>每个用户可以方便的访问自己的列表</li>
+</ol>
+<p>现在要想想怎么实现这个功能了。</p>
+<h2 id="YAGNI"><a href="#YAGNI" class="headerlink" title="YAGNI"></a>YAGNI</h2><p>软件的开发不同于建设一个建筑，比如盖一栋大楼之类的，虽然他们通常这样的类比。软件的开发过程中总是充斥中不停的变化，变化如此之频繁，以至于很可能你的需求分析，基本设计刚刚出炉，就已经过时。</p>
+<p><strong>但是</strong>，注意，这里强调一下，并不是说要完全放弃分析和设计，有时候不经思考的反复试错，穷举方式，可能也可以找到答案，但适当的思考可以达到事半功倍的效果，关于现在，我们就所需要的功能来思考一下：</p>
+<ul>
+<li>每一个todo都与用户相关联</li>
+<li>每个用户都能保存自己的清单（目前来说不考虑清单分组，即至少能保存一个清单）</li>
+<li>用户要方便的找到自己的列表，以便多次访问</li>
+<li>……</li>
+</ul>
+<p>头脑风暴一经展开，貌似就再也停不下了。这时候我们会有各种各样的想法，比如，为每个用户来一个炫目的登录页面，每个todo是不是要加一个标题和内容？是不是要给清单进行分组，给每个分组增加一个说明？等等，一旦发生这种情况，我们就要注意了，这种蔓延会一发不可收拾，这时，要牢记敏捷开发的一个信条：<strong>YAGNI</strong>,他是You aint gonna need it的首字母，意思就是你不需要他！！作为一个软件开发者，要知道很多项目失败的原因之一就是开始的计划过于宏大了，有个能工作的简陋的应用，总比一个超炫但不能工作的应用强，所以，就现在这个应用目前来说，经过削繁就简后，决定用下面的方式实现：</p>
+<ul>
+<li>用户信息很简单，只有一个用户名和id</li>
+<li>将用户名嵌入到url中，已进行区分</li>
+<li>todo与用户id进行关联</li>
+</ul>
+<p>接下来就要想这个实现所需的技术了。</p>
+<h2 id="servlet"><a href="#servlet" class="headerlink" title="servlet"></a>servlet</h2><p>jsp很灵活方便，但在页面嵌入代码这是一个硬伤，他不容易开发，测试，尤其是进行复杂的逻辑时，更需要在代码中进行结构化的开发。老规矩，首先进行一个hello world进行一下测试。</p>
+<p>首先还是需要引入所需的包，在pom.xml添加节点：</p>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;javax.servlet&lt;/groupId&gt;
+    &lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt;
+    &lt;version&gt;3.1.0&lt;/version&gt;
+    &lt;scope&gt;provided&lt;/scope&gt;
+&lt;/dependency&gt;
+</code></pre><blockquote>
+<p>注意这里多了一个scope节点，在maven中，这个节点可以有四个值，分别为：<br>1 compile 默认值，适用所有阶段，并会随项目一起发布<br>2 provided 与compile类似，但不发布，由容器会提供此库<br>3 runtime 只在运行时适用<br>4 test 只在测试时使用 如junit包<br>这里tomcat会提供servlet库，所以使用provided选项</p>
+</blockquote>
+<p>既然是代码文件，就要放到一个包中，首先创建servlet包:<code>com.niufennan.jtodos.servlet</code>,并创建<code>TodoServlet</code>，然后让其继承<code>HttpServlet</code> ,一个最简的servlet类就完成了。  </p>
+<p>在servlet中，需要覆盖实现doGet方法完成get操作，doPost方法完成Post操作，这里只是为了展示一下helloworld，所以最终代码如下：</p>
+<pre><code>@WebServlet(&quot;/todos&quot;)
+public class TodoServlet extends HttpServlet
+{
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter out = response.getWriter();
+        out.println(&quot;hello world&quot;);
+    }
+}
+</code></pre><blockquote>
+<p>Servlet 3.0版本中提供了WebServlet注解，可以以注解方式提供url，从而避免了在web.xml中又臭又长的xml配置</p>
+</blockquote>
+<p>让我们看看浏览器的源代码发送了什么：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/6290181-ef2933e475332946.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p>换句话说，也就是PrintWriter打印出什么，就像客户端发送什么，那么如果想输出html怎么办呢？很简单，打印html即可：</p>
+<pre><code>PrintWriter out = response.getWriter();
+out.println(&quot;&lt;b&gt;hello world&lt;b&gt;&quot;);
+</code></pre><p>这样，就可以让浏览器将hello world 加粗</p>
+<h2 id="jsp与servlet"><a href="#jsp与servlet" class="headerlink" title="jsp与servlet"></a>jsp与servlet</h2><p>可以看到，servlet与jsp很相似，连对象名都是同样的request和response，那么他们之间有什么关系呢？答案很简单，jsp是servlet的进化版，如果说servlet是妙蛙种子，那么jsp就是妙蛙草妙蛙花(仅仅是形态，不代表能力)，在tomcat根目录下的<code>\work\Catalina\localhost\ROOT\org\apache\jsp</code>目录中的文件，可以看到他们关系的证据：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/6290181-20a6ea156f3d2486.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p>这个是index.jsp生成的文件，其中index_jsp.java中的部分代码为：</p>
+<pre><code>List&lt;Todo&gt; todos=todoDao.getAll();
+pageContext.setAttribute(&quot;todos&quot;,todos);
+
+out.write(&quot;\r\n&quot;);
+out.write(&quot;&lt;div class=\&quot;ui two column centered relaxed  grid\&quot;&gt;\r\n&quot;);
+out.write(&quot;    &lt;div class=\&quot;column row\&quot;&gt;&lt;/div&gt;\r\n&quot;);
+out.write(&quot;    &lt;div class=\&quot;column \&quot;&gt;\r\n&quot;);
+out.write(&quot;        &lt;h2 class=\&quot;ui huge header center violet aligned\&quot;&gt;jTodos!&lt;/h2&gt;\r\n&quot;);
+out.write(&quot;        &lt;div class=\&quot;ui raised segment\&quot;&gt;\r\n&quot;);
+out.write(&quot;            &lt;form action=\&quot;index.jsp\&quot; method=\&quot;post\&quot;  class=\&quot;ui fluid action input\&quot;&gt;\r\n&quot;);
+out.write(&quot;                &lt;input type=\&quot;text\&quot; name=\&quot;todo\&quot; placeholder=\&quot;请输入一个备忘录项目\&quot;&gt;\r\n&quot;);
+out.write(&quot;                &lt;button type=\&quot;submit\&quot; class=\&quot;ui button\&quot;&gt;OK&lt;/button&gt;\r\n&quot;);
+out.write(&quot;            &lt;/form&gt;\r\n&quot;);
+out.write(&quot;            &lt;div class=\&quot;ui aligned huge selection divided list\&quot;&gt;\r\n&quot;);
+out.write(&quot;               &quot;);
+if (_jspx_meth_c_005fforEach_005f0(_jspx_page_context))
+  return;
+out.write(&quot;\r\n&quot;);
+out.write(&quot;            &lt;/div&gt;\r\n&quot;);
+out.write(&quot;        &lt;/div&gt;\r\n&quot;);
+out.write(&quot;    &lt;/div&gt;\r\n&quot;);
+out.write(&quot;&lt;/div&gt;\r\n&quot;);
+out.write(&quot;\r\n&quot;);
+out.write(&quot;&lt;script src=\&quot;https://cdn.bootcss.com/semantic-ui/2.2.13/semantic.min.js\&quot;&gt;&lt;/script&gt;\r\n&quot;);
+out.write(&quot;&lt;/body&gt;\r\n&quot;);
+out.write(&quot;&lt;/html&gt;\r\n&quot;);
+</code></pre><p>很明显，就是把jsp内的html进行格式化输出，其中<code>_jspx_meth_c_005fforEach_005f0</code>是另一个方法，方法体内循环输出todos的各项。</p>
+<p>也就是说，jsp把繁琐易错的字符串拼接处理进行了封装，由系统自己处理</p>
+<p>这样就解释了为什么jsp页面第一次访问会慢一些，以为最开始的时候要生成.java文件，并且编译为.class文件。</p>
+<p>##动态url##</p>
+<p>你可能很奇怪，嘀嘀咕咕的讲了一大堆，和我们的需求有什么关系？这是因为servlet有一项非常重要的功能，就是可以使用通配符，进行动态的url创建。举个例子，下面修改WebServlet注解的参数<code>@WebServlet(&quot;/todos/*&quot;)</code>,其中*就表示通配符，运行起来在浏览器中输入地址：</p>
+<pre><code>http://localhost:8080/todos/zhangsan
+http://localhost:8080/todos/lisi
+http://localhost:8080/todos/aaa
+http://localhost:8080/todos/nihao
+http://localhost:8080/todos/hello
+</code></pre><p>返回的均为相同的内容，也就是说，访问的为同一个servlet类。通过这点，我们就可以在url中嵌入用户名，实现用户列表的隔离。</p>
+<p>由于对于url中获取用户名需要频繁操作，所以我们把它独立到一个工具类中，代码很简单：</p>
+<pre><code>package com.niufennan.jtodos.utils;
+
+public class UrlUtil {
+    public static String getUserName(String url) {
+        String[] temp = url.split(&quot;/&quot;);
+        if(temp.length==5) {
+            return temp[temp.length-1];
+        }
+        return &quot;&quot;;
+    }
+}
+</code></pre><p>还记得模型层内，Todo类中的那个userId么，现在派上用场了，继续之前的思路，暂时采取最简单的模型，只有一个用户id和用户名，这里只贴出模型的代码如下：</p>
+<pre><code>public class User {
+    private int Id;
+    private String name;
+    getter setter ...
+}
+</code></pre><p>在db中，userId与users表的id字段相关联。</p>
+<p>相应的，还需要添加UserDao类封装对用户的db操作</p>
+<pre><code>public class UserDao {
+    public User getUserByName(String name){
+        Connection connection= null;
+        PreparedStatement statement=null;
+        ResultSet resultSet=null;
+        List&lt;Todo&gt; list=new ArrayList&lt;Todo&gt;();
+        try{
+            connection = DatabaseHelper.getConnection();
+            statement= connection.prepareStatement(&quot;select * from users where name=?&quot;);
+            statement.setString(1,name);
+            resultSet=statement.executeQuery();
+            if (resultSet.next()){
+                User user=new User();
+                user.setId(resultSet.getInt(&quot;id&quot;));
+                user.setName(resultSet.getString(&quot;name&quot;));;
+                return user;
+            }
+        }catch (SQLException ex){
+            new RuntimeException(ex);
+        }
+        finally {
+            DatabaseHelper.close(resultSet,statement,connection);
+        }
+        return null;
+    }
+    public User get(int id){
+        Connection connection= null;
+        PreparedStatement statement=null;
+        ResultSet resultSet=null;
+        List&lt;Todo&gt; list=new ArrayList&lt;Todo&gt;();
+        try{
+            connection = DatabaseHelper.getConnection();
+            statement= connection.prepareStatement(&quot;select * from users where id=?&quot;);
+            statement.setInt(1,id);
+            resultSet=statement.executeQuery();
+            if (resultSet.next()){
+                User user=new User();
+                user.setId(resultSet.getInt(&quot;id&quot;));
+                user.setName(resultSet.getString(&quot;name&quot;));;
+                return user;
+            }
+        }catch (SQLException ex){
+            new RuntimeException(ex);
+        }
+        finally {
+            DatabaseHelper.close(resultSet,statement,connection);
+        }
+        return null;
+    }
+    public void save(User user){
+        Connection connection=null;
+        PreparedStatement statement=null;
+        try {
+            connection = DatabaseHelper.getConnection();
+            //设置返回自增长Id
+            statement=connection.prepareStatement(&quot;INSERT INTO users(name) VALUES (?);&quot;,Statement.RETURN_GENERATED_KEYS);
+            statement.setString(1,user.getName());
+            statement.executeUpdate();
+            resultSet=statement.getGeneratedKeys();
+            //获取自增长Id
+            if(resultSet.next()){
+                return resultSet.getInt(1);
+            }else{
+                return -1;
+            }
+
+        }catch (SQLException ex){
+            throw  new RuntimeException(ex);
+        }finally {
+            DatabaseHelper.close(null,statement,connection);
+        }
+    }
+}
+</code></pre><blockquote>
+<p>可以通过statement.getGeneratedKeys();获取自增长Id</p>
+</blockquote>
+<p>然后在TodoDao类增加getTodoByUserId方法，以便获取当前用户的todo列表：</p>
+<pre><code>public List&lt;Todo&gt; getTodoByUserId(int userId){
+    Connection connection= null;
+    PreparedStatement statement=null;
+    ResultSet resultSet=null;
+    List&lt;Todo&gt; list=new ArrayList&lt;Todo&gt;();
+    try{
+        connection =DatabaseHelper.getConnection();
+        statement= connection.prepareStatement(&quot;select * from todos where userId=?&quot;);
+        statement.setInt(1,userId);
+        resultSet=statement.executeQuery();
+        while (resultSet.next()){
+            Todo todo=new Todo();
+            todo.setId(resultSet.getInt(&quot;id&quot;));
+            todo.setItem(resultSet.getString(&quot;item&quot;));
+            todo.setCreateTime(resultSet.getTimestamp(&quot;createtime&quot;));
+            todo.setUserId(resultSet.getInt(&quot;userid&quot;));
+            list.add(todo);
+        }
+    }catch (SQLException ex){
+        new RuntimeException(ex);
+    }
+    finally {
+        DatabaseHelper.close(resultSet,statement,connection);
+    }
+    return list;
+}
+</code></pre><p>呃，基础设施总算搭建完成，看上去好复杂，但还算清晰，这块永远是框架优化的终点，接下来回到servlet类，将已有的业务逻辑完成  </p>
+<pre><code>  public void doGet(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+    String name=UrlUtil.getUserName(request.getRequestURL().toString());
+
+    if(&quot;&quot;.equals(name)){
+        //跳转至错误页面
+        response.sendRedirect(&quot;error.jsp&quot;);
+
+    }
+    //实例化User数据库操作类
+    UserDao userDao =new UserDao();
+    User user=null;
+    //获取用户
+    user=userDao.getUserByName(name);
+    if(null==user){
+        //新用户
+        user=new User();
+        user.setName(name);
+        user.setId(userDao.save(user));
+    }
+    //获取todo列表
+    TodoDao todoDao=new TodoDao();
+    List&lt;Todo&gt; list=todoDao.getTodoByUserId(user.getId());
+    System.out.println(list.size());
+    //将list和name存入request以备jsp页面使用
+    request.setAttribute(&quot;todos&quot;,list);
+    request.setAttribute(&quot;userid&quot;,user.getId());
+    request.getRequestDispatcher(&quot;/todos.jsp&quot;).forward(request,response);
+}
+
+//post
+public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    request.setCharacterEncoding(&quot;utf-8&quot;);
+    int userid=Integer.parseInt(request.getParameter(&quot;user&quot;));
+    if(request.getParameter(&quot;todo&quot;)!=null){
+        Todo todo=new Todo();
+        todo.setCreateTime(new Date());
+        todo.setItem(request.getParameter(&quot;todo&quot;));
+        todo.setUserId(userid);
+        TodoDao todoDao=new TodoDao();
+        todoDao.save(todo);
+    }
+    //获取user
+    UserDao userDao=new UserDao();
+    User user=userDao.get(userid);
+    //页面跳转
+    response.sendRedirect(&quot;/todos/&quot;+user.getName());
+}
+</code></pre><p>结合注释看，并且有之前jsp的基础，代码应该不难理解，运行服务，在url地址中输入张三，<code>http://localhost:8080/todos/zhangsan</code>。阿欧，首先发现的是一个小bug。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/6290181-40b664e41b1567d4.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p>即当为空白列表的时候，也会进入循环体，这个bug也很好解决。对列表的长度进行一下判断就可以了：</p>
+<pre><code> &lt;div class=&quot;ui aligned huge selection divided list&quot;&gt;
+    &lt;c:if test=&quot;${fn:length(todos)&gt;0}&quot;&gt;
+        &lt;c:forEach var=&quot;todo&quot; varStatus=&quot;status&quot; items=&quot;${todos}&quot;&gt;
+            &lt;div class=&quot;item&quot;&gt;
+                &lt;span class=&quot;right floated content&quot;&gt;&lt;fmt:formatDate value=&quot;${todo.createTime}&quot; type=&quot;date&quot; pattern=&quot;yyyy-MM-dd HH:mm:ss&quot;/&gt;&lt;/span&gt;
+                &lt;span class=&quot;left floated header&quot;&gt;${status.index+1}.${todo.item}&lt;/span&gt;
+            &lt;/div&gt;
+        &lt;/c:forEach&gt;
+    &lt;/c:if&gt;
+&lt;/div&gt;
+</code></pre><p>注意这里使用了jstl的fn前缀，需要引入库：</p>
+<pre><code>&lt;%@ taglib prefix=&quot;fn&quot; uri=&quot;http://java.sun.com/jsp/jstl/functions&quot;%&gt;
+</code></pre><p>再次运行，就没有了这个空白项，这是查看数据库的user表，用户zhangsan记录已经出现。</p>
+<p>接下来为张三随便输入几个记录，然后在url中换成lisi，有一个空白的list，用户隔离完美的实现，接下来随便输入几个记录，情况如下：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/6290181-e454d8d12fa97275.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p>ok 完美</p>
+<h2 id="redirect与forward"><a href="#redirect与forward" class="headerlink" title="redirect与forward"></a>redirect与forward</h2><p>redirect的意思为跳转<br>forward的意思为转发</p>
+<p>使用redirect进行页面跳转，实际上是一个与客户端浏览器进行交互的过程<br>使用forward进行页面转发，实际上是在一个请求周期内，服务器自己进行计算，将结果通过响应返回给客户端的过程。</p>
+<p>这就到这里他们两个最大的一个区别，即redirect的url地址会进行变化，而forward的地址栏则不会发生变化</p>
+<p>下面是一个redirect页面跳转的示意图</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/6290181-750a11ca9e471f21.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<blockquote>
+<p>1 客户端发送请求<br>2 服务端告诉客户端，所需的内容在页面b上<br>3 客户端像页面b发送请求<br>4 获得所需内容</p>
+</blockquote>
+<p>下面是一个forward页面跳转的示意图</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/6290181-fda7af6a06919214.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<blockquote>
+<p>1 客户端发送请求<br>2 服务器端发现所需内容在页面b上，即转发到页面b中，同时将客户端发送的请求和响应作为参数传给页面b<br>3 页面b将客户端所需内容发送给客户端</p>
+</blockquote>
+<p>具体使用哪一种，就要具体情况具体分析了，而之后，很可能使用了前后端分离技术后，两种方式都不使用。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>本章内容好长呀，但总算结束了，接下来正如刚刚提到了一下，应该会引入前后端分离和Spring框架的内容，难度可能会有所提高，继续努力吧。而之前写过的jsp和servlet代码？估计全部都要删除吧：）</p>
+<p><img src="http://oyol58zk0.bkt.clouddn.com/%E6%8D%95%E8%8E%B70.PNG" style="width:300px;margin:0px auto"></p>
+
+            </div>
+
+            <!-- Post Comments -->
+            
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #7EC0EE;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load" id="disqus_bt"> 
+    <button class="disqus_click_btn">点击查看评论</button>
+</div>
+
+<!--
+<script type="text/javascript">
+$('.btn_click_load').click(function() {
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'http-miccall-tech'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    document.getElementById('disqus_bt').style.display = "none";
+});
+</script>
+-->
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2017/11/20/2017-11-20-如果你想开发一个应用(1-6)/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://yoursite.com/2017/11/20/2017-11-20-如果你想开发一个应用(1-6)/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/javascript">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//http-miccall-tech.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+
+        </div>
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By <a href="https://hexo.io/zh-cn/" style="border-bottom: none;">hexo</a></li>
+                <li>Design: <a href="http://miccall.tech " style="border-bottom: none;">miccall</a></li>
+            </ul>
+            
+            	<span id="busuanzi_container_site_pv">2017总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+			
+        </div>
+    </div>
+</body>
+
+
+
+ 	
+</html>
