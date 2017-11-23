@@ -1,0 +1,321 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<link rel="bookmark"  type="image/x-icon"  href="/img/niu.png"/>
+	 <link rel="shortcut icon" href="/img/niu.png">
+	
+			
+    <title>
+    双鱼座的牛
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/mic_main.css" />
+    <link rel="stylesheet" href="/css/dropdownMenu.css" />
+    
+    	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
+
+			    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+	
+</head>
+    
+		
+<!-- Layouts -->
+
+
+
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_coy.css" />
+<link rel="stylesheet" href="/css/typo.css" />
+<!-- 文章页 -->
+<body class="is-loading">
+    <!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in">
+        <!-- Intro 头部显示 s -->
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="/" class="logo">双鱼座的牛</a>
+</header>
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special" >
+            <ul class="menu links" >
+			<!-- Homepage  主页  --> 
+			<li >
+	            <a href="/" rel="nofollow">主页</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <li class="active">
+	            <a href="#s1">分类</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        <a class="category-link" href="/categories/前端技术/">前端技术</a></li><li><a class="category-link" href="/categories/后端技术/">后端技术</a></li><li><a class="category-link" href="/categories/闲言碎语/">闲言碎语</a>
+	                    </ul>
+	        </li>
+	        
+	        <!-- archives  归档   --> 
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="/about/" title="简历">
+		                简历
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/group/" title="团队">
+		                团队
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/gallery/" title="图库">
+		                图库
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/tag/" title="标签">
+		                标签
+		            </a>
+		        </li>
+		        
+
+
+            </ul>
+            <!-- icons 图标   -->
+			<ul class="icons">
+		            
+		                <li><a href="https://github.com/miccall" class="icon fa-github"><span class="label">GitHub</span></a></li>
+		            
+		            
+		            
+		            
+			</ul>
+</nav>
+
+        <div id="main" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(http://upload-images.jianshu.io/upload_images/6290181-061020a6d2b74228.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >如果你想开发一个应用(1-7)</h2></a>
+            </div>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <p>在上一篇blog里，将todo列表实现了不同用户列表的隔离功能，但是想一想，代码中是否存在着很多不和谐的地方？</p>
+<p>不和谐的地方其实很多，但这一章先解决一个最简单的地方，注意一下TodoServlet的post方法的第一行：</p>
+<pre><code>request.setCharacterEncoding(&quot;utf-8&quot;);
+</code></pre><p>他的作用在<a href="http://www.jianshu.com/p/57fa19b8cf25" target="_blank" rel="external">第二章</a>的时候就已经介绍过来，是为了解决中文乱码的问题，但是，难道我们每个页面，每个servlet的各种方法中都要写么？假如有个企业应用，有100个jsp页面怎么办呢？</p>
+<p>方法当然有，这里可以使用servlet api的过滤器类来实现</p>
+<h2 id="Filter"><a href="#Filter" class="headerlink" title="Filter"></a>Filter</h2><p>具体实现方式，首先还是先创建包：</p>
+<pre><code>com.niufennan.jtodos.filter
+</code></pre><p>然后创建类<code>EncodingFilter</code>使其集成<code>Filter</code>接口.</p>
+<pre><code>public class EncodingFilter implements Filter {
+       public void init(FilterConfig filterConfig) throws ServletException {
+    }
+
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+    }
+
+    public void destroy() {
+    }
+}
+</code></pre><p>此接口必须实现三个方法，分别为初始化操作，执行期操作，销毁期操作，因为我们在这个过滤器创建即销毁时均没有特殊操作，所以只要完成doFilter方法即可：</p>
+<pre><code>public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+    servletRequest.setCharacterEncoding(&quot;utf-8&quot;);
+    filterChain.doFilter(servletRequest,servletResponse);
+}
+</code></pre><p>最后，为了减少(不使用)xml配置，使用注解来配置过滤器名和过滤路径：</p>
+<pre><code>@WebFilter( filterName = &quot;encodingFilter&quot;,urlPatterns=&quot;/*&quot;)
+</code></pre><p>filterName代表过滤器的唯一性名字，urlPatterns代码过滤的路径，可以使用<em>作为通配符，其中/\</em>表示过滤所有路径。</p>
+<p>删除TodoServlet类的代码<code>request.setCharacterEncoding(&quot;utf-8&quot;);</code>后，运行输入中文测试无乱码效果。</p>
+<h2 id="过滤器执行生命周期"><a href="#过滤器执行生命周期" class="headerlink" title="过滤器执行生命周期"></a>过滤器执行生命周期</h2><p>修改filter类，在三个生命周期方法中输出字符：</p>
+<pre><code>public void init(FilterConfig filterConfig) throws ServletException {
+    System.out.println(&quot;filter-init&quot;);
+}
+
+public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+    servletRequest.setCharacterEncoding(&quot;utf-8&quot;);
+    System.out.println(&quot;filter-doFilter&quot;);
+    filterChain.doFilter(servletRequest,servletResponse);
+}
+
+public void destroy() {
+    System.out.println(&quot;filter-destroy&quot;);
+}
+</code></pre><p>启动测试服务器，并仔细观察控制台，发现init的输出实在<code>Artifact is deployed successfully</code>的时候，即容器加载这个过滤器完成之后立即进行初始化。在之后，根据你访问的页面不同，调用了若干次的doFilter，但这时候发现，并没有调用destory方法。</p>
+<p>这时候，停止测试服务器，你很快就发现，对destory进行了调用，即对过滤器进行了销毁。</p>
+<p>Servlet类的生命周期与过滤器一致。</p>
+<h2 id="过滤链"><a href="#过滤链" class="headerlink" title="过滤链"></a>过滤链</h2><p>这时候，你也许会问了，如果多个过滤器怎么办？这个，来做个测试吧，修改这个测试的输出字符：</p>
+<pre><code>public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+    servletRequest.setCharacterEncoding(&quot;utf-8&quot;);
+    System.out.println(&quot;Bef_EncodingFilter&quot;);
+    filterChain.doFilter(servletRequest,servletResponse);
+    System.out.println(&quot;Aft_EncodingFilter&quot;);
+}
+</code></pre><p>并新增一个测试，同样输出字符，这样就可以很清晰了：</p>
+<pre><code>@WebFilter(filterName = &quot;TestFilter&quot;,urlPatterns = &quot;/*&quot;)
+public class TestFilter implements Filter {
+    public void init(FilterConfig filterConfig) throws ServletException {
+    }
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+        System.out.println(&quot;Bef_TestFilter&quot;);
+        filterChain.doFilter(servletRequest,servletResponse);
+        System.out.println(&quot;Aft_TestFilter&quot;);
+    }
+    public void destroy() {
+    }
+}
+</code></pre><p>同时，在Servlet中也增加输出语句：</p>
+<pre><code>System.out.println(&quot;TodoServlet&quot;);
+</code></pre><p>运行后，输出顺序为：</p>
+<pre><code>Bef_EncodingFilter
+Bef_TestFilter
+TodoServlet
+Aft_TestFilter
+Aft_EncodingFilter
+</code></pre><p>执行顺序一目了然：</p>
+<p><img src="http://oyol58zk0.bkt.clouddn.com/jtodos/7/7.PNG" alt=""></p>
+<blockquote>
+<p>请原谅我的灵魂画风</p>
+</blockquote>
+<h2 id="执行顺序"><a href="#执行顺序" class="headerlink" title="执行顺序"></a>执行顺序</h2><p>那么，最后一个问题，为什么先执行EncodingFilter这个过滤器呢，难道是因为它比较早创建么？</p>
+<p>答案当然是否定的，修改一下TestFilter这个类的名字：</p>
+<pre><code>@WebFilter(filterName = &quot;AestFilter&quot;,urlPatterns = &quot;/*&quot;)
+public class AestFilter implements Filter {
+    public void init(FilterConfig filterConfig) throws ServletException {
+    }
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+        System.out.println(&quot;Bef_TestFilter&quot;);
+        filterChain.doFilter(servletRequest,servletResponse);
+        System.out.println(&quot;Aft_TestFilter&quot;);
+    }
+    public void destroy() {
+    }
+}
+</code></pre><p>再次执行，查看输出：</p>
+<pre><code>Bef_TestFilter
+Bef_EncodingFilter
+TodoServlet
+Aft_EncodingFilter
+Aft_TestFilter
+</code></pre><p>顺序就发生了变化，很奇怪Tomcat这个servelt容器使用类名，或者说文件名来决定加载顺序，这一点不如通过xml配置的方式，可以显式的决定过滤器的加载顺序。</p>
+<p>最后，别忘了把测试的Filter类删掉呦。</p>
+<p>谢谢观看</p>
+
+            </div>
+
+            <!-- Post Comments -->
+            
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #7EC0EE;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load" id="disqus_bt"> 
+    <button class="disqus_click_btn">点击查看评论</button>
+</div>
+
+<!--
+<script type="text/javascript">
+$('.btn_click_load').click(function() {
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'http-miccall-tech'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    document.getElementById('disqus_bt').style.display = "none";
+});
+</script>
+-->
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2017/11/23/2017-11-23-如果你想开发一个应用-1-7/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://yoursite.com/2017/11/23/2017-11-23-如果你想开发一个应用-1-7/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/javascript">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//http-miccall-tech.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+
+        </div>
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By <a href="https://hexo.io/zh-cn/" style="border-bottom: none;">hexo</a></li>
+                <li>Design: <a href="http://miccall.tech " style="border-bottom: none;">miccall</a></li>
+            </ul>
+            
+            	<span id="busuanzi_container_site_pv">2017总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+			
+        </div>
+    </div>
+</body>
+
+
+
+ 	
+</html>
