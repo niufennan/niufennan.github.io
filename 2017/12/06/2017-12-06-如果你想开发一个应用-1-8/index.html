@@ -1,0 +1,404 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<link rel="bookmark"  type="image/x-icon"  href="/img/niu.png"/>
+	 <link rel="shortcut icon" href="/img/niu.png">
+	
+			
+    <title>
+    双鱼座的牛
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/mic_main.css" />
+    <link rel="stylesheet" href="/css/dropdownMenu.css" />
+    
+    	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
+
+			    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+	
+</head>
+    
+		
+<!-- Layouts -->
+
+
+
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_coy.css" />
+<link rel="stylesheet" href="/css/typo.css" />
+<!-- 文章页 -->
+<body class="is-loading">
+    <!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in">
+        <!-- Intro 头部显示 s -->
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="/" class="logo">双鱼座的牛</a>
+</header>
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special" >
+            <ul class="menu links" >
+			<!-- Homepage  主页  --> 
+			<li >
+	            <a href="/" rel="nofollow">主页</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <li class="active">
+	            <a href="#s1">分类</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        <a class="category-link" href="/categories/前端技术/">前端技术</a></li><li><a class="category-link" href="/categories/后端技术/">后端技术</a></li><li><a class="category-link" href="/categories/闲言碎语/">闲言碎语</a>
+	                    </ul>
+	        </li>
+	        
+	        <!-- archives  归档   --> 
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="/about/" title="简历">
+		                简历
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/group/" title="团队">
+		                团队
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/gallery/" title="图库">
+		                图库
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/tag/" title="标签">
+		                标签
+		            </a>
+		        </li>
+		        
+
+
+            </ul>
+            <!-- icons 图标   -->
+			<ul class="icons">
+		            
+		                <li><a href="https://github.com/miccall" class="icon fa-github"><span class="label">GitHub</span></a></li>
+		            
+		            
+		            
+		            
+			</ul>
+</nav>
+
+        <div id="main" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(http://upload-images.jianshu.io/upload_images/6290181-3d4b1ee135aeafea.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >如果你想开发一个应用(1-8)</h2></a>
+            </div>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <p>虽然现在进入了一年之中最冷的季节，但这篇博客却开始讲述春天的故事。<br>在TodoServlet这个类中，doGet和doPost重载了模板类HttpServlet类的对应方法，是一个典型的模板方法模式，这种当然是一个很好的模式，经过了千锤百炼，但是，这样真的好吗？我们编写的代码，不应该是专注于业务逻辑么？并且很明显，在TodoServlet这个类中，doGet和doPost中的代码都是各种逻辑纠缠在一起，毫无伸缩性扩展性可言。这时候，就轮到一些MVC框架登场了<br>MVC是一种架构模式，当前在Web领域毕竟流行的MVC框架有很多种，比如Struts，SpringMVC等，这里主要使用SpringMVC。<br>SpringMVC是Spring框架的一个模块，Spring是一个通过AOP和DI技术进行简化Java开发的一个开源框架，对于DI(依赖注入)和AOP(面向切片编程)等令人望而生畏的词汇可以之后再理解，现在暂时先了解SpringMVC的一些工作方式。在这里，我们依然使用注解这种零配置文件的方式来实现。</p>
+<h2 id="引入Spring"><a href="#引入Spring" class="headerlink" title="引入Spring"></a>引入Spring</h2><p>使用Spring，第一步当然是在Maven配置文件中进行配置，由于Maven的依赖树功能，即引入一个依赖就可以引入此依赖所依赖的其他依赖。所以，此时可引入SpringMVC依赖即可：</p>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-webmvc&lt;/artifactId&gt;
+    &lt;version&gt;5.0.0.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre><p>查看模块的引入情况：</p>
+<p><img src="http://oyol58zk0.bkt.clouddn.com/jtodos/8/1.PNG?k" alt=""></p>
+<p>可以看到，除了webmvc模块外，还自动引入了webmvc所依赖的各种模块，包括所有功能所必须的Core，Aop，Beans等等。</p>
+<h2 id="配置DispatcherServlet"><a href="#配置DispatcherServlet" class="headerlink" title="配置DispatcherServlet"></a>配置DispatcherServlet</h2><p>DispatcherServlet是SpringMVC的核心，他是一个繁忙的家伙，所有请求的第一站都是DispatcherServlet，他是一个单实例的Servlet，负责将请求发送给SpringMVC控制器，控制器是一个处理请求的组件，一般应用程序都会有很多歌控制器，所以DispatcherServlet就需要知道要将请求发送给哪一个控制器，所以需要有一个处理器映射来确定下一站是哪里，而决定映射值的，就是处理器所携带的url，是时候祭出一张神图了：</p>
+<p><img src="http://oyol58zk0.bkt.clouddn.com/jtodos/8/2.jpg" alt="图片来源于网络"></p>
+<p>这张图清晰的说明了一个请求在SpringMVC中的数据流向：</p>
+<ol>
+<li>一个浏览器(客户端)发出了一个携带客户端的请求，进入DispatcherServlet。</li>
+<li>DispatcherServlet通过请求的url查询Handler Mapping</li>
+<li>根据查询接口，将信息发送至合适的Controller</li>
+<li>Controller对数据进行处理，并根据情况将结果的数据模型和逻辑上的视图名称打包发回到DispatcherServlet。</li>
+<li>DispatcherServlet根据ViewResolver(视图解析器)来为逻辑视图名匹配一个特定的视图实现</li>
+<li>将数据的模型交给视图实现(可能是jsp)，然后发送客户端</li>
+</ol>
+<p>至此，一个请求处理完成。<br>看上去貌似很复杂，但好在这些步骤都是在Spring框架内实现的，而我们，只要关注如何对DispatcherServlet进行配置就可以了。<br>对于一个零xml的配置方法来说，需要继承一个名字超级长的类，长到我这个英语渣都没有勇气背下来他的名字：</p>
+<pre><code>public class JTodosWebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+    @Override
+    protected Class&lt;?&gt;[] getRootConfigClasses() {
+        return new Class[0];
+    }
+    @Override
+    protected Class&lt;?&gt;[] getServletConfigClasses() {
+        return new Class[0];
+    }
+    @Override
+    protected String[] getServletMappings() {
+        return new String[0];
+    }
+}
+</code></pre><p>这几个重写的方法很明显都是默认实现，没有任何意义，接下来就实现这三个方法。</p>
+<p>首先完成的方法我选择了<code>getServletMappings()</code>,这个方法用于配置一个或多个进入到DispatcherServlet的路径，是的，你没有看错，可以配置多个，用于为大型项目配置不同的处理方式，这里的项目没有必要，我们只配置一个即可。</p>
+<pre><code>@Override
+protected String[] getServletMappings() {
+    return new String[]{&quot;/&quot;};
+}
+</code></pre><p>即任何路径都进入到这个DispatcherServlet中。</p>
+<p>接下来需要实现<code>getServletConfigClasses()</code>方法，这个方法需要返回一个类的数组。即在DispatcherServlet启动时所需要加载的Servlet的配置中的Bean,如控制器，视图解析器等等，这些既可以在一个类中进行配置，也可以拆分为多个，下面为一个基本最简的配置：</p>
+<pre><code>@Configuration
+@EnableWebMvc
+@ComponentScan(&quot;com.niufennan.jtodos.controller&quot;)
+public class WebConfig implements WebMvcConfigurer {
+
+}
+</code></pre><p>是的,仅仅是一个空类，但依然能够运气起来，可以进行一些最基本的工作，但这样又许多缺点，比如一个最基本的，任何请求都会DispatcherServlet执行，包括图片，js，css等，显然这样是不好的。所以我们还是需要进行一下基本的配置：</p>
+<pre><code>@Configuration
+@EnableWebMvc
+@ComponentScan(&quot;com.niufennan.jtodos.controller&quot;)
+public class WebConfig implements WebMvcConfigurer {
+    @Bean
+    public ViewResolver viewResolver(){
+        InternalResourceViewResolver viewResolver=new InternalResourceViewResolver();
+        viewResolver.setPrefix(&quot;/WEB-INF/views/&quot;);//对视图进行统一管理
+        viewResolver.setSuffix(&quot;.jsp&quot;);//统一使用jsp文件作为视图
+        viewResolver.setExposeContextBeansAsAttributes(true);//设置可直接访问上下文bena
+        return  viewResolver;
+    }
+
+public void  configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer){
+        configurer.enable();;//配置静态资源的处理
+    }
+}
+</code></pre><blockquote>
+<p>注意很有意思的一点，即在SpringMVC4.<em>版本中，需要的是继承WebMvcConfigurerAdapter类<br>这是一个WebMvcConfigurer接口的默认适配器，是一个标准的缺省适配器模式的例子，而到了SpringMVC5.</em>后，则可以直接对接口WebMvcConfigurer进行实现，因为SpringMVC5是基于java8开发，java8提供了接口默认实现的功能，具体可以看一段源码：</p>
+</blockquote>
+<pre><code>public interface WebMvcConfigurer {
+    default void configurePathMatch(PathMatchConfigurer configurer) {
+    }
+
+    default void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+    }
+
+    default void configureAsyncSupport(AsyncSupportConfigurer configurer) {
+    }
+    ......
+}
+</code></pre><p>然后还需要至少一个跟配置类，跟配置及多个DispatcherServlet共享的信息，目前只需一个空类即可：</p>
+<pre><code>@Configuration
+@ComponentScan(basePackages = &quot;com.niufennan.jtodos&quot;,excludeFilters = {
+        @ComponentScan.Filter(type = FilterType.ANNOTATION,value = EnableWebMvc.class)
+})
+public class RootConfig {
+}
+</code></pre><blockquote>
+<p>即扫描除了EnableWebMvc注解类之外的所有类</p>
+</blockquote>
+<p>然后，最终DispatcherServlet配置类如下：</p>
+<pre><code>public class JTodosWebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+    @Override
+    protected Class&lt;?&gt;[] getRootConfigClasses() {
+        return new Class[]{RootConfig.class};
+    }
+    @Override
+    protected Class&lt;?&gt;[] getServletConfigClasses() {
+        return new Class[]{WebConfig.class};
+    }
+    @Override
+    protected String[] getServletMappings() {
+        return new String[]{&quot;/&quot;};
+    }
+}
+</code></pre><h2 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a>Controller</h2><p>接下来，既然在WebConfig类中已经说明了要控制器的所在包，下面就在那个包中创建一个控制器并写出基本方法以实现TodoServlet中的功能：</p>
+<pre><code>@Controller
+public class TodoController {
+    @RequestMapping(value =&quot;/todos/{name}&quot; ,method = RequestMethod.GET)
+    public String home(@PathVariable String name, HttpServletRequest request){
+        UserDao userDao =new UserDao();
+        User user=null;
+        //获取用户
+        user=userDao.getUserByName(name);
+        if(null==user){
+            //新用户
+            user=new User();
+            user.setName(name);
+            user.setId(userDao.save(user));
+        }
+        //获取todo列表
+        TodoDao todoDao=new TodoDao();
+        List&lt;Todo&gt; list=todoDao.getTodoByUserId(user.getId());
+        //将list和name存入request以备jsp页面使用
+        request.setAttribute(&quot;todos&quot;,list);
+        request.setAttribute(&quot;userid&quot;,user.getId());
+        return &quot;todos&quot;;
+    }
+    @RequestMapping(value =&quot;/todos&quot; ,method = RequestMethod.POST)
+    public String home(HttpServletResponse response, Todo todo) throws IOException {
+        TodoDao todoDao=new TodoDao();
+        todoDao.save(todo);
+        //获取user
+        UserDao userDao=new UserDao();
+        User user=userDao.get(todo.getUserId());
+        //页面跳转
+        return &quot;redirect:/todos/&quot;+user.getName();
+    }
+}
+</code></pre><p>即使大概一看，从代码行数上来说，也比Servlet方式少了不少，但还有一个最大的缺点，就是控制器中仍掺杂了业务逻辑，这个点稍后解决。下面解释一下这些代码：</p>
+<ol>
+<li>@Controller注解声明了这是一个控制器，而通过WebConfig的配置，来决定从哪里来查找控制器，这里的配置为<code>com.niufennan.jtodos.controller</code>包内的所有带Controller注解的类</li>
+<li>@RequestMapping(value =”/todos/{name}” ,method = RequestMethod.GET)注解决定执行的路径及方法，header等信息，这里配置的是Get方法，路径为/todos/*</li>
+<li>@PathVariable代表了一个Path上的参数，这里为String类型，name为名字</li>
+<li>return “todos”返回值表示寻找/WEB-INF/views/todos.jsp的视图模板</li>
+<li>return “redirect:/todos/“+user.getName()表示跳转到/todos/username的路径</li>
+</ol>
+<p>这里还需要对原有代码进行一些修改：</p>
+<pre><code>public class Todo {
+    private int id;
+    private String item;
+    private Date createTime=new Date();
+    ......
+}
+</code></pre><p>给createTime字段设置一个默认值</p>
+<p>还有todos.jsp的内容：</p>
+<pre><code>&lt;form action=&quot;/todos&quot; method=&quot;post&quot;  class=&quot;ui fluid action input&quot;&gt;
+    &lt;input type=&quot;text&quot; name=&quot;item&quot; placeholder=&quot;请输入一个备忘录项目&quot;/&gt;
+    &lt;input type=&quot;hidden&quot; name=&quot;userId&quot; value=&quot;${userid}&quot;/&gt;
+    &lt;button type=&quot;submit&quot; class=&quot;ui button&quot;&gt;OK&lt;/button&gt;
+&lt;/form&gt;
+</code></pre><p>对表单进行写修改 以适应todo的模型类</p>
+<p>最后，为了防止干扰，将之前所写的代码全部删除，最终的目录结构如下：</p>
+<p><img src="http://oyol58zk0.bkt.clouddn.com/jtodos/8/3.PNG" alt=""></p>
+<p>这时候运行，输入几条记录，啊哦，乱码又回来了(注意，我故意把过滤器删除的)：</p>
+<p><img src="http://oyol58zk0.bkt.clouddn.com/jtodos/8/4.PNG" alt=""></p>
+<p>这里可以使用Spring框架自带的一个过滤器<code>CharacterEncodingFilter</code>，添加在初始化的时候：</p>
+<pre><code>public class JTodosWebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+    ......      
+    @Override
+    public void onStartup(ServletContext servletContext) throws ServletException {
+        super.onStartup(servletContext);
+        servletContext.addFilter(&quot;name&quot;, new CharacterEncodingFilter(&quot;UTF-8&quot;, true))
+                .addMappingForUrlPatterns(null, false, &quot;/*&quot;);
+    }
+}
+</code></pre><p>再次进行测试,显示结果：</p>
+<pre><code>![](http://oyol58zk0.bkt.clouddn.com/jtodos/8/5.PNG)
+</code></pre><p>问题解决。</p>
+<h2 id="再说一点"><a href="#再说一点" class="headerlink" title="再说一点"></a>再说一点</h2><p>在一个项目中，一般规范Controller层要尽可能的薄，而现在的代码很明显不符合这一点。至少要把业务逻辑进行移除，接下来的文章中，会在Spring框架的帮助下一点点的实现这些。</p>
+<p>谢谢观看</p>
+
+            </div>
+
+            <!-- Post Comments -->
+            
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #7EC0EE;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load" id="disqus_bt"> 
+    <button class="disqus_click_btn">点击查看评论</button>
+</div>
+
+<!--
+<script type="text/javascript">
+$('.btn_click_load').click(function() {
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'http-miccall-tech'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    document.getElementById('disqus_bt').style.display = "none";
+});
+</script>
+-->
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2017/12/06/2017-12-06-如果你想开发一个应用-1-8/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://yoursite.com/2017/12/06/2017-12-06-如果你想开发一个应用-1-8/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/javascript">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//http-miccall-tech.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+
+        </div>
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By <a href="https://hexo.io/zh-cn/" style="border-bottom: none;">hexo</a></li>
+                <li>Design: <a href="http://miccall.tech " style="border-bottom: none;">miccall</a></li>
+            </ul>
+            
+            	<span id="busuanzi_container_site_pv">2017总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+			
+        </div>
+    </div>
+</body>
+
+
+
+ 	
+</html>
