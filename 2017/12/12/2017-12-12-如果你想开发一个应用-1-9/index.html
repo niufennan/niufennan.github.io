@@ -165,7 +165,14 @@ public class UserServiceImpl implements UserService  {
 <pre><code>@Autowired
 @Qualifier(&quot;beanName&quot;)
 private UserService userService;
-</code></pre><p>用土土的方法运行测试一下，和之前一样，就不在截图，然后删除之前的beanName。将Todo的调用也增加一个服务，并修改代码，做到controller与dao层解耦，控制器源码如下：</p>
+</code></pre><p>这里还要注意<code>@Autowired</code>注解，代表这里引入一个组件，即注入一个Bean，一般情况下有三种通用的注解：</p>
+<ul>
+<li>@Autowird:Spring框架提供的注解</li>
+<li>@Inject：java提供</li>
+<li>@Resource:java提供</li>
+</ul>
+<p>这三种注解均可以声明到set方法或一个属性上，我喜欢放到属性上，原因很简单，代码少。</p>
+<p>下面用土土的方法运行测试一下，和之前一样，就不在截图，然后删除之前的beanName。将Todo的调用也增加一个服务，并修改代码，做到controller与dao层解耦，控制器源码如下：</p>
 <pre><code>@Controller
 public class TodoController {
     @Autowired
