@@ -1,0 +1,476 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<link rel="bookmark"  type="image/x-icon"  href="/img/niu.png"/>
+	 <link rel="shortcut icon" href="/img/niu.png">
+	
+			
+    <title>
+    双鱼座的牛
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/mic_main.css" />
+    <link rel="stylesheet" href="/css/dropdownMenu.css" />
+    
+    	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
+
+			    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+	
+</head>
+    
+		
+<!-- Layouts -->
+
+
+
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_coy.css" />
+<link rel="stylesheet" href="/css/typo.css" />
+<!-- 文章页 -->
+<body class="is-loading">
+    <!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in">
+        <!-- Intro 头部显示 s -->
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="/" class="logo">双鱼座的牛</a>
+</header>
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special" >
+            <ul class="menu links" >
+			<!-- Homepage  主页  --> 
+			<li >
+	            <a href="/" rel="nofollow">主页</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <li class="active">
+	            <a href="#s1">分类</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        <a class="category-link" href="/categories/前端技术/">前端技术</a></li><li><a class="category-link" href="/categories/后端技术/">后端技术</a></li><li><a class="category-link" href="/categories/闲言碎语/">闲言碎语</a>
+	                    </ul>
+	        </li>
+	        
+	        <!-- archives  归档   --> 
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="/about/" title="简历">
+		                简历
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/group/" title="团队">
+		                团队
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/gallery/" title="图库">
+		                图库
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/tag/" title="标签">
+		                标签
+		            </a>
+		        </li>
+		        
+
+
+            </ul>
+            <!-- icons 图标   -->
+			<ul class="icons">
+		            
+		                <li><a href="https://github.com/miccall" class="icon fa-github"><span class="label">GitHub</span></a></li>
+		            
+		            
+		            
+		            
+			</ul>
+</nav>
+
+        <div id="main" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(http://upload-images.jianshu.io/upload_images/6290181-14f894c9bdb2870d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >如果你想开发一个应用(1-9)</h2></a>
+            </div>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <p>上一章的结尾，我们看到现有的代码虽然经过了一些改进，但仍然有很多坏味道，首当其冲的就是Controller太厚了，Controller应该仅仅作为一个控制器使用，要尽可能的薄。这时候，上一章里提到过的IOC和DI华丽登场了.</p>
+<h2 id="控制反转"><a href="#控制反转" class="headerlink" title="控制反转"></a>控制反转</h2><p>控制反转简单说就一句话，就是把程序资源的管理权由互相使用的双方的代码反转到第三方容器。即一般来说，对象的创建和销毁，使用都由用户有代码进行直接控制，而现在则由容器(Spring框架)来控制，这样可以最大限度的减少类的耦合度，比如说无论，一个对象的new是避免不了的，而控制反转则可将这些也交给容器，即各种类彻底的脱离直接联系。</p>
+<p>提到控制反转，就不能不提依赖注入，可以说依赖注入就是控制反转的目的之一，即当一个对象需要另一个对象实力的时候，有容器根据这个实例所依赖的实例而注入进去，这种对象之间互相依赖的情况不在由自己管理。</p>
+<p>貌似很晦涩，下面我们依然使用注解的方式，先对一部分代码实现控制反转和依赖注入。</p>
+<h2 id="用户服务"><a href="#用户服务" class="headerlink" title="用户服务"></a>用户服务</h2><p>从最简单的地方开始，注意代码中的一部分：</p>
+<pre><code>UserDao userDao =new UserDao();
+User user=null;
+//获取用户
+user=userDao.getUserByName(name);
+if(null==user){
+    //新用户
+    user=new User();
+    user.setName(name);
+    user.setId(userDao.save(user));
+}
+</code></pre><p>这部分代码与现有的业务有关系么？他所需要做的，其实就是查询用户，有则返回userId，没有则创建一个用户并返回存储到db中后的自增长userId。接下来就按照面向接口编程的方式一步步来重构这段代码。</p>
+<p>既然是用户服务，那么首先创建一个service包，然后在里边创建一个<code>UserService</code>的接口，接口目前只有一个方法，就是getUserByName,代码如下：</p>
+<pre><code>public interface UserService {
+    User getUserByName(String username);
+}
+</code></pre><p>既然有了接口，那么就会想到接口的实现。在理论上，我们的Controller层并不关心实现方式，只知道使用这个接口定义的功能就可以了，所以，将实现放在service的下级包，即创建包<code>service.impl</code>,然后在包内创建类UserServiceImpl,此类代码如下：</p>
+<pre><code>@Service
+public class UserServiceImpl implements UserService  {
+    public User getUserByName(String username) {
+        UserDao userDao =new UserDao();
+        User user=null;
+        //获取用户
+        user=userDao.getUserByName(username);
+        if(null==user){
+            //新用户
+            user=new User();
+            user.setName(username);
+            user.setId(userDao.save(user));
+        }
+        return user;
+    }
+}
+</code></pre><p>注意<code>@Service</code>注解，这代表着此类为一个服务组件，目前Spring中定义了多种组件，大部分可以互相替换，小部分有自己独特的功能，但为了语义上的方便以及代码的可读性，还是建议使用推荐的注解：</p>
+<ul>
+<li>@Service：定义一个业务层的组件</li>
+<li>@Controller：定义一个控制器层的组件</li>
+<li>@Repository：定义一个DB访问层的组件</li>
+<li>@Component：组件，当组件不好归类时可以使用此注解</li>
+</ul>
+<p>此时bean的默认名为类名首字母小写，可以使用参数类现实确定bean名，如：</p>
+<pre><code>@Service(&quot;beanName&quot;)    
+</code></pre><blockquote>
+<p>若此接口有多个实现，并且实现均为组件，可以再调用处通过注解@Qualifier来显式来决定使用哪一个组件，如：</p>
+</blockquote>
+<pre><code>@Autowired
+@Qualifier(&quot;beanName&quot;)
+private UserService userService;
+</code></pre><p>用土土的方法运行测试一下，和之前一样，就不在截图，然后删除之前的beanName。将Todo的调用也增加一个服务，并修改代码，做到controller与dao层解耦，控制器源码如下：</p>
+<pre><code>@Controller
+public class TodoController {
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private TodoService todoService;
+    @RequestMapping(value =&quot;/todos/{name}&quot; ,method = RequestMethod.GET)
+    public String home(@PathVariable String name, HttpServletRequest request){
+        User user=userService.getUserByName(name);
+
+        List&lt;Todo&gt; list= todoService.getTodoByUserId(user.getId());
+
+        request.setAttribute(&quot;todos&quot;,list);
+        request.setAttribute(&quot;userid&quot;,user.getId());
+        return &quot;todos&quot;;
+    }
+    @RequestMapping(value =&quot;/todos&quot; ,method = RequestMethod.POST)
+    public String home(HttpServletResponse response, Todo todo) throws IOException {
+        todoService.save(todo);
+
+        User user = userService.get(todo.getUserId());
+
+        return &quot;redirect:/todos/&quot;+user.getName();
+    }
+}
+</code></pre><p>代码是不是清爽了许多，之后，业务上的变更完全可以再service层消化掉，这是service的两个接口代码如下：</p>
+<pre><code>public interface UserService {
+    User getUserByName(String username);
+    User get(int id);
+}
+
+
+public interface TodoService {
+    void  save(Todo todo);
+    List&lt;Todo&gt; getTodoByUserId(int userId);
+}
+</code></pre><p>然后是两个实现类：</p>
+<pre><code>@Service
+public class UserServiceImpl implements UserService  {
+    public User getUserByName(String username) {
+        UserDao userDao =new UserDao();
+        User user=null;
+        //获取用户
+        user=userDao.getUserByName(username);
+        if(null==user){
+            //新用户
+            user=new User();
+            user.setName(username);
+            user.setId(userDao.save(user));
+        }
+        return user;
+    }
+
+    public User get(int id) {
+        UserDao userDao =new UserDao();
+        return userDao.get(id);
+    }
+}
+
+
+@Service
+public class TodoServiceImpl implements TodoService {
+    public void save(Todo todo) {
+        TodoDao todoDao=new TodoDao();
+        todoDao.save(todo);
+    }
+
+    public List&lt;Todo&gt; getTodoByUserId(int userId) {
+        TodoDao todoDao=new TodoDao();
+        return todoDao.getTodoByUserId(userId);
+    }
+}
+</code></pre><p>啊哈，坏味道又出现了，其实这时候我猜你一定想到了，对将dao层页一样的组件化。</p>
+<p>##仓储组件##<br>有了现有的经验，其实是一件再简单不过的事了，首先将dao包内的两个类改为接口，并创建实现包，最终两个接口的代码如下：</p>
+<pre><code>public interface TodoDao {
+    public List&lt;Todo&gt; getAll();
+    public List&lt;Todo&gt; getTodoByUserId(int userId);
+    public void save(Todo todo);
+}
+
+public interface UserDao {
+    public User getUserByName(String name);
+    public User get(int id);
+    public int save(User user);
+}
+</code></pre><p>然后服务层的代码就变为下面这样了：</p>
+<pre><code>@Service
+public class UserServiceImpl implements UserService  {
+    @Autowired
+    private UserDao userDao;
+    public User getUserByName(String username) {
+        User user=null;
+        //获取用户
+        user=userDao.getUserByName(username);
+        if(null==user){
+            //新用户
+            user=new User();
+            user.setName(username);
+            user.setId(userDao.save(user));
+        }
+        return user;
+    }
+    public User get(int id) {
+        return userDao.get(id);
+    }
+}
+
+
+@Service
+public class TodoServiceImpl implements TodoService {
+
+    @Autowired
+    private TodoDao todoDao;
+    public void save(Todo todo) {
+        todoDao.save(todo);
+    }
+
+    public List&lt;Todo&gt; getTodoByUserId(int userId) {
+        return todoDao.getTodoByUserId(userId);
+    }
+}
+</code></pre><p>然后是dao层实现类的代码（只贴user部分）：</p>
+<pre><code>package com.niufennan.jtodos.dao.impl;
+
+import com.niufennan.jtodos.dao.UserDao;
+......
+
+@Repository
+public class UserDaoImpl implements UserDao{
+    public User getUserByName(String name){
+        Connection connection= null;
+        PreparedStatement statement=null;
+        ResultSet resultSet=null;
+        List&lt;Todo&gt; list=new ArrayList&lt;Todo&gt;();
+        try{
+            connection = DatabaseHelper.getConnection();
+            statement= connection.prepareStatement(&quot;select * from users where name=?&quot;);
+            statement.setString(1,name);
+            resultSet=statement.executeQuery();
+            if (resultSet.next()){
+                User user=new User();
+                user.setId(resultSet.getInt(&quot;id&quot;));
+                user.setName(resultSet.getString(&quot;name&quot;));;
+                return user;
+            }
+        }catch (SQLException ex){
+            new RuntimeException(ex);
+        }
+        finally {
+            DatabaseHelper.close(resultSet,statement,connection);
+        }
+        return null;
+    }
+    public User get(int id){
+        Connection connection= null;
+        PreparedStatement statement=null;
+        ResultSet resultSet=null;
+        List&lt;Todo&gt; list=new ArrayList&lt;Todo&gt;();
+        try{
+            connection = DatabaseHelper.getConnection();
+            statement= connection.prepareStatement(&quot;select * from users where id=?&quot;);
+            statement.setInt(1,id);
+            resultSet=statement.executeQuery();
+            if (resultSet.next()){
+                User user=new User();
+                user.setId(resultSet.getInt(&quot;id&quot;));
+                user.setName(resultSet.getString(&quot;name&quot;));;
+                return user;
+            }
+        }catch (SQLException ex){
+            new RuntimeException(ex);
+        }
+        finally {
+            DatabaseHelper.close(resultSet,statement,connection);
+        }
+        return null;
+    }
+    public int save(User user){
+        Connection connection=null;
+        PreparedStatement statement=null;
+        ResultSet resultSet=null;
+        try {
+            connection = DatabaseHelper.getConnection();
+            statement=connection.prepareStatement(&quot;INSERT INTO users(name) VALUES (?);&quot;, Statement.RETURN_GENERATED_KEYS);
+            statement.setString(1,user.getName());
+            statement.executeUpdate();
+            resultSet=statement.getGeneratedKeys();
+            //获取自增长Id
+            if(resultSet.next()){
+                return resultSet.getInt(1);
+            }else{
+                return -1;
+            }
+        }catch (SQLException ex){
+            throw  new RuntimeException(ex);
+        }finally {
+            DatabaseHelper.close(null,statement,connection);
+        }
+    }
+}
+</code></pre><p>我之所以最后在贴出dao实现层，也就是两个仓储组件的代码，就是因为，怎么说呢，他的味道依然很差，但貌似还没有什么好办法，因为使用jdbc就是要这么写，并且可以看到，其中的有效代码一个方法中也就是一两行，剩下的大部分都是对jdbc的管理代码，我们不是应该多关注业务么？需要关注这些模板代码么？幸好框架给出了解决方案，具体解决方法下一章在进行实现。</p>
+<p>截止到本章的源码：<a href="https://github.com/niufennan/jtodos.git" target="_blank" rel="external">github(1-9)</a></p>
+
+            </div>
+
+            <!-- Post Comments -->
+            
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #7EC0EE;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load" id="disqus_bt"> 
+    <button class="disqus_click_btn">点击查看评论</button>
+</div>
+
+<!--
+<script type="text/javascript">
+$('.btn_click_load').click(function() {
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'http-miccall-tech'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    document.getElementById('disqus_bt').style.display = "none";
+});
+</script>
+-->
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2017/12/12/2017-12-12-如果你想开发一个应用-1-9/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://yoursite.com/2017/12/12/2017-12-12-如果你想开发一个应用-1-9/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/javascript">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//http-miccall-tech.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+
+        </div>
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By <a href="https://hexo.io/zh-cn/" style="border-bottom: none;">hexo</a></li>
+                <li>Design: <a href="http://miccall.tech " style="border-bottom: none;">miccall</a></li>
+            </ul>
+            
+            	<span id="busuanzi_container_site_pv">2017总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+			
+        </div>
+    </div>
+</body>
+
+
+
+ 	
+</html>
