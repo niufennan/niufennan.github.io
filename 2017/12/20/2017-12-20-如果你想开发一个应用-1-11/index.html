@@ -1,0 +1,552 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<link rel="bookmark"  type="image/x-icon"  href="/img/niu.png"/>
+	 <link rel="shortcut icon" href="/img/niu.png">
+	
+			
+    <title>
+    双鱼座的牛
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/mic_main.css" />
+    <link rel="stylesheet" href="/css/dropdownMenu.css" />
+    
+    	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
+
+			    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+	
+</head>
+    
+		
+<!-- Layouts -->
+
+
+
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_coy.css" />
+<link rel="stylesheet" href="/css/typo.css" />
+<!-- 文章页 -->
+<body class="is-loading">
+    <!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in">
+        <!-- Intro 头部显示 s -->
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="/" class="logo">双鱼座的牛</a>
+</header>
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special" >
+            <ul class="menu links" >
+			<!-- Homepage  主页  --> 
+			<li >
+	            <a href="/" rel="nofollow">主页</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <li class="active">
+	            <a href="#s1">分类</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        <a class="category-link" href="/categories/前端技术/">前端技术</a></li><li><a class="category-link" href="/categories/后端技术/">后端技术</a></li><li><a class="category-link" href="/categories/闲言碎语/">闲言碎语</a>
+	                    </ul>
+	        </li>
+	        
+	        <!-- archives  归档   --> 
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="/about/" title="简历">
+		                简历
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/group/" title="团队">
+		                团队
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/gallery/" title="图库">
+		                图库
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/tag/" title="标签">
+		                标签
+		            </a>
+		        </li>
+		        
+
+
+            </ul>
+            <!-- icons 图标   -->
+			<ul class="icons">
+		            
+		                <li><a href="https://github.com/miccall" class="icon fa-github"><span class="label">GitHub</span></a></li>
+		            
+		            
+		            
+		            
+			</ul>
+</nav>
+
+        <div id="main" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(http://upload-images.jianshu.io/upload_images/6290181-1b8d750f824b910e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >如果你想开发一个应用(1-11)</h2></a>
+            </div>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <p>这一章开始的时候，先拿一个广告图镇楼：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/6290181-dc140cb4ddff70c9.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<blockquote>
+<p>图是网上随便找的，哈哈好希望真的有路虎</p>
+</blockquote>
+<p>这句广告此很有意思，虽然脚踏实地的走路是最踏实的(jdbc)，如果可以，当然有辆自行车(JdbcTemplate)就更好了.但我相信，一辆能装载，速度快，安全性高的路虎，是每个人心中的梦想。</p>
+<h2 id="路虎"><a href="#路虎" class="headerlink" title="路虎"></a>路虎</h2><p>我们想要这样一些能力：</p>
+<ul>
+<li>对象可以和数据库字段自动进行映射</li>
+<li>自动生成sql语句</li>
+<li>自动完成查询条件</li>
+<li>自动生成级联关系</li>
+<li>自动管理数据库缓存和延迟加载等</li>
+</ul>
+<p>这些能力可以使我们从无休止的?中解脱出来，那么有没有这样一种既简单，又方便的工具呢？Spring集成的JPA功能登场了。</p>
+<blockquote>
+<p>JPA（Java Persistence API）Java持久性API，是用于对象/关系映射（ORM）的Java API，其中Java对象映射到数据库工件，以便在java应用程序中管理数据关系。JPA包括Java持久性查询语言（JPQL），Java持久性标准API以及用于定义对象/关系映射元数据的Java API和XML模式。</p>
+</blockquote>
+<p>需要再次强调一下，JPA不是orm，他仅仅是一套API标准。</p>
+<p>Spring2开始集成了JPA功能，就像有一辆车之前需要驾照，使用JPA之前同样需要引入JPA所依赖的包：</p>
+<pre><code>&lt;dependency&gt;
+  &lt;groupId&gt;org.springframework.data&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-data-jpa&lt;/artifactId&gt;
+  &lt;version&gt;2.0.2.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre><p>然后我们就可以去4S点去试驾，或者选车，出去飞了。</p>
+<h2 id="试驾"><a href="#试驾" class="headerlink" title="试驾"></a>试驾</h2><p>引入JPA的依赖包之后开始对JPA进行配置,而配置JPA的第一步就是要配置实体管理工厂的Bean,以获取实体管理器，在JPA中定义了两种实体管理工厂：</p>
+<ul>
+<li>应用程序管理类型：程序向管理器工厂直接请求时，会创建一个管理器，适合不在JavaEE容器中的应用程序，需配置<code>persistence.xml</code>文件</li>
+<li>容器管理类型：应用程序不和管理器工厂打交道，它的创建由容器负责。适合运行在容器中的程序，可不需要配置<code>persistence.xml</code>文件</li>
+</ul>
+<p>我们的程序即在JavaEE容器中运行，有极力的想要全java配置，所以当然选择容器管理类型了，在Spring中使用LocalContainerEntityManagerFactoryBean的FactoryBean来配置实体管理器：</p>
+<pre><code>@Bean
+public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource,
+                                                                   JpaVendorAdapter jpaVendorAdapter){
+    LocalContainerEntityManagerFactoryBean lcemf=new LocalContainerEntityManagerFactoryBean();
+    lcemf.setDataSource(dataSource);
+    lcemf.setJpaVendorAdapter(jpaVendorAdapter);
+    lcemf.setPackagesToScan(&quot;com.niufennan.jtodos.models&quot;);
+    return lcemf;
+}
+</code></pre><p>注意这个Bean需要两个参数，分别为数据源和Jpa实现适配器，然后分别set到对象里，并且通过’setPackagesToScan’方法设置默认扫描的实体包。  </p>
+<p>在这个bean的参数里，数据源即上一章设置的数据源，这里不在叙述，而JpaVendorAdapter是针对JPA不同的实现，目前JPA的实现有很多种，主要有Hibernate，OpenJpa，EclipseJpa等，对于Spring-jpa的用户来说，使用哪种实现在代码上都无所谓，因为已经在容器中透明了，这里我选择了EclipseLinkJPA的实现，首先还是引入依赖：</p>
+<pre><code>&lt;dependency&gt;
+  &lt;groupId&gt;org.eclipse.persistence&lt;/groupId&gt;
+  &lt;artifactId&gt;org.eclipse.persistence.jpa&lt;/artifactId&gt;
+  &lt;version&gt;2.7.0&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre><p>然后增加jpaVendorAdapter的Bean：</p>
+<pre><code>@Bean
+public JpaVendorAdapter jpaVendorAdapter(){
+    EclipseLinkJpaVendorAdapter adapter=new EclipseLinkJpaVendorAdapter();
+    adapter.setDatabase(Database.MYSQL);  //1
+    adapter.setShowSql(true);              //2    
+    adapter.setGenerateDdl(false);          //3    
+    adapter.setDatabasePlatform(MySQLPlatform.class.getName());                                  //4
+    return adapter;
+}
+</code></pre><blockquote>
+<p>1 设置访问的数据库类型<br>2 设置在日志中输出生成的SQL<br>3 设置是否根据数据实体生成修改数据库结构，这里不修改<br>4 设置sql方言</p>
+</blockquote>
+<p>然后,根据JPA实际的需求，我们还需要对实体类进行一些改造，这里以Todo类为例，改造方式如下：</p>
+<ol>
+<li>增加JPA所需的一些注解</li>
+<li>将基本数据类型换成包装类形式</li>
+</ol>
+<p>改造完后代码如下：</p>
+<pre><code>@Entity(name = &quot;todos&quot;)
+public class Todo {
+    @Id
+    private Integer id;
+    private String item;
+    private Date createTime=new Date();
+    private Integer userId;
+    get... set...
+}
+</code></pre><p>现在挑选完成，准备起飞。</p>
+<p>##低配版##</p>
+<p>为了和上一章的dao类区分，我们新创建一个<code>persistence</code>包，用来存放基于JPA实现的持久层类，首先，创建一个<code>TodoRepository</code>类，并在里定义三个方法，即将TodoDao接口的方法拷贝入内：</p>
+<pre><code>public interface TodoRepository {
+    public List&lt;Todo&gt; getAll();
+    public List&lt;Todo&gt; getTodoByUserId(int userId);
+    public void save(Todo todo);
+}
+</code></pre><p>然后统一创建<code>impl</code>,作为接口的实现，这里创建一个基于jpa实现的类：</p>
+<pre><code>public class JpaTodoRepository implements TodoRepository {
+    public List&lt;Todo&gt; getAll() {
+        return null;
+    }
+    public List&lt;Todo&gt; getTodoByUserId(int userId) {
+        return null;
+    }
+    public void save(Todo todo) {
+
+    }
+}
+</code></pre><p>下面完成这个类:</p>
+<pre><code>@Transactional
+@Repository
+public class JpaTodoRepository implements TodoRepository {
+
+    @PersistenceUnit
+    private EntityManagerFactory entityManagerFactory;
+    public List&lt;Todo&gt; getAll() {
+        CriteriaQuery&lt;Todo&gt; criteriaQuery=entityManagerFactory.createEntityManager().getCriteriaBuilder().createQuery(Todo.class);
+        return entityManagerFactory.createEntityManager().createQuery(criteriaQuery).getResultList();
+    }
+
+    public List&lt;Todo&gt; getTodoByUserId(int userId) {
+        CriteriaBuilder builder=entityManagerFactory.createEntityManager().getCriteriaBuilder();
+        CriteriaQuery&lt;Todo&gt; criteriaQuery=builder.createQuery(Todo.class);
+        Root&lt;Todo&gt; todoRoot = criteriaQuery.from(Todo.class);
+        Predicate predicate = builder.equal(todoRoot.get(&quot;userId&quot;), userId);
+        criteriaQuery.where(predicate);
+        return entityManagerFactory.createEntityManager().createQuery(criteriaQuery).getResultList();
+    }
+
+    public void save(Todo todo) {
+        entityManagerFactory.createEntityManager().persist(todo);
+    }
+}
+</code></pre><p>我知道你想说什么，看上去代码好复杂，尤其是条件查询的部分，这里先对条件查询进行一下说明：</p>
+<pre><code>CriteriaBuilder builder=entityManagerFactory.createEntityManager().getCriteriaBuilder();  //基于建造模式，构建一个Criteria构建器对象(基于Criteria模式进行条件查询)
+
+CriteriaQuery&lt;Todo&gt; criteriaQuery=builder.createQuery(Todo.class);  //为Todo对象创建一个基础查询
+
+Root&lt;Todo&gt; todoRoot = criteriaQuery.from(Todo.class); //为基础查询设置一个查询条件列表
+
+Predicate predicate = builder.equal(todoRoot.get(&quot;userId&quot;), userId);  //通过userId进行查询
+
+criteriaQuery.where(predicate);
+
+return entityManagerFactory.createEntityManager().createQuery(criteriaQuery).getResultList();  //设置 查询条件并返回
+</code></pre><p>其余的代码很简单就不在叙述，接下来使用土土的测试方式，运行一下，阿啊哦，报错了，查看一下报错信息(复制其中的一句)：</p>
+<pre><code>Failed to load class &quot;org.slf4j.impl.StaticLoggerBinder&quot;.
+</code></pre><p>这是因为EclipseLink默认使用了slf4j的API记录日志，所以之类需要添加对它的引用即可：</p>
+<pre><code>&lt;dependency&gt;
+  &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
+  &lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;
+  &lt;version&gt;1.7.25&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.apache.logging.log4j&lt;/groupId&gt;
+  &lt;artifactId&gt;log4j-slf4j-impl&lt;/artifactId&gt;
+  &lt;version&gt;2.9.1&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre><p>然后土土的跑起来，测试一下，啊哦，还是有错误，查看一下报错信息：</p>
+<pre><code>16:55:30.136 [RMI TCP Connection(5)-127.0.0.1] ERROR org.springframework.web.context.ContextLoader - Context initialization failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;entityManagerFactory&apos; defined in class path resource [com/niufennan/jtodos/config/DataBaseConfig.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Cannot apply class transformer without LoadTimeWeaver specified
+</code></pre><p>提示对LoadTimeWeaver的调用失败，那么LoadTimeWeaver又是做什么用的呢？LoadTimeWeaver顾名思义，就是使用AspectJ提供在Aop中类加载时织入切片的能力。</p>
+<p>那么如何使用LoadTimeWeaver呢？首先，需要通过JVM的-javaagent参数设置LTW的织入器类包，以代理JVM默认的类加载器；第二，LTW织入器需要一个 aop.xml文件，在该文件中指定切面类和需要进行切面织入的目标类。简单说，就是提供动态代理的能力。我们可以使用注解：</p>
+<pre><code>@EnableLoadTimeWeaving( aspectjWeaving = EnableLoadTimeWeaving.AspectJWeaving.DISABLED)
+</code></pre><p>对他进行关闭。</p>
+<p>这时候运行，ok 成功出现了我们需要的页面。</p>
+<p>但这样显然不是什么好主意，因为Spring现在就是基于注解在使用的，而基于注解，肯定会不可避免的使用到动态代理的织入，所以，将LTW禁用显然是不合理的。所以，最简单的方法是，既然entityManagerFactory需要，那么给它就好了，修改entityManagerFactory的Bean：</p>
+<pre><code>@Bean
+public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource,
+                                                                   JpaVendorAdapter jpaVendorAdapter){
+    LocalContainerEntityManagerFactoryBean lcemf=new LocalContainerEntityManagerFactoryBean();
+    lcemf.setDataSource(dataSource);
+    lcemf.setJpaVendorAdapter(jpaVendorAdapter);
+    lcemf.setPackagesToScan(&quot;com.niufennan.jtodos.models&quot;);
+    lcemf.setLoadTimeWeaver(new InstrumentationLoadTimeWeaver());
+    return lcemf;
+}
+</code></pre><p>最后将LoadTimeWeaver给set进去，在运行一下，还是报错，查看一下报错信息：</p>
+<pre><code>Must start with Java agent to use InstrumentationLoadTimeWeaver
+</code></pre><p>难道一定要修改java的启动参数么？当然不是，进入源码看一看(此源码为在Idea环境下直接双击进入)：</p>
+<pre><code>public void addTransformer(ClassFileTransformer transformer) {
+    Assert.notNull(transformer, &quot;Transformer must not be null&quot;);
+    InstrumentationLoadTimeWeaver.FilteringClassFileTransformer actualTransformer = new InstrumentationLoadTimeWeaver.FilteringClassFileTransformer(transformer, this.classLoader);
+    List var3 = this.transformers;
+    synchronized(this.transformers) {
+        Assert.state(this.instrumentation != null, &quot;Must start with Java agent to use InstrumentationLoadTimeWeaver. See Spring documentation.&quot;);
+        this.instrumentation.addTransformer(actualTransformer);
+        this.transformers.add(actualTransformer);
+    }
+}
+</code></pre><p>可以看到，这个错误是在判断仪表盘是否为空的时候产生的，而我们现在不需要这个，所以完全可以把这个错误隐藏掉，因此，创建一个扩展类，覆盖这点代码：</p>
+<pre><code>public class ExtInstrumentationLoadTimeWeaver extends
+        InstrumentationLoadTimeWeaver {
+    @Override
+    public void addTransformer(ClassFileTransformer transformer) {
+        try {
+            super.addTransformer(transformer);
+        } catch (Exception e) {}
+    }
+}
+</code></pre><p>然后修改setLoadTimeWeaver方法：</p>
+<pre><code>@Bean
+public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource,
+                                                                   JpaVendorAdapter jpaVendorAdapter){
+    LocalContainerEntityManagerFactoryBean lcemf=new LocalContainerEntityManagerFactoryBean();
+    lcemf.setLoadTimeWeaver(new ExtInstrumentationLoadTimeWeaver( ));
+    lcemf.setDataSource(dataSource);
+    lcemf.setJpaVendorAdapter(jpaVendorAdapter);
+    lcemf.setPackagesToScan(&quot;com.niufennan.jtodos.models&quot;);
+    return lcemf;
+}
+</code></pre><p>这时，土土的运行一下，完全ok。</p>
+<blockquote>
+<p>当然，还可以在tomcat配置的地方为VM options设置参数，-javaagent:spring-agent.jar的绝对路径，因为它使用了绝对路径，所以我很不喜欢。故不采用这种方法。</p>
+<p>还可以使用一个更简单的方法，即换一个JavaEE的容器，如Jetty,因为这个Bug只在Tomcat中会出现(至少目前我只在Tomcat中发现)</p>
+</blockquote>
+<p><a href="https://github.com/niufennan/jtodos.git" target="_blank" rel="external">截止目前源代码v1-11_1</a></p>
+<h2 id="中配版"><a href="#中配版" class="headerlink" title="中配版"></a>中配版</h2><p>折腾半天，终于开着低配版的路虎起飞了，但你可能也发现了：</p>
+<ol>
+<li>代码并没有减少，甚至更加复杂</li>
+<li>每次都调用entityManagerFactory.createEntityManager()，看着很不爽</li>
+<li>同2，这意味着会创建很多EntityManager对象。</li>
+</ol>
+<p>那么有没有更方便的方法呢，就像换一辆中配的汽车？</p>
+<p>当然可以，可是有个大问题就是EntityManager不是线程安全的，一般来说，不适合作为共享bean注入到Repository中，但是好在Spring依然为我们提供了方法：</p>
+<pre><code>@Transactional
+@Repository
+public class JpaTodoRepository implements TodoRepository {
+
+    @PersistenceContext
+    private EntityManager entityManager;
+    public List&lt;Todo&gt; getAll() {
+        CriteriaQuery&lt;Todo&gt; criteriaQuery=entityManager.getCriteriaBuilder().createQuery(Todo.class);
+        return entityManager.createQuery(criteriaQuery).getResultList();
+    }
+    public List&lt;Todo&gt; getTodoByUserId(int userId) {
+        CriteriaBuilder builder=entityManager.getCriteriaBuilder();
+        CriteriaQuery&lt;Todo&gt; criteriaQuery=builder.createQuery(Todo.class);
+        Root&lt;Todo&gt; todoRoot = criteriaQuery.from(Todo.class);
+        Predicate predicate = builder.equal(todoRoot.get(&quot;userId&quot;), userId);
+        criteriaQuery.where(predicate);
+        return entityManager.createQuery(criteriaQuery).getResultList();
+    }
+    public void save(Todo todo) {
+        entityManager.persist(todo);
+    }
+}
+</code></pre><p>这里的关键就是<code>@PersistenceContext</code>,它的精彩之处是不没有真的注入EntityManager，而是产生了一个代理(貌似Spring大量的使用了代理模式)，然后真正的实体管理器始终是与当前事物相关联的那一个，当然如果不存在，则会重新创建一个，这样的话，就能始终保持他是线程安全的。</p>
+<blockquote>
+<p>@PersistenceContext与@PersistenceUnit均不是Spring的注解，他是jpa的注解。</p>
+</blockquote>
+<p>好，现在土土的运行一下，发现中配版的路虎也可以起飞了。</p>
+<p><a href="https://github.com/niufennan/jtodos.git" target="_blank" rel="external">截止目前源代码v1-11_2</a></p>
+<h2 id="高配版路虎"><a href="#高配版路虎" class="headerlink" title="高配版路虎"></a>高配版路虎</h2><p>中配版升级了实体管理器，实现了由容器自动管理实体管理器的创建和使用，那么接下来看一下代码，能不能升级一下查询的方法体呢？</p>
+<p>答案是当然可以，甚至我们都可以只写一个Repository的接口就可以了，继续修改TodoRepository：</p>
+<pre><code>public interface TodoRepository extends JpaRepository&lt;Todo,Integer&gt; {
+    public List&lt;Todo&gt; getTodoByUserId(int userId);
+}
+</code></pre><p>然后我们将此接口的实现删除，土土的运行一下，完全Ok。</p>
+<p>这很令人惊讶，为什么，完全没有实现类和任何的注解！实际上，因为TodoRepository继承JpaRepository，而JpaRepository经过一系列的继承，最终继承并扩展了Repository接口，于是，Spring-Data框架会扫描定义包内所有的Repository的子接口，并在应用启动的时候创建他的实现类，而且实现类中会默认包含CurdRepository等父接口所包含的18个方法。</p>
+<p>一个非常令人惊叹的技术。</p>
+<p>通过JpaRepository提供的18个方法，几乎可以进行任何通用的操作，那么我的需求超过这些方法了怎么办，比如<code>getTodoByUserId</code>方法</p>
+<p>这里就牵扯到Spring-Data的另一个令人惊叹的技术，根据方法名与实体对像推断方法的目的：</p>
+<pre><code>动词(get)--主题(Todo)--关键词(by)--断言(UserId)
+</code></pre><p>根据这种组合，我们几乎可以实现任何功能，如根据User获取todo列表并更加创建时间排序：</p>
+<pre><code>getTodoByUserIdOrderByCreateTime
+</code></pre><p>Spring-Data允许的动词：</p>
+<pre><code>get,read,find,count等
+</code></pre><blockquote>
+<p>get，read，find没有明显差别。</p>
+</blockquote>
+<p>由于此实现是基于泛型的，所以主题可以省略。</p>
+<p>而断言部分则是精华所在，非常的繁复，灵活，几乎支持所有的sql语句关键字，具体可以根据日志打印的sql语句与断言匹配以练习。</p>
+<p><a href="https://github.com/niufennan/jtodos.git" target="_blank" rel="external">截止目前源代码v1-11_3</a></p>
+<h2 id="改装车"><a href="#改装车" class="headerlink" title="改装车"></a>改装车</h2><p>一个无法改装的越野车不是好越野车，当我发现这些均无法满足要求怎么办？我查询的sql语句无比复杂，断言几乎无法完成，那怎么办呢？</p>
+<p>这时候我们可以部分退化到中配版，但依然使用高配版的全自动化，机创建一个实现类，但这个实现类按照约定命名，即Repository接口加impl后缀，（此类仅为举例）：</p>
+<pre><code>public class TodoRepositoryImpl implements ExtTodoRepository {
+    @PersistenceContext
+    private EntityManager entityManager;
+    public List&lt;Todo&gt; getTodoByUserId(int userId) {
+        String sql=&quot;select t from  com.niufennan.jtodos.models.Todo t where  t.userId=:userId&quot;;
+        Query query= entityManager.createQuery(sql);
+        query.setParameter(&quot;userId&quot;,userId);
+        return query.getResultList();
+    }
+}
+</code></pre><p>这里使用ExtTodoRepository接口是因为如果使用TodoRepository接口的话，会要求实现所有的18个方法，ExtTodoRepository的代码如下：</p>
+<pre><code>public interface ExtTodoRepository {
+    public List&lt;Todo&gt; getTodoByUserId(int userId);
+}
+</code></pre><p>最后，还要让TodoRepository知道ExtTodoRepository定义的方法：</p>
+<pre><code>public interface TodoRepository extends JpaRepository&lt;Todo,Integer&gt; ,ExtTodoRepository{
+}
+</code></pre><p>这样，就可以灵活的使用hql(?)来进行查询了，甚至可以直接使用<code>createSqlQuery</code>来直接使用SQL进行查询。</p>
+<p><a href="https://github.com/niufennan/jtodos.git" target="_blank" rel="external">截止目前源代码v1-11_4</a></p>
+<blockquote>
+<p>这部分内容提交后删除</p>
+</blockquote>
+<h2 id="行车记录仪"><a href="#行车记录仪" class="headerlink" title="行车记录仪"></a>行车记录仪</h2><p>整理代码，将不需要的，如Dao和impl包下的内容全部删除，并允许，同时添加一条新的todo记录，留个纪念吧：</p>
+<p>[图片上传失败…(image-543fa5-1513757229395)]</p>
+<p>很完美，不是么，但是，控制台有这样一条输出缺引起了我的注意：</p>
+<pre><code>ERROR StatusLogger No log4j2 configuration file found. Using default configuration: logging only errors to the console. Set system property &apos;log4j2.debug&apos; to show Log4j2 internal initialization logging.
+</code></pre><p>没有找到日志的配置项，所以就输出到控制台了，当然我们能从控制台看到好多东西，比如生成的sql语句：</p>
+<pre><code>SELECT ID, CREATETIME, ITEM, USERID FROM TODOS WHERE (USERID = ?)
+</code></pre><p>但是，就像是开车一样，没有任何人喜欢碰撞，但是如果真的出现了，紧靠研究记录肯定是不行的，这时候需要一个行车记录仪就方便多了，而日志也起了同样的作用，就是将程序中任何的问题，输出均记录下来。而Spring其实已经将日志的一切都自动化执行了，我们所需要的，仅仅是配置一个日志配置文件即可.</p>
+<blockquote>
+<p>Log4j2不支持properties文件，只可以使用xml，yaml和json，下面是一个xml配置的例子：</p>
+</blockquote>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;Configuration status=&quot;WARN&quot; monitorInterval=&quot;30&quot;&gt;
+    &lt;properties&gt;
+        &lt;property name=&quot;LOG_HOME&quot;&gt;${sys:catalina.home}/WEB-INF/logs&lt;/property&gt;
+        &lt;property name=&quot;FILE_NAME&quot;&gt;jtodos_log&lt;/property&gt;
+    &lt;/properties&gt;
+    &lt;Appenders&gt;
+        &lt;Console name=&quot;Console&quot; target=&quot;SYSTEM_OUT&quot;&gt;
+            &lt;PatternLayout pattern=&quot;%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n&quot; /&gt;
+        &lt;/Console&gt;
+        &lt;RollingFile name=&quot;RollingFile&quot; fileName=&quot;${LOG_HOME}/${FILE_NAME}.log&quot;
+                     filePattern=&quot;${LOG_HOME}/$${date:yyyy-MM}/${FILE_NAME}-%d{yyyy-MM-dd}-%i.log.gz&quot;
+                     immediateFlush=&quot;true&quot;&gt;
+            &lt;PatternLayout
+                    pattern=&quot;%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%file:%line] - %msg%n&quot; /&gt;
+            &lt;Policies&gt;
+                &lt;TimeBasedTriggeringPolicy /&gt;
+                &lt;SizeBasedTriggeringPolicy size=&quot;10 M&quot; /&gt;
+            &lt;/Policies&gt;
+            &lt;DefaultRolloverStrategy max=&quot;20&quot; /&gt;
+        &lt;/RollingFile&gt;
+    &lt;/Appenders&gt;
+    &lt;Loggers&gt;
+        &lt;Root level=&quot;info&quot;&gt;
+            &lt;!-- 这里是输入到文件--&gt;
+            &lt;AppenderRef ref=&quot;RollingFile&quot; /&gt;
+            &lt;!-- 这里是输入到控制台--&gt;
+            &lt;AppenderRef ref=&quot;Console&quot; /&gt;
+        &lt;/Root&gt;
+    &lt;/Loggers&gt;
+&lt;/Configuration&gt;
+</code></pre><p>运行后，到日志路径去看，日志书写完成：</p>
+<p>[图片上传失败…(image-581afa-1513757229395)]</p>
+<p>里边内容可以自行查看。</p>
+<p>不知不觉，写了这么多字，看来能开上路虎真的不容易呀：）<br><a href="https://github.com/niufennan/jtodos.git" target="_blank" rel="external">11章最终版代码 v1-11_5</a><br>谢谢观看</p>
+
+            </div>
+
+            <!-- Post Comments -->
+            
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #7EC0EE;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load" id="disqus_bt"> 
+    <button class="disqus_click_btn">点击查看评论</button>
+</div>
+
+<!--
+<script type="text/javascript">
+$('.btn_click_load').click(function() {
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'http-miccall-tech'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    document.getElementById('disqus_bt').style.display = "none";
+});
+</script>
+-->
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2017/12/20/2017-12-20-如果你想开发一个应用-1-11/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://yoursite.com/2017/12/20/2017-12-20-如果你想开发一个应用-1-11/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/javascript">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//http-miccall-tech.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+
+        </div>
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By <a href="https://hexo.io/zh-cn/" style="border-bottom: none;">hexo</a></li>
+                <li>Design: <a href="http://miccall.tech " style="border-bottom: none;">miccall</a></li>
+            </ul>
+            
+            	<span id="busuanzi_container_site_pv">2017总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+			
+        </div>
+    </div>
+</body>
+
+
+
+ 	
+</html>
