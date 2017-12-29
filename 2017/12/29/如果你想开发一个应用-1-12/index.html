@@ -1,0 +1,267 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<link rel="bookmark"  type="image/x-icon"  href="/img/niu.png"/>
+	 <link rel="shortcut icon" href="/img/niu.png">
+	
+			
+    <title>
+    双鱼座的牛
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/mic_main.css" />
+    <link rel="stylesheet" href="/css/dropdownMenu.css" />
+    
+    	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
+
+			    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+	
+</head>
+    
+		
+<!-- Layouts -->
+
+
+
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_coy.css" />
+<link rel="stylesheet" href="/css/typo.css" />
+<!-- 文章页 -->
+<body class="is-loading">
+    <!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in">
+        <!-- Intro 头部显示 s -->
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="/" class="logo">双鱼座的牛</a>
+</header>
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special" >
+            <ul class="menu links" >
+			<!-- Homepage  主页  --> 
+			<li >
+	            <a href="/" rel="nofollow">主页</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <li class="active">
+	            <a href="#s1">分类</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        <a class="category-link" href="/categories/前端技术/">前端技术</a></li><li><a class="category-link" href="/categories/后端技术/">后端技术</a></li><li><a class="category-link" href="/categories/闲言碎语/">闲言碎语</a>
+	                    </ul>
+	        </li>
+	        
+	        <!-- archives  归档   --> 
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="/about/" title="简历">
+		                简历
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/group/" title="团队">
+		                团队
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/gallery/" title="图库">
+		                图库
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/tag/" title="标签">
+		                标签
+		            </a>
+		        </li>
+		        
+
+
+            </ul>
+            <!-- icons 图标   -->
+			<ul class="icons">
+		            
+		                <li><a href="https://github.com/miccall" class="icon fa-github"><span class="label">GitHub</span></a></li>
+		            
+		            
+		            
+		            
+			</ul>
+</nav>
+
+        <div id="main" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(http://upload-images.jianshu.io/upload_images/6290181-0b5ee0e4733d5ab5.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >如果你想开发一个应用(1-12)</h2></a>
+            </div>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <p>到了现在，整个程序的结构已经出来了，层级清晰，代码简练(暂时不考虑分布式等附加功能)，之后就开始在这个架构上扩充业务功能。</p>
+<h2 id="产品化"><a href="#产品化" class="headerlink" title="产品化"></a>产品化</h2><p>现在的程序，不管是不是承认，都透着一股弄弄的demo味，但是，谁没有一点野心呢？虽然现在只是一个小小的记事性的demo，但谁知道日后会不会成为东半球最好的记事型APP呢。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/6290181-0b5ee0e4733d5ab5.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>在去年夏天有一部现象级的电影上映，就是《你的名字》，里边男女主角用来记事的APP非常的吸引人，并且我发现在功能上，与我们现有的demo很是契合，下面我们从影片的截图分析一下所需的功能，并根据需要来设计出一个简要原型图：</p>
+<h3 id="日记列表"><a href="#日记列表" class="headerlink" title="日记列表"></a>日记列表</h3><p><img src="http://upload-images.jianshu.io/upload_images/6290181-1ecd123a6bafe903.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>从图中可以分析出：</p>
+<ol>
+<li>顶部三个Tab项，由于是英文比较容易擦出，分别为日记，日历，第三个实在看不清楚，姑且暂定为我的</li>
+<li>日记项可以上下滑动</li>
+<li>日记项通过月份分栏，并且在滑动时当前月份情况下，月份头不变</li>
+<li>底部的导航，最左边扩展暂时不考虑，分别新增日记，新增图画日记，以及日记项梳理，考虑到第三条，日记项数量为当月日记数量</li>
+<li>日记项信息包含时间，标题，内容，心情，天气以及标记</li>
+</ol>
+<h3 id="新增即查看日记"><a href="#新增即查看日记" class="headerlink" title="新增即查看日记"></a>新增即查看日记</h3><p>新增查看可能为一个页面</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/6290181-4c368a8d44e93bd1.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>从图中可以分析出：</p>
+<ol>
+<li>以弹框方式呈现</li>
+<li>自动读取日期时间</li>
+<li>自动获取天气</li>
+<li>自动获取定位</li>
+<li>可以插入图，或者说访问相机</li>
+<li>可以插入音乐</li>
+<li>更多功能暂时不考虑</li>
+</ol>
+<h3 id="日历"><a href="#日历" class="headerlink" title="日历"></a>日历</h3><p><img src="http://upload-images.jianshu.io/upload_images/6290181-37df736c361aec45.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>从图中可以分析出：</p>
+<ol>
+<li>手指滑动可以切换日期</li>
+<li>日期下的按钮 功能可能为读取当天日历？</li>
+</ol>
+<h3 id="其他功能"><a href="#其他功能" class="headerlink" title="其他功能"></a>其他功能</h3><p><img src="http://upload-images.jianshu.io/upload_images/6290181-5403a55a1f8ff18b.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>这张截图的信息量很大，但是由于不懂日语，实在分析不出太多，只能连猜带蒙的分析出如下功能：</p>
+<ol>
+<li>日历有分组功能</li>
+<li>日历分组可以自定义ICON</li>
+<li>日历有tags功能</li>
+<li>日历分组可以设置主题（即男版和女版）</li>
+</ol>
+<p>通过以上分析，我们可以大概的梳理出这个产品需要什么功能，但是，一个能够上线使用的产品总比一个在想象中的大而全的产品要来得好，所以，我决定进行一些删减，保留最基本的的功能，最终确定的产品的大概原型如下：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/6290181-fa15923de889f31a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>可以看出，这里并不包含”我的”页，这是因为通过上面的分析，我的页过于复杂，待初版上线之后在进行开发。</p>
+<p>并且，我设计了一个简单不能再见的的logo</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/6290181-1ec899f3989d41e8.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>什么？你说效果图？不存在的，参考电影，以后大可以吹牛说这个项目的产品经理是新海诚 ：）</p>
+<p>这次比较短，多是分析，下一章将一步一步的在现有基础上完成这个APP</p>
+
+            </div>
+
+            <!-- Post Comments -->
+            
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #7EC0EE;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load" id="disqus_bt"> 
+    <button class="disqus_click_btn">点击查看评论</button>
+</div>
+
+<!--
+<script type="text/javascript">
+$('.btn_click_load').click(function() {
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'http-miccall-tech'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    document.getElementById('disqus_bt').style.display = "none";
+});
+</script>
+-->
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2017/12/29/如果你想开发一个应用-1-12/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://yoursite.com/2017/12/29/如果你想开发一个应用-1-12/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/javascript">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//http-miccall-tech.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+
+        </div>
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By <a href="https://hexo.io/zh-cn/" style="border-bottom: none;">hexo</a></li>
+                <li>Design: <a href="http://miccall.tech " style="border-bottom: none;">miccall</a></li>
+            </ul>
+            
+            	<span id="busuanzi_container_site_pv">2017总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+			
+        </div>
+    </div>
+</body>
+
+
+
+ 	
+</html>
