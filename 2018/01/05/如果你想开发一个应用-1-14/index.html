@@ -1,0 +1,657 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<link rel="bookmark"  type="image/x-icon"  href="/img/niu.png"/>
+	 <link rel="shortcut icon" href="/img/niu.png">
+	
+			
+    <title>
+    双鱼座的牛
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/mic_main.css" />
+    <link rel="stylesheet" href="/css/dropdownMenu.css" />
+    
+    	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
+
+			    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+	
+</head>
+    
+		
+<!-- Layouts -->
+
+
+
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_coy.css" />
+<link rel="stylesheet" href="/css/typo.css" />
+<!-- 文章页 -->
+<body class="is-loading">
+    <!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in">
+        <!-- Intro 头部显示 s -->
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="/" class="logo">双鱼座的牛</a>
+</header>
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special" >
+            <ul class="menu links" >
+			<!-- Homepage  主页  --> 
+			<li >
+	            <a href="/" rel="nofollow">主页</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <li class="active">
+	            <a href="#s1">分类</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        <a class="category-link" href="/categories/前端技术/">前端技术</a></li><li><a class="category-link" href="/categories/后端技术/">后端技术</a></li><li><a class="category-link" href="/categories/闲言碎语/">闲言碎语</a>
+	                    </ul>
+	        </li>
+	        
+	        <!-- archives  归档   --> 
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="/about/" title="简历">
+		                简历
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/group/" title="团队">
+		                团队
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/gallery/" title="图库">
+		                图库
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/tag/" title="标签">
+		                标签
+		            </a>
+		        </li>
+		        
+
+
+            </ul>
+            <!-- icons 图标   -->
+			<ul class="icons">
+		            
+		                <li><a href="https://github.com/miccall" class="icon fa-github"><span class="label">GitHub</span></a></li>
+		            
+		            
+		            
+		            
+			</ul>
+</nav>
+
+        <div id="main" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(http://upload-images.jianshu.io/upload_images/6290181-59f338eba186e7ef.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >如果你想开发一个应用(1-14)</h2></a>
+            </div>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <p>之前在前端引用了axios，那么紧接着，后台要做如何的修改呢？直接返回html肯定是不对的，这时候，一个名为webapi的技术就出现了</p>
+<h2 id="webapi"><a href="#webapi" class="headerlink" title="webapi"></a>webapi</h2><p>webapi区别于普通的api，是指“使用http协议通过网络调用的API”即软件组织的外部接口。有时候也叫<a href="http://www.ruanyifeng.com/blog/2014/05/restful_api.html" target="_blank" rel="external">RESTful api</a>，虽然他们实际上还是有一些区别的,但是基本上可以近似的理解他们是相同的，关于他们的定义，阮博写的还是非常的清晰。</p>
+<h2 id="SpringMVC中的webapi"><a href="#SpringMVC中的webapi" class="headerlink" title="SpringMVC中的webapi"></a>SpringMVC中的webapi</h2><p>在之前的程序中，我们返回的都是一个jsp模板的名字，然后框架自动去渲染这个jsp模板。但显然这个是不符合webapi的，那么我们想让他仅仅返回数据怎么办呢？这里介绍两个注解：<code>ResponseBody</code>和<code>RestController</code>,我们首先创建一个TestController控制器进行说明，他的代码很简单，首先：</p>
+<pre><code>@Controller
+public class TestController {
+    @ResponseBody
+    @RequestMapping(value = &quot;/test&quot;, method = {RequestMethod.GET})
+    public Object test(){
+        return &quot;Hello world&quot;;
+    }
+}
+</code></pre><p>然后在浏览器中直接访问<code>http://localhost:8082/test</code>，在返回页面查看源代码，只有<code>Hello world</code></p>
+<p>仿佛我们又回到了直接使用Servlet输出String的时代。</p>
+<p>你可能注意到了，返回值是一个Object，那么我们返回一个对象试一下：</p>
+<pre><code>@ResponseBody
+@RequestMapping(value = &quot;/test&quot;, method = {RequestMethod.GET})
+public Object test(){
+    User user=new User();
+    user.setId(1);
+    user.setName(&quot;zhangsan&quot;);
+    user.setPassword(&quot;123456&quot;);
+    user.setCreateTime(new Date());
+    return user;
+}
+</code></pre><p>查看一下返回信息：</p>
+<pre><code>{&quot;name&quot;:&quot;zhangsan&quot;,&quot;password&quot;:&quot;123456&quot;,&quot;passwordSalt&quot;:null,&quot;createTime&quot;:1514992830293,&quot;id&quot;:1}
+</code></pre><p>ok，比较完美，但是，如果一个控制器中所有的action均为webapi接口，这显然是一个很常见的事情，毕竟谁都不喜欢页面和json混合使用，那么这样写就是有些啰嗦了，这是就可以使用<code>RestController</code>使用它的<strong>效果</strong>就相当于所有的action都戴上了<code>ResponseBody</code>注解。我们使用这个注解对这个测试控制器进行一下修改：</p>
+<pre><code>@RestController
+public class TestController {
+    @RequestMapping(value = &quot;/test&quot;, method = {RequestMethod.GET})
+    public Object test(){
+        User user=new User();
+        user.setId(1);
+        user.setName(&quot;zhangsan&quot;);
+        user.setPassword(&quot;123456&quot;);
+        user.setCreateTime(new Date());
+        return user;
+    }
+}
+</code></pre><p>运行，同样用刚刚土土的浏览器测试法测试一下,查看一下返回信息，依然是：</p>
+<pre><code>{&quot;name&quot;:&quot;zhangsan&quot;,&quot;password&quot;:&quot;123456&quot;,&quot;passwordSalt&quot;:null,&quot;createTime&quot;:1514992830293,&quot;id&quot;:1}
+</code></pre><h2 id="PostMan"><a href="#PostMan" class="headerlink" title="PostMan"></a>PostMan</h2><p>使用浏览器的测试方式虽然很方便，但是局限性也非常大，比如它只能测试Get方式，只能使用？传参的方式，无法对header赋值等等，这时候一个工具是非常必要的，有一款常用的工具是PostMan就非常的好用它是一个chrome的插件，所以暂时来说，安装它需要科学上网。</p>
+<p>安装方式：</p>
+<ol>
+<li>点击chrome最右边的三个点</li>
+<li>在弹出菜单中选择更多工具</li>
+<li>在弹出菜单中选择扩展程序（图1）</li>
+<li>然后在搜索店内应用中搜索postman（图2）</li>
+<li>接着一直下一步即可</li>
+</ol>
+<p><img src="http://oyol58zk0.bkt.clouddn.com/jtodos/14/1.PNG" alt="图一"></p>
+<p><img src="http://oyol58zk0.bkt.clouddn.com/jtodos/14/2.PNG" alt="图二"></p>
+<p>如果安装完成后，多出一个类似应用程序的图标，因为经常使用我把他弄到了桌面的快捷方式，图标是这样的：</p>
+<p><img src="http://oyol58zk0.bkt.clouddn.com/jtodos/14/3.PNG" alt=""><br>当看见这个火箭人的时候，就证明postman已经安装完成。</p>
+<p>接下来双击我们测测试一下，在测试之前对代码进行一下修改：</p>
+<pre><code>@RestController
+public class TestController {
+    @RequestMapping(value = &quot;/test&quot;, method = {RequestMethod.POST})
+    public Object test(String username,String password){
+        User user=new User();
+        user.setId(1);
+        user.setName(username);
+        user.setPassword(password);
+        user.setCreateTime(new Date());
+        return user;
+    }
+}
+</code></pre><p>然后运行，并如图在Postman内输入相应信息：</p>
+<p><img src="http://oyol58zk0.bkt.clouddn.com/jtodos/14/4.PNG" alt=""></p>
+<p>点击发送按钮,在body中可以看到已经自动格式化好的返回信息:</p>
+<p><img src="http://oyol58zk0.bkt.clouddn.com/jtodos/14/5.PNG" alt=""></p>
+<h2 id="SpringMVC跨域"><a href="#SpringMVC跨域" class="headerlink" title="SpringMVC跨域"></a>SpringMVC跨域</h2><p>服务端的的配置完成之后，我们想到的就是客户端如何来调用它，回到vue的项目中，在views文件夹内，创建一个Test.vue文件，里边只写一个测试代码，访问服务端test服务，代码如下：</p>
+<pre><code>&lt;style&gt;&lt;/style&gt;
+&lt;template&gt;
+    &lt;div&gt;
+        {{ txt }}
+    &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+    export default {
+        data() {
+            return {
+                txt:&apos;&apos;,
+            }
+        },
+        created(){
+            this.$http.post(&quot;/test&quot;,).then(res=&gt;{
+                    this.txt=res.data
+                },res=&gt;{
+                    this.txt=res
+                }
+            )
+        }
+    }
+&lt;/script&gt;
+</code></pre><p>代码虽然简单，但是已经可以看出一个vue组件的基本结构：</p>
+<p>###style节点###</p>
+<p>存放本组件所需的css，可以通过scoped来控制css类的作用域</p>
+<p>###template节点###<br>一个组件的布局，即html模板，主要就用来开发的dom结构</p>
+<p>###script###<br>vue组件最重要的部分，猜也能猜到用来存储整个页面的js逻辑部分。</p>
+<p>这里可以看到js里比较重要的两个部分：</p>
+<ol>
+<li>data节点：此页面所使用的数据模型，vue与普通的jq之类的框架最大的区别就是数据驱动，这一点一定要牢牢记住</li>
+<li>create节点:页面布局创建时执行，这里让它在页面创建时执行ajax</li>
+</ol>
+<p>运行，并在浏览器重输入<code>http://localhost:8080/test/</code>然后按f12，可以看到返回，哦 还有报错信息(警告不用理他，好多都是空格 tab 这类的问题)：</p>
+<p><img src="http://oyol58zk0.bkt.clouddn.com/jtodos/14/6.PNG" alt=""></p>
+<p>这是一个跨域问题，在前后端分离开发的时候很常见的错误，在SpringMVC中解决这种问题主要有三种方法</p>
+<ul>
+<li>在Action上添加CrossOrigin注解</li>
+<li>在Controller上添加CrossOrigin注解</li>
+</ul>
+<p>这里我选择了第三种方法，因为只有一个人开发，所以很犯懒，一股脑的把跨域权限全部打开，在WebConfig类内覆盖addCorsMappings方法：</p>
+<pre><code>public void addCorsMappings(CorsRegistry registry){
+   registry.addMapping(&quot;/**&quot;);
+}
+</code></pre><p>重新运行一下tomcat服务器，并重新客户端测试：</p>
+<p><img src="http://oyol58zk0.bkt.clouddn.com/jtodos/14/7.PNG" alt=""></p>
+<p>可以完美访问。</p>
+<h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><p>我们看到，他这时候还是在接收着两个参数，username和password，这里是null,这里添加两个输入框，用户输入用户名和密码，然后发送到服务端，服务端返回在页面底部显示，此功能修改后vue代码如下：</p>
+<pre><code>&lt;template&gt;
+    &lt;div&gt;
+        &lt;table&gt;
+            &lt;tr&gt;
+                &lt;td&gt;用户名&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;text&quot; v-model=&quot;username&quot;&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;密码&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;text&quot; v-model=&quot;password&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td colspan=&quot;2&quot;&gt;&lt;input type=&quot;button&quot; @click=&quot;click&quot; value=&quot;提交&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;/table&gt;
+        &lt;br&gt;
+        &lt;div&gt;{{ message }}&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+    export default {
+        data() {
+            return {
+                username:&apos;&apos;,
+                password:&apos;&apos;,
+                message:&apos;&apos;
+            }
+        },
+        methods:{
+            click:function (event) {
+                var data={
+                    username:this.username,
+                    password:this.password
+                }
+                this.$http.post(&quot;/test&quot;,data).then(res=&gt;{
+                    this.message=res.data.name+&apos;__&apos;+res.data.password
+                },res=&gt;{
+                    this.txt=res
+                }
+            )
+            }
+        }
+    }
+&lt;/script&gt;    
+</code></pre><p>代码复杂了写，但依然很清晰，但是输入值并提交之后,最终的界面如下：</p>
+<p><img src="http://oyol58zk0.bkt.clouddn.com/jtodos/14/8.PNG?k=1" alt=""></p>
+<p>很明显，客户端传送的username和password服务端并没有接受到，这是为什么呢？我们f12看一下浏览器的http协议头的传值部分：</p>
+<p><img src="http://oyol58zk0.bkt.clouddn.com/jtodos/14/9.PNG" alt=""></p>
+<p>可以看到，提交方式为Payload方式，不同于一般formData。Payload是一种更加支持json数据的方式，这里的解决方式也有几种，比如修改配置强制为formData方式，用query方式等，这里我选择了一个不修改客户端，只修改服务端的方式，即读取requestBody，通过map方式接受参数：</p>
+<blockquote>
+<p>顺便说一下，一般这种清醒下，我都选择修改服务端。</p>
+</blockquote>
+<pre><code>@RestController
+public class TestController {
+    @RequestMapping(value = &quot;/test&quot;, method = {RequestMethod.POST})
+    public Object test(@RequestBody Map map ){
+        String username=map.get(&quot;username&quot;).toString();
+        String password=map.get(&quot;password&quot;).toString();
+        User user=new User();
+        user.setId(1);
+        user.setName(username);
+        user.setPassword(password);
+        user.setCreateTime(new Date());
+        return user;
+    }
+}
+</code></pre><blockquote>
+<p>这里的代码并不好，实际中这样的话客户端如果传少参数，传错参数都会报异常，正确的方式应该在服务端进行一下验证。</p>
+</blockquote>
+<p>在此客户端服务器均重启测试一下：</p>
+<p><img src="http://oyol58zk0.bkt.clouddn.com/jtodos/14/10.PNG" alt="终于正常了"></p>
+<h2 id="token"><a href="#token" class="headerlink" title="token"></a>token</h2><p>webapi是基于http协议的，在之前我们了解到基于http协议就意味着它是无状态，短链接的，但是作为一个应用，必须知道当前使用的用户是哪一个。 也就是必须保持一个会话。</p>
+<p>还记得之前jsp页面的会话是如何保持的么？通过一个jsessionid来进行自动处理的，这里我们也这样操作，服务端根据登录状态，保存一个令牌，有令牌进行处理，其中令牌保存方式现在采用最简单的房，仅仅保存在一个静态列表中，然后需要根据时间来决定令牌的生效级生效，所以，我们需要一个简单的令牌管理类：</p>
+<pre><code>public class TokenUtil {
+    private static final int INTERVAL = 7;// token过期时间间隔 天
+    private static final String SALT = &quot;jtodos&quot;;// 加盐
+    private static final int HOUR = 3;// 检查token过期线程执行时间 时
+    private static Map&lt;String, Token&gt; tokenMap = new HashMap&lt;String, Token&gt;();
+    private static TokenUtil tokenUtil = null;
+    static ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+    static {
+        //开启监听
+        listenTask();
+    }
+    public static TokenUtil getTokenUtil() {
+        if (tokenUtil == null) {
+            synInit();
+        }
+        return tokenUtil;
+    }
+
+    private static synchronized void synInit() {
+        if (tokenUtil == null) {
+            tokenUtil = new TokenUtil();
+        }
+    }
+    private TokenUtil() {//禁止实例化
+    }
+    public static Map&lt;String, Token&gt; getTokenMap() {
+        return tokenMap;
+    }
+    public static Token generateToken(String uniq, int id) {//创建token id为业务id
+        String signature=MD5(System.currentTimeMillis() + SALT + uniq + id);
+        Token token = new Token(signature, System.currentTimeMillis(),id);
+        synchronized (tokenMap) {
+            tokenMap.put(signature, token);
+        }
+        return token;
+    }
+    public static boolean removeToken(String signature) {//删除
+        synchronized (tokenMap) {
+            tokenMap.remove(signature);
+        }
+        return true;
+    }
+    public static long volidateToken(String signature) {  //检查token
+        Token token = (Token) tokenMap.get(signature);
+        if (token != null &amp;&amp; token.getSignature().equals(signature)) {
+            return token.getId();
+        }
+        return -1;
+    }
+    public final static String MD5(String s) {
+        try {
+            byte[] btInput = s.getBytes();
+            // 获得MD5摘要算法的 MessageDigest 对象
+            MessageDigest mdInst = MessageDigest.getInstance(&quot;MD5&quot;);
+            // 使用指定的字节更新摘要
+            mdInst.update(btInput);
+            // 获得密文
+            return byte2hex(mdInst.digest());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    private static String byte2hex(byte[] b) {
+        StringBuilder sbDes = new StringBuilder();
+        String tmp = null;
+        for (int i = 0; i &lt; b.length; i++) {
+            tmp = (Integer.toHexString(b[i] &amp; 0xFF));
+            if (tmp.length() == 1) {
+                sbDes.append(&quot;0&quot;);
+            }
+            sbDes.append(tmp);
+        }
+        return sbDes.toString();
+    }
+    public static void listenTask() {
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        //定制每天的HOUR点，从明天开始
+        calendar.set(year, month, day + 1, HOUR, 0, 0);
+        // calendar.set(year, month, day, 17, 11, 40);
+        Date date = calendar.getTime();
+        scheduler.scheduleAtFixedRate(new ListenToken(), (date.getTime() - System.currentTimeMillis()) / 1000, 60 * 60 * 24, TimeUnit.SECONDS);
+    }
+    static class ListenToken implements Runnable {
+        public ListenToken() {
+            super();
+        }
+        public void run() {//监听Token列表
+            try {
+                synchronized (tokenMap) {
+                    for (int i = 0; i &lt; 5; i++) {
+                        if (tokenMap != null &amp;&amp; !tokenMap.isEmpty()) {
+                            for (Map.Entry&lt;String, Token&gt; entry : tokenMap.entrySet()) {
+                                Token token = (Token) entry.getValue();
+                                int interval = (int) ((System.currentTimeMillis() - token.getTimestamp()) / 1000 / 60 / 60 / 24);
+                                if (interval &gt; INTERVAL) {
+                                    tokenMap.remove(entry.getKey());
+                                }
+                            }
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+</code></pre><p>当然，还需要一个token对象：</p>
+<pre><code>public class Token {
+    private String signature;
+    private long timestamp;
+    private long id;//userId
+    public Token(String signature, long timestamp,long id) {
+        if (signature == null)
+            throw new IllegalArgumentException(&quot;signature can not be null&quot;);
+        this.timestamp = timestamp;
+        this.signature = signature;
+        this.id=id;
+    }
+    public long getId(){
+        return id;
+    }
+    public String getSignature() {
+        return signature;
+    }
+    public long getTimestamp() {
+        return timestamp;
+    }
+    //  重写哈希code timestamp 不予考虑, 因为就算 timestamp 不同也认为是相同的 token.
+    public int hashCode() {
+        return signature.hashCode();
+    }
+
+    public boolean equals(Object object) {
+        if (object instanceof Token)
+            return ((Token) object).signature.equals(this.signature);
+        return false;
+    }
+    //调试用
+    @Override
+    public String toString() {
+        return &quot;Token [signature=&quot; + signature + &quot;, timestamp=&quot; + timestamp + &quot;]&quot;;
+    }
+}
+</code></pre><p>这样，我们就可以再客户端保存一个token的值，来模拟jsessionid的角色，获取我们实际所需的对象，具体验证方式如下：</p>
+<pre><code>Long userId=TokenUtil.volidateToken(&quot;token&quot;);
+if(userId==-1){
+    throw  new RuntimeException(&quot;当前token已失效&quot;);
+}else{
+}
+</code></pre><h2 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h2><p>但是，所有的东西就怕但是两个字，我们计划做的是一个日记的应用，既然是日记，我们就会希望只看到自己的日记（彩蛋除外），那么，几乎每个接口都需要验证token的，这样的工作即枯燥又繁杂，该如何解决呢？</p>
+<p>还记得servlet中的filter么，在SpringMVC中提供了一个类似的，或者说加强版的东东，叫做拦截器，他比过滤器强大之处在于他可以访问ioc里的各个bean，这就提供了可以直接访问服务的能力，他的实现方式也很简单，需要继承一个HandlerInterceptor接口，然后在WebConfig中注册一下即可，我们设置一个用于权限控制的拦截器，具体代码如下：</p>
+<pre><code>public class SysPermissionInterceptor implements HandlerInterceptor {
+    public boolean preHandle(HttpServletRequest request,
+                             HttpServletResponse response, Object handler) throws Exception {
+        String url = request.getRequestURI();
+        //无权限页面直接过去 不用拦截
+        if(url.contains(&quot;/denied&quot;)){
+            return true;
+        }
+        String token= request.getHeader(&quot;token&quot;);
+        //判断失败 直接跳到无权限页
+        if (checkToken(token)&amp;&amp;checkUrl(url)) {
+            request.getRequestDispatcher(&quot;/denied&quot;).forward(request,response);
+            return false;
+        }
+        if(checkUrl(url)) {
+            long id = TokenUtil.volidateToken(token);
+            if (id == -1) {
+                request.getRequestDispatcher(&quot;/denied&quot;).forward(request, response);
+                return false;
+            }
+            //防止id重复 将id注入到请求里
+            request.setAttribute(&quot;tokenId&quot;, id);
+        }
+        return  true;
+    }
+    //在执行handler返回modelAndView之前来执行
+    //如果需要向页面提供一些公用 的数据或配置一些视图信息，使用此方法实现 从modelAndView入手
+    public void postHandle(HttpServletRequest request,
+                           HttpServletResponse response, Object handler,
+                           ModelAndView modelAndView) throws Exception {
+        //System.out.println(&quot;HandlerInterceptor1...postHandle&quot;);
+
+    }
+    //执行handler之后执行此方法
+    //作系统 统一异常处理，进行方法执行性能监控，在preHandle中设置一个时间点，在afterCompletion设置一个时间，两个时间点的差就是执行时长
+    //实现 系统 统一日志记录
+    public void afterCompletion(HttpServletRequest request,
+                                HttpServletResponse response, Object handler, Exception ex)
+            throws Exception {
+       //System.out.println(&quot;HandlerInterceptor1...afterCompletion&quot;);
+    }
+    //帮助方法
+    private boolean checkToken(String token){
+        return null==token||&quot;&quot;.equals(token);
+    }
+    //帮助方法
+    private boolean checkUrl(String url){
+        if(url.contains(&quot;/不许拦截的url，如login&quot;)) return false;
+        return true;
+    }
+}
+</code></pre><p>还需要一个denied的action，这个就很简单了，直接返回没有权限即可。</p>
+<p>最后，还需要在WebConfig进行一下注册：</p>
+<pre><code>public void addInterceptors(InterceptorRegistry registry) {
+    registry.addInterceptor(new SysPermissionInterceptor());
+}
+</code></pre><p>这样，就对任何action的请求都会进行token的验证</p>
+<h2 id="格式约定"><a href="#格式约定" class="headerlink" title="格式约定"></a>格式约定</h2><p>回到denied，既然是双方独立开发，那么就要约定一个固定的json格式，否则任何一方的修改都可能会导致客户端的数据解析失败，这里以denied返回的权限失败为例，定义一个基准的json格式：</p>
+<pre><code>{
+    &quot;msg&quot;: &quot;没有权限&quot;,
+    &quot;code&quot;: 200,
+    &quot;data&quot;: &quot;&quot;
+}
+</code></pre><p>这里暂时约定，code统一为200，以配合http的状态码，如果以后修改为直接使用http状态码也方便，然后，约定msg返回错误信息，数据放到data中，即判断如果msg==””，从data节点内读取返回的数据，否则输出异常信息。</p>
+<p>同样的，如果每个action都进行json的维护，那工作量同样是即枯燥又易错的，最简单的方法当时在拦截器的afterCompletion方法中进行配置，但为了提高灵活度，我决定做一个父类，在父类的方法内包装json对象，然后子类调用，父类的代码如下：</p>
+<pre><code>public abstract class BaseController {
+    public Map&lt;String,Object&gt; result(){
+        return result(200,&quot;&quot;,&quot;&quot;);
+    }
+    public Map&lt;String,Object&gt; result(Object data){
+        return result(200,&quot;&quot;,data);
+    }
+    public Map&lt;String,Object&gt; result(int code,Object data){
+        return result(code,&quot;&quot;,data);
+    }
+    public Map&lt;String,Object&gt; result(int code,String msg,Object data){
+        Map&lt;String,Object&gt; resutl=new HashMap&lt;String,Object&gt;();
+        resutl.put(&quot;code&quot;,code);
+        resutl.put(&quot;msg&quot;,msg);
+        resutl.put(&quot;data&quot;,data);
+        return resutl;
+    }
+}
+</code></pre><p>这是一个抽象类，里边有若干个result方法的重载。</p>
+<p>所有的contrller都继承这个类，然后返回result方法的返回值：</p>
+<pre><code>@ResponseBody
+@RequestMapping(value = &quot;/denied&quot;,method = {RequestMethod.POST,RequestMethod.GET})
+public Object denied(){
+    return result(200,&quot;没有权限&quot;,&quot;&quot;);
+}
+</code></pre><p>这样，返回的信息就是一个基准的json信息了，客户端就可以根据这个格式进行解析。</p>
+<p>现在，客户端与服务端链接的部分框架已经基本完成，并定义了双方共同约定的json格式，接下来就可以针对具体业务进行双方的开发了。</p>
+<p>谢谢观看</p>
+
+            </div>
+
+            <!-- Post Comments -->
+            
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #7EC0EE;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load" id="disqus_bt"> 
+    <button class="disqus_click_btn">点击查看评论</button>
+</div>
+
+<!--
+<script type="text/javascript">
+$('.btn_click_load').click(function() {
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'http-miccall-tech'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    document.getElementById('disqus_bt').style.display = "none";
+});
+</script>
+-->
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2018/01/05/如果你想开发一个应用-1-14/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://yoursite.com/2018/01/05/如果你想开发一个应用-1-14/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/javascript">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//http-miccall-tech.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+
+        </div>
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By <a href="https://hexo.io/zh-cn/" style="border-bottom: none;">hexo</a></li>
+                <li>Design: <a href="http://miccall.tech " style="border-bottom: none;">miccall</a></li>
+            </ul>
+            
+            	<span id="busuanzi_container_site_pv">2018总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+			
+        </div>
+    </div>
+</body>
+
+
+
+ 	
+</html>
