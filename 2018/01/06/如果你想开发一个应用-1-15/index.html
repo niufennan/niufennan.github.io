@@ -1,0 +1,405 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<link rel="bookmark"  type="image/x-icon"  href="/img/niu.png"/>
+	 <link rel="shortcut icon" href="/img/niu.png">
+	
+			
+    <title>
+    双鱼座的牛
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/mic_main.css" />
+    <link rel="stylesheet" href="/css/dropdownMenu.css" />
+    
+    	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
+
+			    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+	
+</head>
+    
+		
+<!-- Layouts -->
+
+
+
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_coy.css" />
+<link rel="stylesheet" href="/css/typo.css" />
+<!-- 文章页 -->
+<body class="is-loading">
+    <!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in">
+        <!-- Intro 头部显示 s -->
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="/" class="logo">双鱼座的牛</a>
+</header>
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special" >
+            <ul class="menu links" >
+			<!-- Homepage  主页  --> 
+			<li >
+	            <a href="/" rel="nofollow">主页</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <li class="active">
+	            <a href="#s1">分类</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        <a class="category-link" href="/categories/前端技术/">前端技术</a></li><li><a class="category-link" href="/categories/后端技术/">后端技术</a></li><li><a class="category-link" href="/categories/闲言碎语/">闲言碎语</a>
+	                    </ul>
+	        </li>
+	        
+	        <!-- archives  归档   --> 
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="/about/" title="简历">
+		                简历
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/group/" title="团队">
+		                团队
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/gallery/" title="图库">
+		                图库
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/tag/" title="标签">
+		                标签
+		            </a>
+		        </li>
+		        
+
+
+            </ul>
+            <!-- icons 图标   -->
+			<ul class="icons">
+		            
+		                <li><a href="https://github.com/miccall" class="icon fa-github"><span class="label">GitHub</span></a></li>
+		            
+		            
+		            
+		            
+			</ul>
+</nav>
+
+        <div id="main" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(http://upload-images.jianshu.io/upload_images/6290181-5e05b170a6500777.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >如果你想开发一个应用(1-15)</h2></a>
+            </div>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <p><img src="http://upload-images.jianshu.io/upload_images/6290181-5e05b170a6500777.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>##登录服务##<br>想想一个应用，第一次打开，一般来说都是登录页，所以在服务端先完成一个用于用户登录的action,首先创建UserController,然后创建Login的action，代码如下：</p>
+<pre><code>@Controller
+public class UserController extends BaseController {
+    @Autowired
+    UserService userService;
+    @ResponseBody
+    @RequestMapping(value = &quot;/login&quot;,method = {RequestMethod.POST})
+    public Object login(@RequestBody Map map) {
+       return null;
+    }
+}
+</code></pre><p>想一下登录服务步骤：</p>
+<ol>
+<li>通过用户名在db中查询此用户</li>
+<li>如果查询到用户，则比对密码，否则返回登录失败</li>
+<li>如果密码比对成功，创建token，否则返回登录失败</li>
+<li>返回token</li>
+</ol>
+<p>所以最终UserService内的服务方法实现如下：</p>
+<pre><code>public String login(String username, String password) {
+    //判断用户名密码是否符合(此时不加盐加密)
+    User user=userRepository.getUserByName(username);
+    if(user!=null&amp;&amp;user.getPassword().equals(password)){
+        //创建token
+        Token token=TokenUtil.generateToken(UUID.randomUUID().toString(),user.getId());
+        return token.getSignature();
+    }
+    return &quot;&quot;;
+}
+</code></pre><blockquote>
+<p>JPA内的略</p>
+</blockquote>
+<p>此时的action的内容就很简单了：</p>
+<pre><code>@ResponseBody
+@RequestMapping(value = &quot;/login&quot;,method = {RequestMethod.POST})
+public Object login(@RequestBody Map map) {
+    String token = userService.login(map.get(&quot;username&quot;).toString(), map.get(&quot;password&quot;).toString());
+    if (token.equals(&quot;&quot;)) {
+        return result(200, &quot;登录失败&quot;, &quot;&quot;);
+    }
+    return result(token);
+}
+</code></pre><p>接下来用postman来测试一下，我们在db中准备两条数据：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/6290181-b22b581e4349e749.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>然后打开postman，输入参数，查看一下：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/6290181-72f470de02bc90ab.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>点击send后，发现返回了错误信息：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/6290181-adf4984a5e0cbde4.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>这是因为发送请求参数的格式错了，还记得上一章，为了配合前端的请求方式，服务端的请求接收方式改为了RequestBody的方式，所以，前端必须使用json方式发送，恰好我们的postman也支持这种方式，修改为：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/6290181-00877eb4133deb9e.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>这样点击发送就可以了，这时候的返回是：</p>
+<pre><code>{
+    &quot;msg&quot;: &quot;&quot;,
+    &quot;code&quot;: 200,
+    &quot;data&quot;: &quot;0c09472d6d3bf978fe2da968f774e002&quot;
+}
+</code></pre><p>data节点就是我们所需要的token</p>
+<p>##登录注册客户端##</p>
+<p>客户端，客户端，这里我都不知道该如何写了，毕竟我也是一个后端的开发人员，而前端貌似必备的技能，如less啥的，都不会，只能写css和js，所以这里我只能贴出我现有的代码，然后针对vue的一些内容进行一下说明,下面在views文件夹内创建Login.vue文件。</p>
+<p>Login.vue：</p>
+<pre><code>&lt;style scoped &gt;
+.login{
+    background:#6fc2f3;
+    width:100%;
+    height: 100%;
+}
+.logo{
+    width:50%;
+    margin:0px auto;
+}
+.logo img{
+    width: 100%;
+    border-radius: 10px;
+    border:3px solid #075d8b;
+}
+&lt;/style&gt;
+&lt;template&gt;
+    &lt;div class=&quot;login&quot;&gt;
+        &lt;div style=&quot;height:23%&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;logo&quot;&gt;
+        &lt;img src=&quot;../assets/logo.jpg&quot;&gt;
+        &lt;/div&gt;
+        &lt;div style=&quot;margin-top:10px; text-align:center&quot;&gt;
+            &lt;mu-content-block&gt;
+                &lt;mu-text-field hintText=&quot;请输入邮箱&quot; v-model=&quot;username&quot; fullWidth inputClass=&quot;text_center&quot;/&gt;&lt;br/&gt;
+                &lt;mu-text-field hintText=&quot;请输入密码&quot; v-model=&quot;password&quot;  type=&quot;password&quot; inputClass=&quot;text_center&quot; fullWidth /&gt;&lt;br/&gt;
+                 &lt;mu-raised-button label=&quot;登陆&quot; primary fullWidth  v-on:click=&quot;login&quot;/&gt;
+                 &lt;a @click=&quot;toRegister&quot; style=&quot;color:#fafafa;margin-top:5px;display:block&quot;&gt;没有账号?去注册吧&lt;/a&gt;
+             &lt;/mu-content-block&gt;
+        &lt;/div&gt;
+        &lt;mu-dialog :open=&quot;dialog&quot;&gt;
+            请您检查用户名或密码，如果确认输入无误，可以去微信公众号&quot;还没有申请呢&quot;报告bug&lt;br&gt;
+            &lt;mu-flat-button label=&quot;确定&quot;  slot=&quot;actions&quot; fullWidth  @click=&quot;close&quot;/&gt;
+        &lt;/mu-dialog&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+    export default {
+        data () {
+            return {
+                username: &quot;&quot;,
+                password: &quot;&quot;,
+                dialog:false,
+            }
+        },
+        methods:{
+            login:function (event) {
+                if(event){
+                    var data={
+                        username:this.username,
+                        password:this.password
+                    }
+                    this.$http.post(&quot;/login&quot;,data).then(res=&gt;{
+                        var result=res.data;
+                        if(result.msg==&quot;&quot;){
+                            this.$store.commit(&apos;setToken&apos;,result.data);//1
+                            this.$router.push({name:&quot;Index&quot;})//2
+                        }else{
+                            this.dialog=true;//3
+                        }
+                          },res=&gt;{
+                    })
+                }
+            },
+            toRegister:function(event){
+                if(event){
+                    this.$router.push({name:&quot;Register&quot;})
+                }
+            },
+            close:function(event){
+                this.dialog=false;
+            }
+        }
+    }
+&lt;/script&gt;
+</code></pre><p>在template节点内可以看到，这个页包含了登录页所需的一切功能：</p>
+<ul>
+<li>用户名输入框</li>
+<li>密码输入框</li>
+<li>提交按钮</li>
+<li>注册入口</li>
+<li>找回密码入口</li>
+</ul>
+<blockquote>
+<p><mu-content-block>这种mu打头的标签为MuseUI库所提供的标签，其余的为普通html标签。</mu-content-block></p>
+</blockquote>
+<p>输入npm run dev后运行的效果如下：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/6290181-433201c10988fca9.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="5.PNG"></p>
+<p>需要说明的几点：</p>
+<ol>
+<li>注释1,表示将返回的token值存储在vuex状态内</li>
+<li>登录成功后，将当前页面换为index页，index需在router内注册</li>
+<li>登录失败，弹出提示框，提示信息</li>
+</ol>
+<p>router内注册的代码：</p>
+<pre><code>export default new Router({
+    mode: &apos;history&apos;,
+    routes: [
+        {
+            path: &apos;/&apos;,
+            name: &apos;Index&apos;,
+            component: Index
+        },
+        {
+            path: &apos;/login&apos;,
+            name: &apos;Login&apos;,
+            component: Login
+        },
+        {
+            path: &apos;/Register&apos;,
+            name: &apos;Register&apos;,
+            component: Register
+        },
+        {
+            path: &apos;/ForgetPassword&apos;,
+            name: &apos;ForgetPassword&apos;,
+            component: ForgetPassword
+        }
+    ]
+})
+</code></pre><p>其中Indel，Register，ForgetPassword的代码可参考<a href="https://github.com/niufennan/jtodos-vue-client.git" target="_blank" rel="external">github</a>上的源码</p>
+<p>继续为了东半球最好的记录软件努力</p>
+<p>谢谢观看</p>
+
+            </div>
+
+            <!-- Post Comments -->
+            
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #7EC0EE;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load" id="disqus_bt"> 
+    <button class="disqus_click_btn">点击查看评论</button>
+</div>
+
+<!--
+<script type="text/javascript">
+$('.btn_click_load').click(function() {
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'http-miccall-tech'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    document.getElementById('disqus_bt').style.display = "none";
+});
+</script>
+-->
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2018/01/06/如果你想开发一个应用-1-15/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://yoursite.com/2018/01/06/如果你想开发一个应用-1-15/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/javascript">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//http-miccall-tech.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+
+        </div>
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By <a href="https://hexo.io/zh-cn/" style="border-bottom: none;">hexo</a></li>
+                <li>Design: <a href="http://miccall.tech " style="border-bottom: none;">miccall</a></li>
+            </ul>
+            
+            	<span id="busuanzi_container_site_pv">2018总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+			
+        </div>
+    </div>
+</body>
+
+
+
+ 	
+</html>
