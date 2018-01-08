@@ -1,0 +1,414 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<link rel="bookmark"  type="image/x-icon"  href="/img/niu.png"/>
+	 <link rel="shortcut icon" href="/img/niu.png">
+	
+			
+    <title>
+    双鱼座的牛
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/mic_main.css" />
+    <link rel="stylesheet" href="/css/dropdownMenu.css" />
+    
+    	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
+
+			    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+	
+</head>
+    
+		
+<!-- Layouts -->
+
+
+
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_coy.css" />
+<link rel="stylesheet" href="/css/typo.css" />
+<!-- 文章页 -->
+<body class="is-loading">
+    <!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in">
+        <!-- Intro 头部显示 s -->
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="/" class="logo">双鱼座的牛</a>
+</header>
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special" >
+            <ul class="menu links" >
+			<!-- Homepage  主页  --> 
+			<li >
+	            <a href="/" rel="nofollow">主页</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <li class="active">
+	            <a href="#s1">分类</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        <a class="category-link" href="/categories/前端技术/">前端技术</a></li><li><a class="category-link" href="/categories/后端技术/">后端技术</a></li><li><a class="category-link" href="/categories/闲言碎语/">闲言碎语</a>
+	                    </ul>
+	        </li>
+	        
+	        <!-- archives  归档   --> 
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="/about/" title="简历">
+		                简历
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/group/" title="团队">
+		                团队
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/gallery/" title="图库">
+		                图库
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/tag/" title="标签">
+		                标签
+		            </a>
+		        </li>
+		        
+
+
+            </ul>
+            <!-- icons 图标   -->
+			<ul class="icons">
+		            
+		                <li><a href="https://github.com/miccall" class="icon fa-github"><span class="label">GitHub</span></a></li>
+		            
+		            
+		            
+		            
+			</ul>
+</nav>
+
+        <div id="main" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(http://upload-images.jianshu.io/upload_images/6290181-f595955bb4fc575d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >如果你想开发一个应用(1-16)</h2></a>
+            </div>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <h2 id="首页"><a href="#首页" class="headerlink" title="首页"></a>首页</h2><p>上一章我们已经完成了登录功能，根据上一章的设计，登录完成之后，将进入首页，我们看一下首页的原型图：</p>
+<blockquote>
+<p>再次强调，这个项目并不是正规的开发流程，可以说的难听些，就是想到哪做到哪，随便蔓延。</p>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/6290181-d9eff6e45ab226d0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1.png"></p>
+<h2 id="总体布局"><a href="#总体布局" class="headerlink" title="总体布局"></a>总体布局</h2><p>经过原型图，我们可以分析出首页的大概结构：</p>
+<ol>
+<li>头部是一个包含三个item的tab,用于控制内容区域显示不同的组件</li>
+<li>足部是疑似导航效果的三个按钮，分别对应开启新记录，开启新的图片记录，以及当前月的记录数目。</li>
+</ol>
+<p>剩下的就是内容主题部分。</p>
+<p>暂时只考虑日记这个tab节点的内容部分。它是一个月份列表内嵌套了一个本月的日记的列表，所以需要一个月份字段，并且由于日记是分组的，当前显示的组也需要记录，同时，还要知道页面内正在显示的月是哪一个月，也就是，在页面右下角记录条目要知道根据那个月份和组来进行计算。</p>
+<p>然后看记录的框框内都有什么内容：</p>
+<p>首先，是记录时间，包括星期，日期，时间，但这些可以用一个date对象代表，然后日记的标题，日记内容，发送日记时候的心情，天气，以及是否打了标记，这些为了前后端方便，均用int型来表示。</p>
+<p>所以最终经过分析最终的数据模型设计如下：</p>
+<pre><code>indexTodos:[
+    {
+        month:0,              //月份
+        default:1,            //正在显示的月份
+        todos:[{
+            createTime:new Date(),   //记录时间
+            item:&apos;&apos;,                 //标题
+            content:&apos;&apos;,                 //内容
+            weather:0,                 //天气
+            mood:0,                     //心情
+            bookmark:0,                 //标记
+            groupid:0,                 //所属组
+        }]
+    }
+]
+</code></pre><p>接下来我们完成首页，首先在Views文件夹内创建Index.vue文件，然后安装登录页一样，完成一个基本的Vue文件的结构：</p>
+<p>Index.vue:</p>
+<pre><code>&lt;style scoped&gt;
+&lt;/style&gt;
+&lt;template&gt;
+    &lt;div id=&quot;main&quot;&gt;
+        &lt;!--白云背景图--&gt;
+        &lt;img src=&quot;../assets/bg.png&quot; class=&quot;background&quot;&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+    export default {
+    }
+&lt;/script&gt;
+</code></pre><p>接下来按照刚刚的分析，将其分为头–内容–足三层结构：</p>
+<pre><code>&lt;div id=&quot;main&quot;&gt;
+    &lt;img src=&quot;../assets/bg.png&quot; class=&quot;background&quot;&gt;
+    &lt;div class=&quot;head&quot;&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;contentPanel&quot;&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;foot&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre><p>接下来，由于内容部分需要动态切换，所以我们先给他加上动画效果，在考虑其他：</p>
+<pre><code>&lt;div id=&quot;main&quot;&gt;
+    &lt;img src=&quot;../assets/bg.png&quot; class=&quot;background&quot;&gt;
+    &lt;div class=&quot;head&quot;&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;contentPanel&quot;&gt;
+        &lt;transition   name=&quot;custom-classes-transition&quot;
+        enter-active-class=&quot;animated bounceInLeft&quot;
+        leave-active-class=&quot;animated fadeOut&quot;
+        :duration=&quot;{ enter: 700, leave: 200 }&quot;&gt;
+        &lt;/transition&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;foot&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre><h2 id="头部"><a href="#头部" class="headerlink" title="头部"></a>头部</h2><p>接下来头部比较简单，直接先duang的一些放入MuseUI的控件：</p>
+<pre><code>&lt;div class=&quot;head&quot;&gt;
+    &lt;mu-tabs class=&quot;tabtitle&quot; :value=&quot;indexTab&quot; lineClass=&quot;lineClass&quot;  v-on:change=&quot;tabChange&quot;&gt;
+        &lt;mu-tab value=&quot;tab1&quot; :class=&quot;tab1Class&quot; class=&quot;left-tab&quot; title=&quot;日记&quot; /&gt;
+        &lt;mu-tab value=&quot;tab2&quot; :class=&quot;tab2Class&quot; title=&quot;日历&quot; /&gt;
+        &lt;mu-tab value=&quot;tab3&quot; :class=&quot;tab3Class&quot; class=&quot;right-tab&quot; title=&quot;记录&quot; /&gt;
+    &lt;/mu-tabs&gt;
+&lt;/div&gt;
+</code></pre><p>你可能已经注意到了，这里面多了好多class，还有一个change的事件，其中class是因为他的默认样式与我们需要的不符，所以需要对组件进行一些修改，再次对不懂less感到忏悔，这是class的代码：</p>
+<pre><code>.tabtitle{
+    background: #fff;
+    padding-right: 30px;
+    padding-left: 30px;
+}
+.tabtitle .tab{
+    color: #5e35b1;
+    border: 2px solid #5e35b1;
+    border-width: 2px 0px;
+    padding: 2px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    min-height: 30px;
+    font-weight: bold;
+}
+.tabtitle .tab-active{
+    color: #fff;
+    background: #5e35b1;
+    border: 2px solid #5e35b1;
+    border-width: 2px 0px;
+    padding: 2px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    min-height: 30px;
+    font-weight: bold;
+}
+.tabtitle .left-tab{
+    border-radius: 10px 0px 0px 10px;
+    border: 2px solid #5e35b1;
+    margin:0px;
+    margin-left: 5px;
+}
+.tabtitle .right-tab{
+    border-radius: 0px 10px 10px 0px;
+    border: 2px solid #5e35b1;
+    margin-right: 5px;
+}
+.lineClass{
+    display: none;
+}
+</code></pre><p>注意tab项的左右样式不一致。</p>
+<p>然后是change事件，根据文档可知，change的事件会带一个参数，参数值为tab项的值：</p>
+<pre><code>methods: {
+    tabChange:function(event){
+        //模拟hover伪类
+        this.indexTab = event
+        for (var i = 1;i&lt;=3;i++){
+            this[&apos;tab&apos; + i + &apos;Class&apos;] = &apos;tab&apos;
+        }
+        this[event + &apos;Class&apos;] = &apos;tab-active&apos;
+        switch (event) {
+            case &apos;tab1&apos;:
+            //记录操作
+            break
+            case &apos;tab2&apos;:
+            //日历操作
+            break
+            case &apos;tab3&apos;:
+            //我的操作
+            break
+        }
+    }
+}
+</code></pre><p>同样在节点内有多个值都是绑定的，比如class的类名，以及tabitem默认值的指向等，绑定的值同样定义在script内，具体绑定值如下：</p>
+<pre><code>data () {
+    return {
+        indexTab:&quot;tab1&quot;,
+           tab1Class:&quot;tab-active&quot;,
+           tab2Class:&quot;tab&quot;,
+           tab3Class:&quot;tab&quot;,
+    }
+},
+</code></pre><h2 id="足部"><a href="#足部" class="headerlink" title="足部"></a>足部</h2><p>完成头部之后，接下来就开始弄足部，足部也很简单，同样使用MuseUIDD组件，这次我们使用<code>Bottom Navigation</code>,当然同样需要修改css和添加不同的事件，足部暂时的代码如下：</p>
+<pre><code>&lt;div class=&quot;foot&quot;&gt;
+    &lt;mu-bottom-nav class=&quot;bottom-nav&quot;  shift v-on:change=&quot;navChange&quot;&gt;
+        &lt;mu-bottom-nav-item value=&quot;edit&quot; title=&quot;&quot; class=&quot;navItemClass&quot; iconClass=&quot;iconclass&quot; activeClass=&quot;iconclass&quot; icon=&quot;edit&quot;/&gt;
+        &lt;mu-bottom-nav-item value=&quot;photo&quot; title=&quot;&quot;  class=&quot;navItemClass&quot; style=&quot;width:34%&quot; iconClass=&quot;iconclass&quot; activeClass=&quot;iconclass&quot; icon=&quot;local_see&quot;/&gt;
+        &lt;div class=&quot;navItemClass&quot;  &gt;{{ itemnumber }}篇日记&lt;/div&gt;
+    &lt;/mu-bottom-nav&gt;
+&lt;/div&gt;
+</code></pre><p>首先看到的应该就是第三个item，并没有使用mu-bottom-nav-item而是使用了一个普通的div，并绑定了一个itemnumber，将itemnumber添加到data内后的代码：</p>
+<pre><code>data () {
+    return {
+        itemnumber:1,
+        indexTab:&quot;tab1&quot;,
+           tab1Class:&quot;tab-active&quot;,
+           tab2Class:&quot;tab&quot;,
+           tab3Class:&quot;tab&quot;,
+    }
+},
+</code></pre><p>然后，是对mu-bottom-nav样式的修改，这个因为都是静态的，比起头部来说就简单多了：</p>
+<pre><code>.bottomNav{
+    position: absolute;
+    bottom: 0px;
+    background: #fff;
+    color: #757575;
+}
+.navItemClass{
+    width:33%;
+}
+.iconclass{
+    color: #757575;
+}
+</code></pre><p>然后就是这个组件的change事件，由于这个组件没有设置默认值，所以只要点击即触发change事件：</p>
+<pre><code>navChange:function(event){
+    if(event==&apos;edit&apos;){
+        //新建日记
+    }else if(event==&apos;photo&apos;){
+        //拍照
+    }
+},
+</code></pre><h2 id="当前效果"><a href="#当前效果" class="headerlink" title="当前效果"></a>当前效果</h2><p>经过书写后，当前的效果如下：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/6290181-79e84916cdb05a54.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="2.png"></p>
+<p>目前来看，基本符合电影截图中的样式，然后就是最最重要的内容页了，下一章将继续完善.</p>
+<p>谢谢观看</p>
+
+            </div>
+
+            <!-- Post Comments -->
+            
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #7EC0EE;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load" id="disqus_bt"> 
+    <button class="disqus_click_btn">点击查看评论</button>
+</div>
+
+<!--
+<script type="text/javascript">
+$('.btn_click_load').click(function() {
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'http-miccall-tech'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    document.getElementById('disqus_bt').style.display = "none";
+});
+</script>
+-->
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2018/01/08/如果你想开发一个应用-1-16/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://yoursite.com/2018/01/08/如果你想开发一个应用-1-16/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/javascript">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//http-miccall-tech.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+
+        </div>
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By <a href="https://hexo.io/zh-cn/" style="border-bottom: none;">hexo</a></li>
+                <li>Design: <a href="http://miccall.tech " style="border-bottom: none;">miccall</a></li>
+            </ul>
+            
+            	<span id="busuanzi_container_site_pv">2018总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+			
+        </div>
+    </div>
+</body>
+
+
+
+ 	
+</html>
