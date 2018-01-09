@@ -1,0 +1,602 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<link rel="bookmark"  type="image/x-icon"  href="/img/niu.png"/>
+	 <link rel="shortcut icon" href="/img/niu.png">
+	
+			
+    <title>
+    双鱼座的牛
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/mic_main.css" />
+    <link rel="stylesheet" href="/css/dropdownMenu.css" />
+    
+    	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
+
+			    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+	
+</head>
+    
+		
+<!-- Layouts -->
+
+
+
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_coy.css" />
+<link rel="stylesheet" href="/css/typo.css" />
+<!-- 文章页 -->
+<body class="is-loading">
+    <!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in">
+        <!-- Intro 头部显示 s -->
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="/" class="logo">双鱼座的牛</a>
+</header>
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special" >
+            <ul class="menu links" >
+			<!-- Homepage  主页  --> 
+			<li >
+	            <a href="/" rel="nofollow">主页</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <li class="active">
+	            <a href="#s1">分类</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        <a class="category-link" href="/categories/前端技术/">前端技术</a></li><li><a class="category-link" href="/categories/后端技术/">后端技术</a></li><li><a class="category-link" href="/categories/闲言碎语/">闲言碎语</a>
+	                    </ul>
+	        </li>
+	        
+	        <!-- archives  归档   --> 
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="/about/" title="简历">
+		                简历
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/group/" title="团队">
+		                团队
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/gallery/" title="图库">
+		                图库
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/tag/" title="标签">
+		                标签
+		            </a>
+		        </li>
+		        
+
+
+            </ul>
+            <!-- icons 图标   -->
+			<ul class="icons">
+		            
+		                <li><a href="https://github.com/miccall" class="icon fa-github"><span class="label">GitHub</span></a></li>
+		            
+		            
+		            
+		            
+			</ul>
+</nav>
+
+        <div id="main" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url();background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >如果你想开发一个应用(1-17)</h2></a>
+            </div>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <h2 id="数据模型"><a href="#数据模型" class="headerlink" title="数据模型"></a>数据模型</h2><p>mvvm是数据驱动的，数据模型占了举足轻重的地位，所以，在做首页最终要的todo列表组件的时候，先暂时在客户端使用数据模型进行开发。而既然已经想到了这些数据需要通过交互从服务端获取，所以这个模型直接放入vuex中，数据模型的代码上一章已经分析过，所以这里直接复制过来：</p>
+<pre><code>indexTodos:[
+    {
+        month:0,              //月份
+        default:1,            //正在显示的月份
+        todos:[{
+            createTime:new Date(),   //记录时间
+            item:&apos;&apos;,                 //标题
+            content:&apos;&apos;,                 //内容
+            weather:0,                 //天气
+            mood:0,                     //心情
+            bookmark:0,                 //标记
+            groupid:0,                 //所属组
+        }]
+    }
+]
+</code></pre><p>这里使用了两个数组，即月份组，每个月是一个项，而月份内呢，记事也是一个数组，每个记事项就是一个项。</p>
+<h2 id="引用vuex"><a href="#引用vuex" class="headerlink" title="引用vuex"></a>引用vuex</h2><p>具体到页面中怎么用呢？也就是说，页面如何使用vuex库中的值呢？</p>
+<p>这里使用computed关键字，在vue中computed关键字的意思是实时计算，或者说监控值的变化，具体到代码中，首先需要我们需要的vuex组件，这里需要状态：</p>
+<pre><code>import { mapState } from &apos;vuex&apos;
+</code></pre><p>然后使用computed来引用组件中的值：</p>
+<pre><code>computed: mapState({
+        groupId: state=&gt;state.groupId,
+        items:state=&gt;state.indexTodos
+}),
+</code></pre><p>这样，Index.vue就可以像是使用data节点那样，通过this引用这两个值了。</p>
+<h2 id="组件化"><a href="#组件化" class="headerlink" title="组件化"></a>组件化</h2><p>这里需要思考一下，head有三个item，每个item对应的panel都需要在内容部分显示，那么，该如何控制具体到每个panel的显示或者加载呢？首先pass掉的肯定是做三个相同head和foot的页，这样的很明显不符合单页的需求，第二个被pass掉的应该是在这个页创建三个div，然后通过tabitem来控制div的隐藏显示了，那么，第三种方法应该是第二种的升级版，创建三个组件，通过tabitem来选择不同的组件加载。</p>
+<p>这里我们先创建一个<code>components</code>,用来放我们所需要的组件。</p>
+<p>首先，我们至少需要三个组件，也就是对应tabitem的三个，分别为：</p>
+<ul>
+<li>DiaryPanel.vue  记录项(为防止与日记记录组相混淆，这里统一改为记录，标题为点滴，略微文青些)</li>
+<li>Calendar.vue    日历项</li>
+<li>Mine.vue        我的项</li>
+</ul>
+<p>反正组件文件已经建立，那么我们先将他们一股脑的在Index页面中引用。</p>
+<pre><code>import DiaryPanelComponents from &apos;../components/DiaryPanel.vue&apos;
+import CalendarComponents from &apos;../components/Calendar.vue&apos;
+import MineComponents from &apos;../components/Mine.vue&apos;
+</code></pre><p>因为完成之后，紧接着就是要对它们进行注册：</p>
+<pre><code>components:{
+         DiaryPanelComponents,
+         CalendarComponents,
+         MineComponents
+},
+</code></pre><p>这时，就可以和html标签一样使用了。</p>
+<pre><code>&lt;div id=&quot;contentPanel&quot;&gt;
+    &lt;transition   name=&quot;custom-classes-transition&quot;
+    enter-active-class=&quot;animated bounceInLeft&quot;
+    leave-active-class=&quot;animated fadeOut&quot;
+    :duration=&quot;{ enter: 700, leave: 200 }&quot;
+    &gt;
+        &lt;DiaryPanelComponents&gt;&lt;/DiaryPanelComponents&gt;
+    &lt;/transition&gt;
+&lt;/div&gt;
+</code></pre><p>但是，我们想想，这样的这个页面只能使用<code>DiaryPanelComponents</code>这一个组件，其他组件怎么办，如果将三个组件一股脑的全写在这个div节点中，控制显示隐藏，岂不是又回到了老路上？</p>
+<p>好在vue提供了动态绑定组件的功能，我们在data数据模型中新增一个表示组件名称的属性<code>currentView</code>表示当前处于显示状态的组件：</p>
+<pre><code>data () {
+    return {
+        currentView:&apos;DiaryPanelComponents&apos;,
+           ...
+    }
+},
+</code></pre><p>然后修改组件部分的模板html：</p>
+<pre><code>&lt;div id=&quot;contentPanel&quot;&gt;
+    &lt;transition   name=&quot;custom-classes-transition&quot;
+    enter-active-class=&quot;animated bounceInLeft&quot;
+    leave-active-class=&quot;animated fadeOut&quot;
+    :duration=&quot;{ enter: 700, leave: 200 }&quot;
+    &gt;
+        &lt;component v-bind:is=&quot;currentView&quot;&gt;
+        &lt;/component&gt;
+    &lt;/transition&gt;
+&lt;/div&gt;
+</code></pre><p>这样，tab的item选择操作，就变成了最基本的的字符串赋值操作：</p>
+<pre><code>tabChange:function(event){
+    ...
+    var componentName = &apos;&apos;
+    switch (event) {
+        case &apos;tab1&apos;:
+        componentName = &apos;DiaryPanelComponents&apos;
+        break
+        case &apos;tab2&apos;:
+        componentName = &apos;CalendarComponents&apos;
+        break
+        case &apos;tab3&apos;:
+        componentName = &apos;MineComponents&apos;
+        break
+    }
+    this.currentView = componentName
+}
+</code></pre><h2 id="组件嵌套"><a href="#组件嵌套" class="headerlink" title="组件嵌套"></a>组件嵌套</h2><p>首页现在基本只起一个调度作用，具体的内容交给了组件来完成，下面打开DiaryPanel.vue，对这个组件进行开发。</p>
+<p>分析一下这个组件，这个组同样分为两部分，头部一个作为标题的月份，下边循环显示一个此月所有的记录项。</p>
+<p>但无论开发哪个部分，我们都需要先从vuex中将数据取出来：</p>
+<pre><code>import { mapState } from &apos;vuex&apos;
+
+export default {
+    computed: mapState({
+        indexTodos: state=&gt;state.indexTodos,
+    })
+}
+</code></pre><p>剩下的就很简单了，先把显示的部分代码写完，这里用了museui的组件sub-header：</p>
+<pre><code>&lt;div  v-for=&quot;item in indexTodos&quot; &gt;
+    &lt;mu-sub-header class=&quot;day_title&quot;&gt;{{ item.month }}&lt;/mu-sub-header&gt;
+    &lt;DiaryListComponents&gt;&lt;/DiaryListComponents&gt;
+&lt;/div&gt;
+</code></pre><p>然后根据实际情况修改css样式：</p>
+<pre><code>.day_title{
+    font-size: 50px; 
+    line-height: 55px;
+    font-family: &apos;Microsoft YaHei&apos;,arial,tahoma,\5b8b\4f53,sans-serif;
+    font-weight: 500;
+    color: #5e35b1;
+    text-align: center;
+    padding: 0px;
+}
+</code></pre><p>接下来就是循环显示记录列表了，想一下原型中，这个todo放到了一个面板块内，而面板块还是比较复杂的，并且每个月都要使用，所以，我们也把他提炼到一个组件中，嗯，就叫DiaryList,从这里也可以看出，vue的组件是支持嵌套的。接下来在components文件夹内创建DiaryList文件。</p>
+<p>同时，由于用户会滑动页面，也就是说，这个组件内所需要的值，即todo数组，是与父组件联系紧密的，所以需要通过参数的方式，将父组件循环得来的值传送到子组件中，vue中传值也非常方便，在标签引用的地方绑定一下就行了：</p>
+<pre><code>&lt;DiaryListComponents v-bind:todos=&quot;item.todos&quot;&gt;&lt;/DiaryListComponents&gt;
+</code></pre><p>然后子组件获取更加简单：</p>
+<p>DiaryList.vue：</p>
+<pre><code>export default {
+    props:[&quot;todos&quot;]
+}
+</code></pre><p>这样就可以直接使用todos变量。   </p>
+<p>而面板使用museui的pager控件就可以了，还自带阴影效果,并且是在循环体内，使用todos变量的pager代码如下；</p>
+<pre><code>&lt;mu-paper class=&quot;diaryitem&quot; :zDepth=&quot;2&quot; v-for=&quot;(item) in todos&quot; &gt;
+&lt;/mu-paper&gt;
+</code></pre><h2 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h2><p>接下来就是对这个组件的开发了。观察一下这个块的内容：</p>
+<p><img src="http://oyol58zk0.bkt.clouddn.com/jtodos/17/1.png" alt=""></p>
+<p>首先四周都有个边框，所以用一个父级的mu-content-block包裹一下,然后看内容，是一个左中右的结构，刚好museui有个布局表格，就直接使用了，布局表格的权重，暂时就20-6-20吧，最终布局部分代码如下：</p>
+<pre><code>&lt;mu-paper class=&quot;diaryitem&quot; :zDepth=&quot;2&quot; v-for=&quot;(item) in todos&quot; &gt;
+    &lt;mu-content-block&gt;
+        &lt;mu-row gutter&gt;
+           &lt;mu-col width=&quot;20&quot;&gt;
+           &lt;/mu-col&gt;
+            &lt;mu-col width=&quot;60&quot;&gt;
+            &lt;/mu-col&gt;
+            &lt;mu-col width=&quot;20&quot; style=&quot;text-align:right&quot;&gt;
+            &lt;/mu-col&gt;
+        &lt;/mu-row&gt;
+    &lt;/mu-content-block&gt;
+&lt;/mu-paper&gt;
+</code></pre><p>剩下的内容，如果先不考虑样式的话，最简单应该就是标题和内容了，直接输入就好:</p>
+<pre><code>&lt;mu-col width=&quot;60&quot;&gt;
+    &lt;div class=&quot;item_time&quot;&gt;12:34&lt;/div&gt;
+    &lt;div class=&quot;item_title&quot;&gt;{{ item.item }}&lt;/div&gt;
+    &lt;div class=&quot;item_content&quot;&gt;{{item.content}}&lt;/div&gt;
+&lt;/mu-col&gt;
+</code></pre><p>css的一会在完善，接下来就是时间了，其实时间虽然现实了这么多，但是具体到了数据项上，实际上只有一个，就是createtime，接下来要做的就是如何提取显示的问题了，这时候vue提供的过滤器就登场了，下面以日期为例介绍一下过滤器的用法.  </p>
+<p>过滤器其实就是一个通过filter标记的普通js的方法，然后我们先让他返回一个固定数字的写法：</p>
+<pre><code>filters: {
+    getDay(time) {
+        return 3;
+    }
+}
+</code></pre><p>调用方法为:</p>
+<pre><code>{{ item.createTime | getDay }}
+</code></pre><p>其中item.createTime对应模型中的值和过滤器方法的参数，getDay很明显，就是我们过滤器的方法了。有了这些，完成过滤器就很简单了：</p>
+<pre><code>getDay(time) {
+    var date = new Date(time);
+    return  date.getDate();    
+}
+</code></pre><p>这时页面上就回只显示日期值的。</p>
+<p>接下来我们想到，不只是日期需要，其他的需要的还有很多，比如月份，时间等，而且在可预见的地方，比如新增记录页，tag的列表页等，所以这个功能有必要提取复用一下，关于日期操作的js方法网上有很多，就不在叙述，这个作为工具类，通服务端代码一样，创建一个util文件夹，然后就叫Date.js文件，最终的代码如下：</p>
+<pre><code>export function formatDate(time, fmt) {
+    var date = new Date(time);
+
+    if (/(y+)/.test(fmt)) {
+        fmt = fmt.replace(RegExp.$1, (date.getFullYear() + &apos;&apos;).substr(4 - RegExp.$1.length));
+    }
+    let o = {
+        &apos;M+&apos;: date.getMonth() + 1,
+        &apos;d+&apos;: date.getDate(),
+        &apos;h+&apos;: date.getHours(),
+        &apos;m+&apos;: date.getMinutes(),
+        &apos;s+&apos;: date.getSeconds(),
+        &apos;w+&apos;:getWeek(date)
+    };
+    for (let k in o) {
+        if (new RegExp(`(${k})`).test(fmt)) {
+            let str = o[k] + &apos;&apos;;
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? str : padLeftZero(str));
+        }
+    }
+    return fmt;
+};
+
+function padLeftZero(str) {
+    return (&apos;00&apos; + str).substr(str.length);
+}
+function getDay(time){
+    return formatDate(time,&quot;dd&quot;);
+}
+
+function getWeek(time){
+    var weekName=[&apos;星期日&apos;,&apos;星期一&apos;,&apos;星期二&apos;,&apos;星期三&apos;,&apos;星期四&apos;,&apos;星期五&apos;,&apos;星期六&apos;]
+    return weekName[time.getDay()];
+}
+function getTime(time){
+    return formatDate(&quot;hh-mm-dd&quot;);
+}
+</code></pre><p>然后DirayList组件内引入,并完成剩余的几个过滤器方法：</p>
+<pre><code>&lt;script&gt;
+    import { formatDate } from &apos;../utils/date.js&apos;;
+    export default {
+        props:[&quot;todos&quot;],
+        filters: {
+            getDay(time) {
+                return  formatDate(time,&quot;dd&quot;);
+            },
+            getWeek(time) {
+                return  formatDate(time,&quot;w&quot;);
+            },
+            getTime(time) {
+                return  formatDate(time,&quot;hh:mm&quot;);
+            }
+        }
+    }
+&lt;/script&gt;
+</code></pre><p>最后，是右边的三个icon图标，这三个db中存储的是int型，而页面显示需要一个String的name，所以，通date中的week一样，分别将int作为数组的下标，这里给出三个最简的形式：</p>
+<p>mood.js</p>
+<pre><code>export function mood(num) {
+    var moodValue=[&quot;mood&quot;,&quot;&quot;]
+    if(num==null)
+        num=0;
+    return moodValue[num];
+}
+</code></pre><p>weather.js</p>
+<pre><code>export function weather(num) {
+    var weatherValue=[&quot;wb_sunny&quot;,&quot;&quot;]
+    if(num==null)
+        num=0;
+    return weatherValue[num];
+}
+</code></pre><p>bookmark.js</p>
+<pre><code>export function bookmark(num) {
+    var bookmarkValue=[&quot;bookmark_border&quot;,&quot;bookmark&quot;]
+    if(num==null)
+        num=0;
+    return bookmarkValue[num];
+}
+</code></pre><p>最终标签内的代码如下：</p>
+<pre><code>&lt;mu-paper class=&quot;diaryitem&quot; :zDepth=&quot;2&quot; v-for=&quot;(item) in todos&quot; &gt;
+    &lt;mu-content-block&gt;
+        &lt;mu-row gutter&gt;
+           &lt;mu-col width=&quot;20&quot;&gt;
+               &lt;div class=&quot;item_day&quot;&gt;{{ item.createTime | getDay }}&lt;/div&gt;
+               &lt;div class=&quot;item_week&quot;&gt;{{ item.createTime | getWeek }}&lt;/div&gt;
+           &lt;/mu-col&gt;
+            &lt;mu-col width=&quot;60&quot;&gt;
+                &lt;div class=&quot;item_time&quot;&gt;{{ item.createTime | getTime }}&lt;/div&gt;
+                &lt;div class=&quot;item_title&quot;&gt;{{ item.item }}&lt;/div&gt;
+                &lt;div class=&quot;item_content&quot;&gt;{{item.content}}&lt;/div&gt;
+            &lt;/mu-col&gt;
+            &lt;mu-col width=&quot;25&quot; style=&quot;text-align:right&quot;&gt;
+                &lt;mu-icon :value=&quot; item.mood | getMoodValue  &quot; :size=&quot;16&quot;/&gt;
+                &lt;mu-icon :value=&quot; item.weather | getWeatherValue  &quot; :size=&quot;16&quot;/&gt;
+                &lt;mu-icon :value=&quot; item.bookmark | getBookmarkValue  &quot; :size=&quot;16&quot;/&gt;
+            &lt;/mu-col&gt;
+        &lt;/mu-row&gt;
+    &lt;/mu-content-block&gt;
+&lt;/mu-paper&gt;
+</code></pre><p>js代码如下：</p>
+<pre><code>import { formatDate } from &apos;../utils/date.js&apos;;
+import { mood } from &apos;../utils/mood.js&apos;;
+import { weather } from &apos;../utils/weather.js&apos;;
+import { bookmark } from &apos;../utils/bookmark.js&apos;;
+export default {
+    props:[&quot;todos&quot;],
+    filters: {
+        getDay(time) {
+
+             var date = new Date(time);
+             console.log(date)
+            return  date.getDate();
+            //return  formatDate(time,&quot;dd&quot;);
+        },
+        getWeek(time) {
+            return  formatDate(time,&quot;w&quot;);
+        },
+        getTime(time) {
+            return  formatDate(time,&quot;hh:mm&quot;);
+        },
+        getMoodValue(num){
+            return mood(num);
+        },
+        getWeatherValue(num){
+            return weather(num);
+        },
+        getBookmarkValue(num){
+            return bookmark(num);
+        }
+    }
+}
+</code></pre><blockquote>
+<p>css代码略，请自行查看源码</p>
+</blockquote>
+<p>这时候跑起来，效果如图：</p>
+<p><img src="http://oyol58zk0.bkt.clouddn.com/jtodos/17/2.png?k=1" alt=""></p>
+<p>从当前的界面莱克，基本上符合原型的要求。</p>
+<h2 id="服务端数据"><a href="#服务端数据" class="headerlink" title="服务端数据"></a>服务端数据</h2><p>剩下的内容就简单了，只要解决数据来源的问题就清楚了，我们在贴一下要求的数据格式：</p>
+<pre><code>indexTodos:[
+    {
+        month:0,              //月份
+        default:1,            //正在显示的月份
+        todos:[{
+            createTime:new Date(),   //记录时间
+            item:&apos;&apos;,                 //标题
+            content:&apos;&apos;,                 //内容
+            weather:0,                 //天气
+            mood:0,                     //心情
+            bookmark:0,                 //标记
+            groupid:0,                 //所属组
+        }]
+    }
+]
+</code></pre><p>同时，还需要一个itemnumber，所以回到服务端的java代码，一步一步的完成这个api功能。</p>
+<p>首先，为了和原有的代码区分，新创建一个ApiTodoController控制器，里边新增一个action,apiIndex,这个action除了token外，还需要一个月份作为参数，这个也很容易理解。然后我们需要根据月份查询todo列表，在之前还提到过，由于分多个组，需要设置一个默认组，首页显示默认组的todo，所以，服务层的方法名也就出来了，getTodosByDefaultGroup,参数有两个，用户Id(由token获取)和月份(参数传递)。</p>
+<p>其实根据服务层的方法名，他的伪代码就都出来了，根据的《代码大全里》的方法,用说明注释写出来：</p>
+<ul>
+<li>根据用户id查询此用户的默认记录组</li>
+<li>查询此组此月的所有记录</li>
+</ul>
+<p>注释简单，代码当然也就简单了：</p>
+<pre><code>public List&lt;Todo&gt; getTodoByDefaultGroup(int userId,int month) {
+    TodoGroup todoGroup=todoGroupRepository.findByIsDefaultAndUserId(1,userId);
+    DateBetween between=getDate(month);
+    List&lt;Todo&gt;  todos= todoRepository.getByGroupIdAndCreateTimeBetween(todoGroup.getId(),between.getFirstDate(),between.getEndDate());
+    return todos;
+}
+</code></pre><p>repository层内只有方法名没有方法体，所以查看调用就能看到全部内容，不在叙述。</p>
+<p>DateBetween类从名字就可以看出来，表示一个日期区间，具体到这个代码中，表示的是这个月的1号到这个月的最后一天，即31号（1月份），他的代码如下：</p>
+<pre><code>class DateBetween{
+    private Date firstDate;
+    private Date endDate;
+    //get set
+}
+</code></pre><p>getDate就是获取参数月的起始和结束日期，代码如下：</p>
+<pre><code>private DateBetween getDate( int month ){
+    DateBetween between=new DateBetween();
+    SimpleDateFormat format = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);
+    Calendar firstCalender =  Calendar.getInstance();
+    // 获取前月的第一天
+    firstCalender = Calendar.getInstance();
+    firstCalender.add(Calendar.MONTH, 0);
+    firstCalender.set(Calendar.DAY_OF_MONTH, 1);
+    between.setFirstDate(firstCalender.getTime());
+    // 获取前月的最后一天
+    Calendar endCalender =   Calendar.getInstance();
+    endCalender.add(Calendar.MONTH, 1);
+    endCalender.set(Calendar.DAY_OF_MONTH, 0);
+    between.setEndDate(endCalender.getTime());
+    return  between;
+}
+</code></pre><p>貌似有点啰嗦，先这样回头再慢慢重构吧，这个方法只有这个类用，是private的。</p>
+<p>##组装json##</p>
+<p>接下来回到Controller，这里没什么好说的，<code>jackson</code>库能直接将Map和类转成Json对象，所以直接把前端需要的数据通过map组装起来就好了，直接贴代码：</p>
+<pre><code>@RequestMapping(value = &quot;/api/index&quot;,method = RequestMethod.POST)
+public Object apiIndex(HttpServletRequest request,@RequestBody Map map){
+    //获取首页数据
+    String userId=request.getAttribute(&quot;tokenId&quot;).toString();
+    Integer month=Integer.parseInt( map.get(&quot;month&quot;).toString());
+    List&lt;Map&lt;String,Object&gt;&gt; items=new ArrayList&lt;Map&lt;String,Object&gt;&gt;();
+    for (int i=0;i&lt;1;i++) {
+        List&lt;Todo&gt; todos = todoService.getTodoByDefaultGroup(Integer.parseInt(userId),month);
+        //数据结构扩充接口
+        Map&lt;String, Object&gt; data = new HashMap&lt;String, Object&gt;();
+        data.put(&quot;month&quot;,month);
+        data.put(&quot;todos&quot;,todos);
+        data.put(&quot;default&quot;,1);
+        items.add(data);
+    }
+    Map&lt;String,Object&gt; resutl=new HashMap&lt;String,Object&gt;();
+    resutl.put(&quot;items&quot;,items);
+    resutl.put(&quot;itemnumber&quot;,items.size());
+    return result(resutl);
+}
+</code></pre><p>注意这个for循环，现在只走一次，这是为了之后优化效率，一次性返回多个月而预留的代码，现在就直接当它是一个顺序结构即可.</p>
+<p>到目前为止的代码：</p>
+<p><a href="https://github.com/niufennan/jtodos-vue-client.git" target="_blank" rel="external">前端vue</a><br><a href="https://github.com/niufennan/jtodos.git" target="_blank" rel="external">后端java</a></p>
+<p>谢谢观看</p>
+
+            </div>
+
+            <!-- Post Comments -->
+            
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #7EC0EE;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load" id="disqus_bt"> 
+    <button class="disqus_click_btn">点击查看评论</button>
+</div>
+
+<!--
+<script type="text/javascript">
+$('.btn_click_load').click(function() {
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'http-miccall-tech'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    document.getElementById('disqus_bt').style.display = "none";
+});
+</script>
+-->
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2018/01/09/如果你想开发一个应用-1-17/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://yoursite.com/2018/01/09/如果你想开发一个应用-1-17/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/javascript">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//http-miccall-tech.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+
+        </div>
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By <a href="https://hexo.io/zh-cn/" style="border-bottom: none;">hexo</a></li>
+                <li>Design: <a href="http://miccall.tech " style="border-bottom: none;">miccall</a></li>
+            </ul>
+            
+            	<span id="busuanzi_container_site_pv">2018总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+			
+        </div>
+    </div>
+</body>
+
+
+
+ 	
+</html>
