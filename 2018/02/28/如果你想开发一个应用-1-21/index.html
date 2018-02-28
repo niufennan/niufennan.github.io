@@ -1,0 +1,330 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<link rel="bookmark"  type="image/x-icon"  href="/img/niu.png"/>
+	 <link rel="shortcut icon" href="/img/niu.png">
+	
+			
+    <title>
+    双鱼座的牛
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/mic_main.css" />
+    <link rel="stylesheet" href="/css/dropdownMenu.css" />
+    
+    	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
+
+			    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+	
+</head>
+    
+		
+<!-- Layouts -->
+
+
+
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_coy.css" />
+<link rel="stylesheet" href="/css/typo.css" />
+<!-- 文章页 -->
+<body class="is-loading">
+    <!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in">
+        <!-- Intro 头部显示 s -->
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="/" class="logo">双鱼座的牛</a>
+</header>
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special" >
+            <ul class="menu links" >
+			<!-- Homepage  主页  --> 
+			<li >
+	            <a href="/" rel="nofollow">主页</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <li class="active">
+	            <a href="#s1">分类</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        <a class="category-link" href="/categories/前端技术/">前端技术</a></li><li><a class="category-link" href="/categories/后端技术/">后端技术</a></li><li><a class="category-link" href="/categories/闲言碎语/">闲言碎语</a>
+	                    </ul>
+	        </li>
+	        
+	        <!-- archives  归档   --> 
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="/about/" title="简历">
+		                简历
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/group/" title="团队">
+		                团队
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/gallery/" title="图库">
+		                图库
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/tag/" title="标签">
+		                标签
+		            </a>
+		        </li>
+		        
+
+
+            </ul>
+            <!-- icons 图标   -->
+			<ul class="icons">
+		            
+		                <li><a href="https://github.com/miccall" class="icon fa-github"><span class="label">GitHub</span></a></li>
+		            
+		            
+		            
+		            
+			</ul>
+</nav>
+
+        <div id="main" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(http://upload-images.jianshu.io/upload_images/6290181-46283c4707a34615.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >如果你想开发一个应用(1-21)</h2></a>
+            </div>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <p>##提交-Vue##</p>
+<p>现在CreateOrShowDiaryItem附属的功能均已完成，对于基础功能来说，就差了最后一步。就是数据的提交。</p>
+<p>有了前边的铺垫，这里就比较简单了。</p>
+<p>首先是Vue部分，需要根据后台的模型来创建前端所需提交的模型，因为之前的数据值都已经设置好，所以这块基本将后端模型复制修改就可以了(定位依然手动设置)：</p>
+<pre><code>var data={
+    token:this.token,
+    groupId:this.groupId,                //所属组
+    item:this.item,                        //标题
+    conent:this.conent,                    //内容
+    weather:this.weather,                //天气
+    weatherContent:this.weatherContent, //天气内容(获取或设置的json)
+    mood:this.mood,                        //心情
+    bookmark:0,                            //是否标记，默认为0
+    address:this.addressValue+&quot; &quot;+this.addressCity+&quot; &quot;+this.addressProvince,             //地址
+    lng:0,  //手动设置定位没有经纬度信息
+    lat:0,
+}
+</code></pre><p>##提交-服务端##</p>
+<p>这里暴露一个接收客户端数据的接口，暂时定位名字为saveTodos吧，他的代码就是讲上传的data转换为数据模型并保存：</p>
+<pre><code>@RequestMapping(value = &quot;/api/saveTodos&quot;,method = RequestMethod.POST)
+public Object saveTodos(HttpServletRequest request,@RequestBody Map map){
+    //获取用户
+    String userId=request.getAttribute(&quot;tokenId&quot;).toString();
+    //创建对象
+    Todo todo=new Todo();
+    todo.setCreateTime(new Date());
+    todo.setUserId(Integer.parseInt(userId));
+    todo.setAddress(map.get(&quot;address&quot;).toString());
+    todo.setBookmark(Integer.parseInt(map.get(&quot;bookmark&quot;).toString()));
+    todo.setItem(map.get(&quot;item&quot;).toString());
+    todo.setContent(map.get(&quot;conent&quot;).toString());
+    todo.setGroupId(Integer.parseInt(map.get(&quot;groupId&quot;).toString()));
+    todo.setLat(Double.parseDouble(map.get(&quot;lat&quot;).toString()));
+    todo.setLng(Double.parseDouble(map.get(&quot;lng&quot;).toString()));
+    todo.setMood(Integer.parseInt(map.get(&quot;mood&quot;).toString()));
+    todo.setWeather(Integer.parseInt(map.get(&quot;weather&quot;).toString()));
+    todo.setWeatherContent(map.get(&quot;weatherContent&quot;).toString());
+    //保存
+    todoService.save(todo);
+    return result();
+}
+</code></pre><p>##沟通##</p>
+<p>最后就是客户端对服务端的调用了，有了之前的经验，这里也就没什么难度了：</p>
+<pre><code>save: function(event){
+    var data={
+        token:this.token,
+        groupId:this.groupId,
+        item:this.item,
+        conent:this.conent,
+        weather:this.weatherIconIndex,
+        weatherContent:this.weatherContent,
+        mood:this.mood,
+        bookmark:0,
+        address:this.addressValue+&quot; &quot;+this.addressCity+&quot; &quot;+this.addressProvince,
+        lng:0,
+        lat:0,
+    }
+
+    this.$http.post(&quot;/api/saveTodos&quot;,data,{headers:{&quot;token&quot;:this.token}}).then(res=&gt;{
+        if(res.data.msg!=&quot;&quot;){
+            //服务端错误 暂时使用最low的方法提示
+            alert(res.data.msg)
+        }
+        //添加成功
+        this.$store.commit(&apos;close&apos;)
+    },res=&gt;{
+        //查询服务器错误 同样使用最low的方法提示
+        alert(res.data.msg)
+    })
+},
+</code></pre><p>##补完列表项##</p>
+<p>现在提交之后仅仅是关闭这个组件，首页并不会自己刷新，在实现自动刷新之前，先手动刷新一下，可以看到，天气和心情的图标是没有显示的，这个也很明显，因为之前的数组都是空的，下面补完这两项:</p>
+<p>###心情###</p>
+<p>心情很简单，直接把图标项补全就行了</p>
+<p><strong>util/mood.js</strong></p>
+<pre><code>export function mood(num) {
+    var moodValue=[&quot;sentiment_very_satisfied&quot;,&quot;sentiment_satisfied&quot;,&quot;sentiment_neutral&quot;,&quot;sentiment_dissatisfied&quot;,&quot;sentiment_very_dissatisfied&quot;]
+    if(num==null)
+        num=0;
+    return moodValue[num];
+}
+</code></pre><p>###天气###</p>
+<p>天气就稍微麻烦一点了，因为开始设计的是使用icon，但后期又改为使用图片图标，所以需要修改一下列表，将天气图标修改为img标签，并且由于图标的特殊性，将图标位置修改为第一个，并且，为了不突兀，将图标黑白化：</p>
+<pre><code>&lt;mu-col width=&quot;25&quot; style=&quot;text-align:right&quot;&gt;
+    &lt;img :src=&quot; item.weather | getWeatherValue&quot; class=&quot;weatherIconImg&quot;&gt;
+    &lt;mu-icon :value=&quot; item.mood | getMoodValue  &quot; :size=&quot;16&quot;/&gt;
+    &lt;mu-icon :value=&quot; item.bookmark | getBookmarkValue  &quot; :size=&quot;16&quot;/&gt;
+&lt;/mu-col&gt;
+</code></pre><p>接下来js过滤器就是一个字符串拼接方法</p>
+<p><strong>util/weather.js</strong></p>
+<pre><code>export function weather(num) {
+    if(num==null)
+        num=0;
+    //这里需服务器图标
+    return &quot;http://localhost:8082/images/3d_60/&quot;+num+&quot;.png&quot;
+}
+</code></pre><p>同时，这个方法<strong>CreateOrShowDiaryItem</strong>组件内的手动天气同样可以使用，并且进行一些微调：</p>
+<pre><code>&lt;div style=&quot;text-align:center&quot;&gt;
+    &lt;img :src=&quot; 0 | getWeatherValue &quot; :class=&quot;weatherIcon0&quot; @click=&quot;chooseWeatherIcon(0,0)&quot;&gt;
+    &lt;img :src=&quot; 7 | getWeatherValue &quot; :class=&quot;weatherIcon1&quot; @click=&quot;chooseWeatherIcon(1,7)&quot;&gt;
+    &lt;img :src=&quot; 9 | getWeatherValue &quot; :class=&quot;weatherIcon2&quot; @click=&quot;chooseWeatherIcon(2,9)&quot;&gt;
+    &lt;img :src=&quot; 13 | getWeatherValue &quot; :class=&quot;weatherIcon3&quot; @click=&quot;chooseWeatherIcon(3,13)&quot;&gt;
+    &lt;img :src=&quot; 24 | getWeatherValue &quot; :class=&quot;weatherIcon4&quot; @click=&quot;chooseWeatherIcon(4,24)&quot;&gt;
+    &lt;img :src=&quot; 30 | getWeatherValue &quot; :class=&quot;weatherIcon5&quot; @click=&quot;chooseWeatherIcon(5,30)&quot;&gt;
+&lt;/div&gt;
+</code></pre><p>第二个参数即为图标的num，也是todo项所保存的天气属性。</p>
+<p>然后客户端不需要保存图标，删除即可。</p>
+<p>这样，首页的列表在单月显示的层面上已经完成了目标。同样的，看看效果：</p>
+<p><img src="http://oyol58zk0.bkt.clouddn.com/jtodos/21/1.PNG" alt=""></p>
+
+            </div>
+
+            <!-- Post Comments -->
+            
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #7EC0EE;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load" id="disqus_bt"> 
+    <button class="disqus_click_btn">点击查看评论</button>
+</div>
+
+<!--
+<script type="text/javascript">
+$('.btn_click_load').click(function() {
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'http-miccall-tech'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    document.getElementById('disqus_bt').style.display = "none";
+});
+</script>
+-->
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2018/02/28/如果你想开发一个应用-1-21/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://yoursite.com/2018/02/28/如果你想开发一个应用-1-21/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/javascript">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//http-miccall-tech.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+
+        </div>
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By <a href="https://hexo.io/zh-cn/" style="border-bottom: none;">hexo</a></li>
+                <li>Design: <a href="http://miccall.tech " style="border-bottom: none;">miccall</a></li>
+            </ul>
+            
+            	<span id="busuanzi_container_site_pv">2018总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+			
+        </div>
+    </div>
+</body>
+
+
+
+ 	
+</html>
