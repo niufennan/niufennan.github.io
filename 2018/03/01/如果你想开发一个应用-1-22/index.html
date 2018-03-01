@@ -1,0 +1,365 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<link rel="bookmark"  type="image/x-icon"  href="/img/niu.png"/>
+	 <link rel="shortcut icon" href="/img/niu.png">
+	
+			
+    <title>
+    双鱼座的牛
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/mic_main.css" />
+    <link rel="stylesheet" href="/css/dropdownMenu.css" />
+    
+    	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
+
+			    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+	
+</head>
+    
+		
+<!-- Layouts -->
+
+
+
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_coy.css" />
+<link rel="stylesheet" href="/css/typo.css" />
+<!-- 文章页 -->
+<body class="is-loading">
+    <!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in">
+        <!-- Intro 头部显示 s -->
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="/" class="logo">双鱼座的牛</a>
+</header>
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special" >
+            <ul class="menu links" >
+			<!-- Homepage  主页  --> 
+			<li >
+	            <a href="/" rel="nofollow">主页</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <li class="active">
+	            <a href="#s1">分类</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        <a class="category-link" href="/categories/前端技术/">前端技术</a></li><li><a class="category-link" href="/categories/后端技术/">后端技术</a></li><li><a class="category-link" href="/categories/闲言碎语/">闲言碎语</a>
+	                    </ul>
+	        </li>
+	        
+	        <!-- archives  归档   --> 
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="/about/" title="简历">
+		                简历
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/group/" title="团队">
+		                团队
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/gallery/" title="图库">
+		                图库
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/tag/" title="标签">
+		                标签
+		            </a>
+		        </li>
+		        
+
+
+            </ul>
+            <!-- icons 图标   -->
+			<ul class="icons">
+		            
+		                <li><a href="https://github.com/miccall" class="icon fa-github"><span class="label">GitHub</span></a></li>
+		            
+		            
+		            
+		            
+			</ul>
+</nav>
+
+        <div id="main" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(http://upload-images.jianshu.io/upload_images/6290181-ee719f128b6fde37.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >如果你想开发一个应用(1-22)</h2></a>
+            </div>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <h2 id="日历页"><a href="#日历页" class="headerlink" title="日历页"></a>日历页</h2><p>接下来把目光转向日历页，这个日历页的功能很单一，点击按钮后，显示当天记录日记项，为了方便起见，仍然不考虑分页问题。</p>
+<p>思考一下这个列表和首页的列表有什么区别，首先，每个todos是一模一样的，然后，没有了月份的title，最后，不关心itemnumber这个值，然后在查询上，首页是按照月份查，这个是按照天查。所以，首先从服务端开始，常识新增这个功能。</p>
+<h2 id="数据访问层"><a href="#数据访问层" class="headerlink" title="数据访问层"></a>数据访问层</h2><p>虽然查询条件不一致，一个是按月份，一个是按天，但在数据库层面，无论是按月份查还是按照天查，都是查询一个起始时间和结束时间的区间内的条目。所以在持久层代码没有修改，依然是之前的代码：</p>
+<pre><code>public List&lt;Todo&gt; getByGroupIdAndCreateTimeBetween(int groupId, Date startDate,Date endDate);
+</code></pre><h2 id="服务层"><a href="#服务层" class="headerlink" title="服务层"></a>服务层</h2><p>到了服务层，修改就比较大了，首先获取时间区间的方法，之前只有一个参数month，接下来新增一个重载，这个重载是三个参数：年，月，日，这样就可以获得一日之内的区间：</p>
+<pre><code>private DateBetween getDate(int year, int month,int day ){
+    DateBetween between=new DateBetween();
+    Calendar firstCalender =  Calendar.getInstance();
+    firstCalender.set(Calendar.YEAR,year);
+    firstCalender.set(Calendar.MONTH,month);
+    firstCalender.set(Calendar.DAY_OF_MONTH,day);
+    firstCalender.set(Calendar.HOUR_OF_DAY,0);
+    firstCalender.set(Calendar.MINUTE,0);
+    firstCalender.set(Calendar.SECOND,0);
+    between.setFirstDate(firstCalender.getTime());
+    // 获取前月的最后一天
+    Calendar endCalender =   Calendar.getInstance();
+    endCalender.set(Calendar.YEAR,year);
+    endCalender.set(Calendar.MONTH, month);
+    endCalender.set(Calendar.DAY_OF_MONTH,++day);
+    endCalender.set(Calendar.HOUR_OF_DAY,0);
+    endCalender.set(Calendar.MINUTE,0);
+    endCalender.set(Calendar.SECOND,0);
+    endCalender.add(Calendar.SECOND,-1);
+    between.setEndDate(endCalender.getTime());
+    return between;
+}
+</code></pre><p>到了实际进行查询的实现方法，就没这么复杂了，只有两行代码，获取时间区间，然后查询：</p>
+<pre><code>public List&lt;Todo&gt; getTodoByCalendarTodoList(int userId, int groupId, int year,int month, int day) {
+    DateBetween between=getDate(year,month,day);
+    List&lt;Todo&gt; todos=todoRepository.getByGroupIdAndCreateTimeBetween(groupId,between.getFirstDate(),between.getEndDate());
+    return todos;
+}
+</code></pre><blockquote>
+<p>接口代码略</p>
+</blockquote>
+<h2 id="控制器"><a href="#控制器" class="headerlink" title="控制器"></a>控制器</h2><p>最后，要通过Controller来使用webapi的方式将功能暴露出去，而到了控制器层面，除了参数处理之外就几乎没有什么其他的代码了：</p>
+<pre><code>@RequestMapping(value = &quot;/api/calendarTodoList&quot;,method = RequestMethod.POST)
+public Object calendarTodoList(HttpServletRequest request,@RequestBody Map map){
+    Integer userId= Integer.parseInt(request.getAttribute(&quot;tokenId&quot;).toString());
+    Integer year=Integer.parseInt( map.get(&quot;year&quot;).toString());
+    Integer month=Integer.parseInt( map.get(&quot;month&quot;).toString());
+    Integer day=Integer.parseInt(map.get(&quot;day&quot;).toString());
+    Integer groupId=Integer.parseInt(map.get(&quot;groupId&quot;).toString());
+    List&lt;Todo&gt; todos = todoService.getTodoByCalendarTodoList(userId,groupId,year,month,day);
+    return result(todos);
+}
+</code></pre><p>由于之前的基础，所以现在仅就db查询来说，新增代码都是无比的轻松。</p>
+<h2 id="修改模型"><a href="#修改模型" class="headerlink" title="修改模型"></a>修改模型</h2><p>刚刚已经分析到，在日历页我们不需要月份信息，仅仅需要todos的内容，所以，在vuex中把他独立出来：</p>
+<p><strong>\store\index.js</strong></p>
+<pre><code>const todos=[{
+    createTime:new Date(),
+    item:&apos;&apos;,
+    content:&apos;&apos;,
+    weather:0,
+    mood:0,
+    bookmark:0,
+    groupId:0,
+}]
+</code></pre><p>可以看到，他直接是一个数组，然后在state中，可以直接写到todos：</p>
+<pre><code>const state = {
+    ...
+    indexTodos:[
+        {
+            month:0,
+            default:1,
+            todos
+        }
+    ],
+    ...
+    todos
+}
+</code></pre><p>还有对todos进行赋值的方法：</p>
+<pre><code>mutations: {
+    ...
+    setTodos(state,todos){
+        state.todos=todos;
+    }
+
+}
+</code></pre><p>最后别忘了在日历页中进行引用：</p>
+<p><strong>\components\Calendar.vue</strong></p>
+<pre><code>computed: mapState({
+    groupId: state=&gt;state.groupId,
+    token: state =&gt; state.token,
+    todos:state=&gt;state.todos
+}),
+</code></pre><h2 id="客户端查询"><a href="#客户端查询" class="headerlink" title="客户端查询"></a>客户端查询</h2><p>然后采用最简单粗暴的方法，在按钮的事件内直接将数据查询下来，对模型进行赋值。然后在想办法修改样式：</p>
+<pre><code>showDiaryList:function(){
+    var data={
+        year:(new Date()).getFullYear(),
+        month:(new Date()).getMonth(),
+        day:this.day,
+        groupId:this.groupId
+    }
+    this.$http.post(&quot;/api/calendarTodoList&quot;,data,{headers:{&quot;token&quot;:this.token}}).then(res=&gt;{
+        if(res.data.msg!=&quot;&quot;){
+            this.$router.push({name:&quot;Login&quot;})
+        }
+        var result=res.data.data;
+        if(!(result== undefined ||result==&quot;&quot;)&amp;&amp;result.length&gt;0){
+            this.$store.commit(&apos;setTodos&apos;,result);
+            this.switchButton(false);
+        }else{
+            this.shownone=true;
+            this.showarrow=false;
+            this.switchButton();
+        }
+    },res=&gt;{
+        //查询服务器失败
+        this.$router.push({name:&quot;Login&quot;})
+    })
+},
+</code></pre><p>switchButton顾名思义，是一个按钮切换的功能，这里加了一点动画，用于切换按钮的隐藏与显示：</p>
+<pre><code>switchButton:function(x){
+    x=x==undefined?true:false;
+    let self = this
+    setTimeout(function () {
+         self.shownone=false;
+         self.showlist=x?false:true;
+        setTimeout(function () {
+            self.showarrow=x?true:false;
+        }, 500);
+
+    }, 500);
+}
+</code></pre><h2 id="页面"><a href="#页面" class="headerlink" title="页面"></a>页面</h2><p>通过刚刚查询的的方法，可以大概的猜出现在的显示区域元素共有三个，按钮，空数据提示，和实际数据列表，一步一步来，首先是按钮的修改：</p>
+<pre><code>&lt;transition name=&quot;fade&quot;&gt;    
+    &lt;div class=&quot;arrow&quot; v-if=&quot;showarrow&quot;&gt;
+        &lt;mu-float-button icon=&quot;expand_more&quot; iconClass=&quot;arrowicon&quot; @click=&quot;showDiaryList&quot; class=&quot;arrowbtn&quot;/&gt;
+    &lt;/div&gt;
+&lt;/transition&gt;
+</code></pre><p>在包裹一层动画的基础上，新增了if语句来决定师傅输出显示。</p>
+<p>然后是空数据提示：</p>
+<pre><code>&lt;transition name=&quot;fade&quot;&gt;
+    &lt;div v-if=&quot;shownone&quot;&gt;
+        当天没有记录！
+    &lt;/div&gt;
+&lt;/transition&gt;
+</code></pre><p>和按钮一样，没什么可说的，接下来就是todos的列表部分了，这里同样先使用最简单粗暴的方式，直接调用之前定义好的组件，然后将todos作为参数传过去：</p>
+<pre><code>&lt;DiaryListComponents v-bind:todos=&quot;todos&quot;&gt;&lt;/DiaryListComponents&gt;
+</code></pre><p>非常简单，这就是组件复用的力量。</p>
+<p>最后，照例放上截图看看效果：</p>
+<p><img src="http://oyol58zk0.bkt.clouddn.com/jtodos/22/1.PNG" alt=""></p>
+
+            </div>
+
+            <!-- Post Comments -->
+            
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #7EC0EE;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load" id="disqus_bt"> 
+    <button class="disqus_click_btn">点击查看评论</button>
+</div>
+
+<!--
+<script type="text/javascript">
+$('.btn_click_load').click(function() {
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'http-miccall-tech'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    document.getElementById('disqus_bt').style.display = "none";
+});
+</script>
+-->
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2018/03/01/如果你想开发一个应用-1-22/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://yoursite.com/2018/03/01/如果你想开发一个应用-1-22/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/javascript">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//http-miccall-tech.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+
+        </div>
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By <a href="https://hexo.io/zh-cn/" style="border-bottom: none;">hexo</a></li>
+                <li>Design: <a href="http://miccall.tech " style="border-bottom: none;">miccall</a></li>
+            </ul>
+            
+            	<span id="busuanzi_container_site_pv">2018总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+			
+        </div>
+    </div>
+</body>
+
+
+
+ 	
+</html>
