@@ -1,0 +1,388 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<link rel="bookmark"  type="image/x-icon"  href="/img/niu.png"/>
+	 <link rel="shortcut icon" href="/img/niu.png">
+	
+			
+    <title>
+    双鱼座的牛
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/mic_main.css" />
+    <link rel="stylesheet" href="/css/dropdownMenu.css" />
+    
+    	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
+
+			    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+	
+</head>
+    
+		
+<!-- Layouts -->
+
+
+
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_coy.css" />
+<link rel="stylesheet" href="/css/typo.css" />
+<!-- 文章页 -->
+<body class="is-loading">
+    <!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in">
+        <!-- Intro 头部显示 s -->
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="/" class="logo">双鱼座的牛</a>
+</header>
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special" >
+            <ul class="menu links" >
+			<!-- Homepage  主页  --> 
+			<li >
+	            <a href="/" rel="nofollow">主页</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <li class="active">
+	            <a href="#s1">分类</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        <a class="category-link" href="/categories/前端技术/">前端技术</a></li><li><a class="category-link" href="/categories/后端技术/">后端技术</a></li><li><a class="category-link" href="/categories/闲言碎语/">闲言碎语</a>
+	                    </ul>
+	        </li>
+	        
+	        <!-- archives  归档   --> 
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="/about/" title="简历">
+		                简历
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/group/" title="团队">
+		                团队
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/gallery/" title="图库">
+		                图库
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/tag/" title="标签">
+		                标签
+		            </a>
+		        </li>
+		        
+
+
+            </ul>
+            <!-- icons 图标   -->
+			<ul class="icons">
+		            
+		                <li><a href="https://github.com/miccall" class="icon fa-github"><span class="label">GitHub</span></a></li>
+		            
+		            
+		            
+		            
+			</ul>
+</nav>
+
+        <div id="main" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url();background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >如果你想开发一个应用(1-23)</h2></a>
+            </div>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <h2 id="首页功能"><a href="#首页功能" class="headerlink" title="首页功能"></a>首页功能</h2><p>接下来回到首页，想想现有功能的缺陷，是的，现在首页只能显示当前月的todos，看动漫中的情况，页面是有一个双重的滑动功能，在单月的情况下，滑动更新每个月的todos，然后到底之后，再去更新下一个月份，接下来要针对这个功能对首页内的todos各模块进行改造</p>
+<h2 id="布局改造"><a href="#布局改造" class="headerlink" title="布局改造"></a>布局改造</h2><p>对于Panel组件来说，修改一下class即可：</p>
+<p><strong>\components\DiaryPanel.vue</strong></p>
+<pre><code>.itemlist{
+    position:relative;
+    padding: 15px;
+    overflow-y: scroll;  //纵轴显示滚动条
+    height: 100%;
+    z-index: 1;             
+}
+</code></pre><p>然后修改list组件，之前的代码是直接进行item的循环，这里要在外边包裹一层容器：</p>
+<p><strong>\components\DiaryPanel.vue</strong></p>
+<pre><code>&lt;div class=&quot;diarypanel&quot;&gt;
+    &lt;mu-paper class=&quot;diaryitem&quot; :zDepth=&quot;2&quot; v-for=&quot;(item) in todos&quot; &gt;
+        ...        
+    &lt;/mu-paper&gt;
+&lt;/div&gt;
+</code></pre><p>首先同样是修改css：</p>
+<pre><code>.diarypanel{
+    overflow-y: scroll;
+}
+</code></pre><p>这时候运行起来，你会发现，纵向滚动条依然无法显示，经过排查，原因为这个容器的高度不固定。没办法，在首页给这个容器加上一个样式：</p>
+<p><strong>\views\Index.vue</strong></p>
+<pre><code>&lt;div id=&quot;contentPanel&quot;&gt;
+    &lt;transition   name=&quot;custom-classes-transition&quot;
+    enter-active-class=&quot;animated bounceInLeft&quot;
+    leave-active-class=&quot;animated fadeOut&quot;
+    :duration=&quot;{ enter: 700, leave: 200 }&quot;&gt;
+        &lt;component v-bind:is=&quot;currentView&quot;&gt;
+        &lt;/component&gt;
+    &lt;/transition&gt;
+&lt;/div&gt;
+</code></pre><p>到了contentPanel的样式：</p>
+<pre><code>#contentPanel{
+    overflow-y: scroll;
+}
+</code></pre><p>可以看到，依然不可以。</p>
+<p>##填充数据##</p>
+<p>在继续修改样式之前，我们先对数据进行一下修改，修改为如果发现数据不能撑满一屏，那么继续查询下一个月，下面一步一步的完成这个改变，客户端开始，首先将读取的部分抽象独立出来：</p>
+<pre><code>setIndexData:function(data){
+    this.$http.post(&quot;/api/index&quot;,data,{headers:{&quot;token&quot;:this.token}}).then(res=&gt;{
+        ...
+    },res=&gt;{
+        ...
+    })
+},
+</code></pre><p>之前的refresh进行改造：</p>
+<pre><code>refresh:function(data){
+    this.setIndexData(data);
+},
+</code></pre><p>而创建页面的时候首先会调用一次Irefresh，并付给当前的年份和月份：</p>
+<pre><code>created(){
+    var month=(new Date()).getMonth();
+    var year=(new Date()).getFullYear();
+    this.refresh({month:month,year:year})
+},
+</code></pre><p>新增一个记录页面总记录数的变量，就叫allCount，每次回调之后更新此值：</p>
+<pre><code>if(!(result== undefined ||result==&quot;&quot;)){
+    ...
+    this.allCount+=result.items[0].todos.length;
+    ...
+}
+</code></pre><p>同时这里做一个是否充满屏幕的判断，采用最简单粗暴的方法，小于10条即认为他没有将屏幕充满，即新增一条判断：</p>
+<pre><code> this.allCount+=result.items[0].todos.length;
+if(this.allCount&lt;10){
+    this.refresh({year:data.year,month:--data.month})
+}
+</code></pre><p>同时，在vuex部分还进行一下削繁就简，将叠加服务端返回todos的部分包装起来：</p>
+<pre><code>addIndexData(state,indexTodos)
+{
+    if(state.indexTodos[0].month==-1){
+        state.indexTodos=[indexTodos];
+    }
+    else{
+        var temp=state.indexTodos
+        temp.push(indexTodos);
+        state.indexTodos=temp;
+    }
+},
+</code></pre><p>同时month的默认值给-1，然后setIndexData就可以光荣的退休了，直接删除即可。</p>
+<p>下面运行看一下效果：</p>
+<p><img src="http://oyol58zk0.bkt.clouddn.com/jtodos/23/1.PNG" alt=""></p>
+<p>看上去似乎非常不错，但是，用手划一下会怎么样呢？</p>
+<p><img src="http://oyol58zk0.bkt.clouddn.com/jtodos/23/2.PNG" alt=""></p>
+<p>##偿还服务端债务##</p>
+<p>可以看到，一月份之后并没有变为上一年的12月份，看来之前的技术债务到了偿还的时候了。首先还是修改服务端的Controller的增加year的参数。</p>
+<pre><code>Integer year=Integer.parseInt(map.get(&quot;year&quot;).toString());
+</code></pre><p>然后修改服务层参数，这里实际上不需要只有一个月份参数的时间区间，于是加上年份：</p>
+<pre><code>public List&lt;Todo&gt; getTodoByDefaultGroup(int userId,int year,int month) {
+    TodoGroup todoGroup=todoGroupRepository.findByIsDefaultAndUserId(1,userId);
+    DateBetween between=getDate(year,month);
+    List&lt;Todo&gt;  todos= todoRepository.getByGroupIdAndCreateTimeBetween(todoGroup.getId(),between.getFirstDate(),between.getEndDate());
+    return todos;
+}
+</code></pre><p>getDate的修改地点极少，只需要给first和end增加一行代码就行了：</p>
+<pre><code>private DateBetween getDate(int year, int month ){
+    DateBetween between=new DateBetween();
+    Calendar firstCalender =  Calendar.getInstance();
+    // 获取前年月的第一天
+    firstCalender.set(Calendar.YEAR,year);
+       ...
+    between.setFirstDate(firstCalender.getTime());
+    // 获取前年月的最后一天
+    Calendar endCalender =   Calendar.getInstance();
+    endCalender.set(Calendar.YEAR,year);
+    ...
+    return  between;
+}
+</code></pre><p>然后对controller调用的部分进行修改。并且返回年份：</p>
+<pre><code>......
+List&lt;Todo&gt; todos = todoService.getTodoByDefaultGroup(Integer.parseInt(userId),year,month);
+Map&lt;String, Object&gt; data = new HashMap&lt;String, Object&gt;();
+data.put(&quot;month&quot;, month+1); //java的月份从0开始
+data.put(&quot;todos&quot;, todos);
+data.put(&quot;year&quot;, year);
+data.put(&quot;default&quot;, 1);
+items.add(data);
+......
+</code></pre><p>ok 服务端改造完成</p>
+<p>##偿还客户端债务##</p>
+<p>客户端由于设计的缺陷，组件化不够彻底，首页和panel页均访问服务器获取todos，这就要求他们两个均能读取年份和月份的信息并能分别计算，为了方便，从vuex入手(暂时依然不考虑使用getter),首先修改模型，增加year属性：</p>
+<pre><code>indexTodos:[
+    {
+        month:-1,
+        year:0,
+        default:1,
+        todos
+    }
+],
+</code></pre><p>然后修改index.vue,新增考虑年份的计算方法：</p>
+<pre><code>getBeforeMonth(year,month){
+    if(month&gt;0){
+        return {year:year,month:--month}
+    }else{
+        return{
+            year:--year,
+            month:11
+        }
+    }
+},
+</code></pre><p>调用的地方修改为：</p>
+<pre><code>if(this.allCount&lt;10){
+    this.refresh(this.getBeforeMonth(data.year,data.month))
+}
+</code></pre><p>先采用最反模式的方法，在DiaryPanel.vue内同样更新一个类似的方法，同时对查询服务器方法的参数做适当的修改(由月份数字改为年月组成的对象)：</p>
+<pre><code>getBeforeMonth(year,month){
+    if(month&gt;0){
+        return {year:year,month:--month}
+    }else{
+        return{
+            year:--year,
+            month:11
+        }
+    }
+},
+
+
+upTodos(data){
+    console.log(data.year);
+    console.log(data.month);
+    ...
+}
+</code></pre><p>下面再次用土土的方法测试一下：</p>
+<p><img src="http://oyol58zk0.bkt.clouddn.com/jtodos/23/3.PNG" alt=""></p>
+<p>偿还了部分技术债务，这一章也暂时告一段落</p>
+<p>客户端代码：<br><a href="https://github.com/niufennan/jtodos-vue-client.git" target="_blank" rel="external">github</a>  </p>
+<p>服务端代码：<br><a href="https://github.com/niufennan/jtodos.git" target="_blank" rel="external">github</a>  </p>
+
+            </div>
+
+            <!-- Post Comments -->
+            
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #7EC0EE;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load" id="disqus_bt"> 
+    <button class="disqus_click_btn">点击查看评论</button>
+</div>
+
+<!--
+<script type="text/javascript">
+$('.btn_click_load').click(function() {
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'http-miccall-tech'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    document.getElementById('disqus_bt').style.display = "none";
+});
+</script>
+-->
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2018/03/05/如果你想开发一个应用-1-23/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://yoursite.com/2018/03/05/如果你想开发一个应用-1-23/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/javascript">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//http-miccall-tech.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+
+        </div>
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By <a href="https://hexo.io/zh-cn/" style="border-bottom: none;">hexo</a></li>
+                <li>Design: <a href="http://miccall.tech " style="border-bottom: none;">miccall</a></li>
+            </ul>
+            
+            	<span id="busuanzi_container_site_pv">2018总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+			
+        </div>
+    </div>
+</body>
+
+
+
+ 	
+</html>
