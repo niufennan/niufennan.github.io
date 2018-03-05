@@ -277,7 +277,72 @@ upTodos(data){
 }
 </code></pre><p>下面再次用土土的方法测试一下：</p>
 <p><img src="http://oyol58zk0.bkt.clouddn.com/jtodos/23/3.PNG" alt=""></p>
-<p>偿还了部分技术债务，这一章也暂时告一段落</p>
+<h2 id="修改一个bug"><a href="#修改一个bug" class="headerlink" title="修改一个bug"></a>修改一个bug</h2><p>这时候看一下浏览器的输出：</p>
+<p><img src="http://oyol58zk0.bkt.clouddn.com/jtodos/23/4.PNG" alt=""></p>
+<p>啊哦，一直在往下查询，都查到了1987年，一下子查询了30年。这是一个小bug，最终要在页低输出一个已经是最后一条，为了方便操作，将首条记录的年月时间保存在客户端，首先修改一下vuex的模型：</p>
+<pre><code>firstYear:0,
+firstMonth:0
+</code></pre><blockquote>
+<p>设置值的方法略。</p>
+</blockquote>
+<p>接下来服务端查询首条记录时间，以年月方式返回：</p>
+<pre><code>@RequestMapping(value = &quot;/api/mindate&quot;,method = RequestMethod.POST)
+public Object getMinDate(HttpServletRequest request,@RequestBody Map map){
+    Integer userId= Integer.parseInt(request.getAttribute(&quot;tokenId&quot;).toString());
+    Date firstDate=todoService.getFirstDateByGroupId(userId);
+    Map&lt;String, Object&gt; data = new HashMap&lt;String, Object&gt;();
+    Calendar calendar=Calendar.getInstance();
+    calendar.setTime(firstDate);
+    data.put(&quot;year&quot;,calendar.get(Calendar.YEAR));
+    data.put(&quot;month&quot;,calendar.get(Calendar.MONTH));
+    return result(data);
+}
+</code></pre><p>服务层：</p>
+<pre><code>public Date getFirstDateByGroupId(int userId) {
+    TodoGroup todoGroup=todoGroupRepository.findByIsDefaultAndUserId(1,userId);
+    Todo todo=todoRepository.getFirstByGroupIdOrderByCreateTime(todoGroup.getId());
+    return todo.getCreateTime();
+}
+</code></pre><blockquote>
+<p>orm略</p>
+</blockquote>
+<p>然后在进入首页的时候调用，并保存：</p>
+<pre><code>refresh:function(data){
+    this.$http.post(&quot;/api/mindate&quot;,{},{headers:{&quot;token&quot;:this.token}}).then(res=&gt;{
+        console.log(res);
+        if(res.data.msg!=&quot;&quot;){
+            this.$router.push({name:&quot;Login&quot;})
+        }
+        var result=res.data.data;
+        if(!(result== undefined ||result==&quot;&quot;)){
+            console.log(result);
+            this.$store.commit(&apos;setFirstYear&apos;,result.year);
+            this.$store.commit(&apos;setFirstMonth&apos;,result.month);
+        }
+    },res=&gt;{
+        //查询服务器失败
+        this.$router.push({name:&quot;Login&quot;})
+    })
+    this.setIndexData(data);
+},
+</code></pre><p>而判断方式，则采用最简单粗暴的，只判断一下年份：</p>
+<pre><code>if(data.year&gt;=this.firstYear){
+    this.upTodos(this.getBeforeMonth(data.year,data.month))
+}else{
+    this.loading=false;
+}
+</code></pre><p>同时，loadMore方法也需要做一下判断这里就要年份和月份同样判断了：</p>
+<pre><code>loadMore () {
+    //赋值
+      var year=this.indexTodos[this.indexTodos.length-1].year
+      var month=this.indexTodos[this.indexTodos.length-1].month-1  //上一个月
+      if(year&gt;=this.firstYear&amp;&amp;month&gt;this.firstMonth){
+          this.loading = true
+          this.upTodos(this.getBeforeMonth(year,month));
+      }
+},
+</code></pre><p>再次运行，这个bug消失了。</p>
+<p>偿还了部分技术债务，并且修改了部分bug，这一章也暂时告一段落。</p>
 <p>客户端代码：<br><a href="https://github.com/niufennan/jtodos-vue-client.git" target="_blank" rel="external">github</a>  </p>
 <p>服务端代码：<br><a href="https://github.com/niufennan/jtodos.git" target="_blank" rel="external">github</a>  </p>
 
